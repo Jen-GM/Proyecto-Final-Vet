@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
+import AboutUs from "../component/aboutUs";
+import ContactUs from "../component/contactUs";
 import "../../styles/home.css";
 
 export const Home = () => {
@@ -18,6 +19,8 @@ export const Home = () => {
 					Read documentation
 				</a>
 			</p>
+			<AboutUs/>
+			<ContactUs/>
 		</div>
 	);
 };
