@@ -1,8 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import relationship
-from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
+from sqlalchemy.orm import relationship, declarative_base
+from sqlalchemy import Column, ForeignKey, Table, Integer, String, Boolean
 
 db = SQLAlchemy()
+Base = declarative_base()
 
 class User_type(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -38,34 +39,40 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    veterinaria_id = db.Column(db.Integer, db.ForeignKey(
-        'veterinaria.id'))
     user_type_id = db.Column(db.Integer, db.ForeignKey(
         'user_type.id'))
     user_type = db.relationship('User_type')
-    veterinaria = db.relationship('Veterinaria')
-
+    
 
     def __repr__(self):
-        return f'<User {self.email}>'
+        return f'<User {self.id}>'
 
     def serialize(self):
         return {
             "id": self.id,
             "email": self.email,
-            "vet_id": self.vet_id,
-            "user_type_id": self.user_type_id
+            "user_type_id": self.user_type_id,
+            "veterinaria_id": self.veterinaria_id
         }
 
-""" class Medico(db.Model):
+association_table = Table(
+    "association_Med_Cli",
+    Base.metadata,
+    Column("medico_id", ForeignKey("medico.id")),
+    Column("cliente_id", ForeignKey("cliente.id")),
+)
+
+class Medico(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(120), unique=True, nullable=False)
-    telefono = db.Column(db.Integer, unique=True, nullable=True)
+    telefono = db.Column(db.String(80), unique=True, nullable=False)
     user_id = db.Column(db.Integer, ForeignKey(
         'user.id'))
-    vet_id = db.Column(db.Integer, ForeignKey(
-        'veterinaria.id'))
-    cliente_id = db.Column(db.Integer, unique=True, nullable=True)
+    user = db.relationship('User')
+    clientes = relationship("Cliente",
+                    secondary=association_table,
+                    back_populates="medicos")
+
 
     def __repr__(self):
         return f'<Medico {self.id}>'
@@ -73,10 +80,10 @@ class User(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "email": self.email,
-            "vet_id": self.vet_id,
-            "user_id": self.user_type_id,
-            "cliente_id": self.cliente_id
+            "nombre": self.nombre,
+            "telefono": self.telefono,
+            "user_id": self.user_id,
+            "clientes": list(map(lambda x: x.serialize(), self.clientes))
         }
 
 class Cliente(db.Model):
@@ -84,11 +91,10 @@ class Cliente(db.Model):
     nombre = db.Column(db.String(120), unique=True, nullable=False)
     direccion = db.Column(db.String(250), unique=True, nullable=False)
     telefono = db.Column(db.String(80), unique=True, nullable=False)
-    vet_id = db.Column(db.Integer, ForeignKey(
-        'veterinaria.id'))
     user_id = db.Column(db.Integer, ForeignKey(
         'user.id'))
-    medico_id = db.Column(db.Integer, unique=True, nullable=True)
+    user = db.relationship('User')
+        
 
     def __repr__(self):
         return f'<Cliente {self.id}>'
@@ -99,7 +105,5 @@ class Cliente(db.Model):
             "nombre": self.nombre,
             "direccion": self.direccion,
             "telefono": self.telefono,
-            "user_id": self.user_type_id,
-            "vet_id": self.vet_id,
-            "medico_id": self.cliente_id
-        } """
+            "user_id": self.user_type_id
+        }
