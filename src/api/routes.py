@@ -17,9 +17,9 @@ api = Blueprint('api', __name__)
 def login():
     user = request.json.get("user", None)
     password = request.json.get("password", None)
+    #___usuario de prueba para probar funcionamiento
     if user != "test" or password != "test":
         return jsonify({"msg": "Bad username or password"}), 401
-
     access_token = create_access_token(identity=user)
     return jsonify(access_token=access_token)
 
