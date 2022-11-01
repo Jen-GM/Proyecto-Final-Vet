@@ -9,11 +9,11 @@ function ContactUs() {
       </div>
       <div className="p-3 bg-gray-700 bg-opacity-10 border border-warning rounded-pill">
         <h5 className="p-3 text-success">Para soporte:</h5>
-        <p><strong>soporte-petsource@gmail.com</strong></p>
+        <p>Puedes escribir a <strong>soporte-petsource@gmail.com</strong></p>
         <p><strong>Horario:</strong></p>
         <p>Lunes a Viernes de 11:00am UTC a 8:00pm UTC.</p>
         <h5 className="p-3 text-success">Para contratar nuestros servicios:</h5>
-        <p><strong>contratacion-petsource@gmail.com</strong></p>
+        <p>Puedes escribir a<strong>contratacion-petsource@gmail.com</strong></p>
         <p><strong>Horario:</strong></p>
         <p>Lunes a Viernes de 11:00am UTC a 8:00pm UTC.</p>
       </div>
