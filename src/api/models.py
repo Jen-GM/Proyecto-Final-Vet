@@ -68,9 +68,11 @@ class User(db.Model):
     Column('medico_id', ForeignKey('medico.id')),
     Column('cliente_id', ForeignKey('cliente.id')),
 )
+Esta parte va en medico:
 clientes = relationship('Cliente',
                     secondary=association_table,
                     back_populates='medicos')
+Esta parte va en cliente:
 medicos = relationship('Medico',
                     secondary=association_table,
                     back_populates='clientes') """
