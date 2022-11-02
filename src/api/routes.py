@@ -23,17 +23,17 @@ def handle_hello():
 
 
 #lista todos los clientes
-@api.route('/clients', methods=["GET"]) 
+@api.route('/clientes', methods=["GET"]) 
 def get_clients ():
-    clients = Clients.query.filter().all()
-    result = list(map(lambda clients: clients.serialize(), clients))
-    response_body = {"clients": result, "msg": "clients"}
+    clients = Clientes.query.filter().all()
+    result = list(map(lambda clientes: clientes.serialize(), clientes))
+    response_body = {"clientes": result, "msg": "clientes"}
     return jsonify(response_body), 200
 
 #lista por cada cliente
-@api.route('/clients/int:client_id', methods=["GET"]) 
-def get_client(client_id):
-    client = Clients.query.get(client_id)
+@api.route('/clientes/int:id_cliente', methods=["GET"]) 
+def get_client(id_cliente):
+    cliente = Clientes.query.get(id_cliente)
     return jsonify(client.serialize()), 200
 
 #***********************ENPOINT MEDICOS*************************
@@ -41,35 +41,71 @@ def get_client(client_id):
 
 
 #lista todos los médicos
-@api.route('/doctors', methods=["GET"]) 
-def get_doctors ():
-    doctors = Doctors.query.filter().all()
-    result = list(map(lambda doctors: doctors.serialize(), doctors))
-    response_body = {"doctors": result, "msg": "doctors"}
+@api.route('/medicos', methods=["GET"]) 
+def get_medicos ():
+    medicos = Medicos.query.filter().all()
+    result = list(map(lambda medicos: medicos.serialize(), medicos))
+    response_body = {"medicos": result, "msg": "medicos"}
     return jsonify(response_body), 200
 
 #lista por cada medico
-@api.route('/doctors/int:doctor_id', methods=["GET"]) 
-def get_doctor(doctor_id):
-    doctor = Doctors.query.get(doctor_id)
-    return jsonify(doctor.serialize()), 200
+@api.route('/medicos/int:id:medico', methods=["GET"]) 
+def get_doctor(id_medico):
+    medico = medicos.query.get(id_medico)
+    return jsonify(medico.serialize()), 200
 
-#***********************ENPOINT ANIMALES*************************
+#***********************ENPOINT MASCOTAS*************************
 #---------------------------------------------------------------
 
 #lista de mascotas
-@api.route('/animals', methods=["GET"]) 
-def get_clients ():
-    animals = Animals.query.filter().all()
-    result = list(map(lambda animals: animals.serialize(), animals))
-    response_body = {"animals": result, "msg": "animals"}
+@api.route('/mascotas', methods=["GET"]) 
+def get_mascotas():
+    mascota = Mascotas.query.filter().all()
+    result = list(map(lambda mascotas: mascotas.serialize(), mascotas))
+    response_body = {"mascotas": result, "msg": "mascotas"}
     return jsonify(response_body), 200
 
-#lista por cada mascota
-@api.route('/animals/int:animal_id', methods=["GET"]) 
-def get_animal(animal_id):
-    animal = Animals.query.get(animal_id)
-    return jsonify(animal.serialize()), 200
+#lista mascotas por cada cliente
+@api.route('/clientes/int:id_cliente/mascotas', methods=["GET"]) 
+def get_mascota(client_id):
+    mascota = Mascotas.query.get(id_mascota)
+    return jsonify(mascotas), 200
+
+#lista una mascota de un cliente 
+@api.route('/clientes/int:id_cliente/mascotas/int:id_mascota', methods=["GET"]) 
+def get_una_mascota(id_cliente, id_mascota):
+    mascota= Mascota.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
+    return jsonify(mascota.serialize()), 200
+
+#***********************ENPOINT FICHAS MEDICAS*************************
+#----------------------------------------------------------------------
+
+#ficha historia clinica por mascota
+@api.route('/clientes/int:id_cliente/mascota/int:id_mascota/ficha', methods=["GET"]) 
+def get_ficha(id_cliente, id_mascota):
+    ficha = Ficha_Medica.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
+    return jsonify(ficha.serialize()), 200
+
+#ficha desparasitación por mascota
+@api.route('/clientes/int:id_cliente/mascotas/int:id_mascota/desparasitacion', methods=["GET"]) 
+def get_desparasitacion(id_cliente, id_mascota):
+    desparasitacion = desparasitacion.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
+    return jsonify(desparasitacion.serialize()), 200
+
+#ficha vacunacion por mascota
+@api.route('/clientes/int:id_cliente/animals/int:id_mascota/vacunacion', methods=["GET"]) 
+def get_vacunacion(id_cliente, id_mascota):
+    vacunacion = vacunacion.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
+    return jsonify(vacunacion.serialize()), 200
+
+
+#***********************ENPOINT AGENDA*************************
+#--------------------------------------------------------------
+
+#agenda completa
+
+#agenda por evento
+
 
 
 
