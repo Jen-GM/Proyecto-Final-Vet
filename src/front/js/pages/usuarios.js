@@ -4,7 +4,7 @@ export const Usuarios = () => {
   return (
     <>
       {/* //______________ tabla usuarios_____________ */}
- <h3 className="d-flex  mx-5 mt-3">Usuarios:</h3>
+ <h3 className="d-flex  mx-5 mt-3">Usuarios2:</h3>
       <div className="mx-5 d-flex justify-content-center">
         <table className="table table-hover  m-3 p-1">
           <thead>
