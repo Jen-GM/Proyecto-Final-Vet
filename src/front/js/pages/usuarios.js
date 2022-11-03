@@ -1,10 +1,12 @@
 import React from "react";
+import { Modal } from "./modal";
+
 
 export const Usuarios = () => {
   return (
     <>
       {/* //______________ tabla usuarios_____________ */}
- <h3 className="d-flex  mx-5 mt-3">Usuarios2:</h3>
+ <h3 className="d-flex  mx-5 mt-3">Bienvenido, User</h3>
       <div className="mx-5 d-flex justify-content-center">
         <table className="table table-hover  m-3 p-1">
           <thead>
@@ -16,7 +18,10 @@ export const Usuarios = () => {
               <th scope="col">Dirección</th>
               <th scope="col">Mascotas</th>
               <th scope="col">
-                <button type="button" className="btn btn-primary">
+                {/* --------boton para abrir modal------------ */}
+                <button type="button" className="btn btn-primary"
+                 data-bs-toggle="modal"
+                 data-bs-target="editUser">
                   {" "}
                   <i className="fas fa-notes-medical"> </i> Nuevo
                 </button>
@@ -97,6 +102,10 @@ export const Usuarios = () => {
         </table>
       </div>
       {/* //______________ fin de tabla_____________ */}
-    </>
+<Modal />
+      
+</>
+
+    
   );
 };
