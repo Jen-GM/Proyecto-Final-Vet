@@ -46,9 +46,9 @@ class User(db.Model):
     user_type_id = db.Column(db.Integer, db.ForeignKey(
         'user_type.id'))
     user_type = db.relationship('User_type')
-    """ veterinaria_id = db.Column(db.Integer, db.ForeignKey(
+    veterinaria_id = db.Column(db.Integer, db.ForeignKey(
          'veterinaria.id'))
-    veterinaria = db.relationship('Veterinaria') """
+    veterinaria = db.relationship('Veterinaria')
     
     def __repr__(self):
         return f'<User {self.id}>'
@@ -62,21 +62,12 @@ class User(db.Model):
         }
 
 
-""" association_table = Table(
+association_table = Table(
     'association_table',
     Base.metadata,
     Column('medico_id', ForeignKey('medico.id')),
     Column('cliente_id', ForeignKey('cliente.id')),
 )
-Esta parte va en medico:
-clientes = relationship('Cliente',
-                    secondary=association_table,
-                    back_populates='medicos')
-Esta parte va en cliente:
-medicos = relationship('Medico',
-                    secondary=association_table,
-                    back_populates='clientes') """
-
 
 class Medico(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -85,6 +76,9 @@ class Medico(db.Model):
     user_id = db.Column(db.Integer, ForeignKey(
         'user.id'))
     user = db.relationship('User')
+    clientes = relationship('Cliente',
+                    secondary=association_table,
+                    back_populates='medicos')
 
     def __repr__(self):
         return f'<Medico {self.id}>'
@@ -107,6 +101,9 @@ class Cliente(db.Model):
     user_id = db.Column(db.Integer, ForeignKey(
         'user.id'))
     user = db.relationship('User')
+    medicos = relationship('Medico',
+                    secondary=association_table,
+                    back_populates='clientes')
 
     def __repr__(self):
         return f'<Cliente {self.id}>'
