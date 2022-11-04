@@ -53,6 +53,14 @@ def get_client(id_cliente):
     cliente = Clientes.query.get(id_cliente)
     return jsonify(client.serialize()), 200
 
+#Delete cliente
+@api.route('/clientes/int:id:cliente', methods=["DELETE"]) 
+def delete_cliente(id_cliente):
+    delete = Clientes.query.filter_by(id_cliente=id_cliente).first()
+    db.session.delete(delete)
+    db.session.commit()
+    return jsonify({"msj":"Cliente borado"}), 200
+
 #***********************ENPOINT MEDICOS*************************
 #---------------------------------------------------------------
 
@@ -68,8 +76,16 @@ def get_medicos ():
 #lista por cada medico
 @api.route('/medicos/int:id:medico', methods=["GET"]) 
 def get_doctor(id_medico):
-    medico = medicos.query.get(id_medico)
+    medico = Medicos.query.get(id_medico)
     return jsonify(medico.serialize()), 200
+
+#Delete medico
+@api.route('/medicos/int:id:medico', methods=["DELETE"]) 
+def delete_medico(id_medico):
+    delete = Medicos.query.filter_by(id_medico=id_medico).first()
+    db.session.delete(delete)
+    db.session.commit()
+    return jsonify({"msj":"Medico borado"}), 200
 
 #***********************ENPOINT MASCOTAS*************************
 #---------------------------------------------------------------
@@ -94,6 +110,15 @@ def get_una_mascota(id_cliente, id_mascota):
     mascota= Mascota.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
     return jsonify(mascota.serialize()), 200
 
+#Delete Mascota
+@api.route('/clientes/int:id:cliente/mascotas/int:id_mascota', methods=["DELETE"]) 
+def delete_cliente(id_cliente, id_mascota):
+    delete = Mascota.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
+    db.session.delete(delete)
+    db.session.commit()
+    return jsonify({"msj":"Mascota eliminada"}), 200
+
+
 #***********************ENPOINT FICHAS MEDICAS*************************
 #----------------------------------------------------------------------
 
@@ -102,6 +127,8 @@ def get_una_mascota(id_cliente, id_mascota):
 def get_ficha(id_cliente, id_mascota):
     ficha = Ficha_Medica.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
     return jsonify(ficha.serialize()), 200
+#mas dele
+
 
 #ficha desparasitación por mascota
 @api.route('/clientes/int:id_cliente/mascotas/int:id_mascota/desparasitacion', methods=["GET"]) 
@@ -114,6 +141,14 @@ def get_desparasitacion(id_cliente, id_mascota):
 def get_vacunacion(id_cliente, id_mascota):
     vacunacion = vacunacion.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
     return jsonify(vacunacion.serialize()), 200
+
+#delete ficha medica
+# @api.route('/clientes/int:id:cliente/mascotas/int:id_mascota', methods=["DELETE"]) 
+# def delete_cliente(id_cliente, id_mascota):
+#     delete = Mascota.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
+#     db.session.delete(delete)
+#     db.session.commit()
+#     return jsonify({"msj":"Mascota eliminada"}), 200
 
 
 #***********************ENPOINT AGENDA*************************
