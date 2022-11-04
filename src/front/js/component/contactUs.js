@@ -13,7 +13,7 @@ function ContactUs() {
         <p><strong>Horario:</strong></p>
         <p>Lunes a Viernes de 11:00am UTC a 8:00pm UTC.</p>
         <h5 className="p-3 text-success">Para contratar nuestros servicios:</h5>
-        <p>Puedes escribir a<strong>contratacion-petsource@gmail.com</strong></p>
+        <p>Puedes escribir a<strong> contratacion-petsource@gmail.com</strong></p>
         <p><strong>Horario:</strong></p>
         <p>Lunes a Viernes de 11:00am UTC a 8:00pm UTC.</p>
       </div>

@@ -7,15 +7,14 @@ import { Login } from "../component/login";
 import { Cards } from "../component/cards";
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
-	return (
-		<div>
-		<Login/>
-
-		<Cards/>
-			<AboutUs/>
-			<ContactUs/>
-		</div>
-	);
+  return (
+    <div>
+      <Login />
+      <Cards />
+      <AboutUs />
+      <ContactUs />
+    </div>
+  );
 };
