@@ -5,20 +5,21 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./pages/home";
 import { Usuarios } from "./pages/usuarios";
 import { Demo } from "./pages/demo";
-import { Login } from "./pages/login";
+
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
-
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Login } from "./component/login";
+import { Cards } from "./component/cards";
 
 
 //create your first component
 const Layout = () => {
-    //the basename is used when your project is published in a subdirectory and not in the root of the domain
-    // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
-    const basename = process.env.BASENAME || "";
+  //the basename is used when your project is published in a subdirectory and not in the root of the domain
+  // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
+  const basename = process.env.BASENAME || "";
 
     return (
         <div>
