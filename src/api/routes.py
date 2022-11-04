@@ -133,22 +133,39 @@ def get_ficha(id_cliente, id_mascota):
 #ficha desparasitación por mascota
 @api.route('/clientes/int:id_cliente/mascotas/int:id_mascota/desparasitacion', methods=["GET"]) 
 def get_desparasitacion(id_cliente, id_mascota):
-    desparasitacion = desparasitacion.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
+    desparasitacion = Desparasitacion.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
     return jsonify(desparasitacion.serialize()), 200
 
 #ficha vacunacion por mascota
 @api.route('/clientes/int:id_cliente/animals/int:id_mascota/vacunacion', methods=["GET"]) 
 def get_vacunacion(id_cliente, id_mascota):
-    vacunacion = vacunacion.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
+    vacunacion = Vacunacion.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
     return jsonify(vacunacion.serialize()), 200
 
 #delete ficha medica
-# @api.route('/clientes/int:id:cliente/mascotas/int:id_mascota', methods=["DELETE"]) 
-# def delete_cliente(id_cliente, id_mascota):
-#     delete = Mascota.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
-#     db.session.delete(delete)
-#     db.session.commit()
-#     return jsonify({"msj":"Mascota eliminada"}), 200
+@api.route('/clientes/int:id:cliente/mascotas/int:id_mascota/ficha', methods=["DELETE"]) 
+def delete_ficha(id_cliente, id_mascota):
+    delete = Ficha_Medica.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
+    db.session.delete(delete)
+    db.session.commit()
+    return jsonify({"msj":"Ficha eliminada eliminada"}), 200
+
+#delete desparasitación
+@api.route('/clientes/int:id:cliente/mascotas/int:id_mascota/desparasitacion', methods=["DELETE"]) 
+def delete_ficha(id_cliente, id_mascota):
+    delete = Desparasitacion.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
+    db.session.delete(delete)
+    db.session.commit()
+    return jsonify({"msj":"Desparasitación eliminada"}), 200
+
+#Delete Vacunacion
+@api.route('/clientes/int:id:cliente/mascotas/int:id_mascota/vacunacion', methods=["DELETE"]) 
+def delete_ficha(id_cliente, id_mascota):
+    delete = Vacunacion.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
+    db.session.delete(delete)
+    db.session.commit()
+    return jsonify({"msj":"Vacunacion eliminada"}), 200
+
 
 
 #***********************ENPOINT AGENDA*************************
