@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function AboutUs() {
   return (
-    <div className="container-fluid">
+    <div className="container-fluid text-center">
       <div className="text-left m-5">
         <h3 className="text-success">Sobre nosotros</h3>
       </div>
