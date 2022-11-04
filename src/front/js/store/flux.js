@@ -52,7 +52,11 @@ const getState = ({ getStore, getActions, setStore }) => {
             opts
           );
           if (resp.status !== 200) {
-            alert("Sorry, it was an error!!!");
+            if(resp.status === 401){
+              alert("Correo o contraseña incorrecta");
+              return false
+            }
+            alert("Hay un error");
             return false;
           }
 
