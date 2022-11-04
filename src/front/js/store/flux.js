@@ -48,14 +48,10 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         try {
           const resp = await fetch(
-            process.env.BACKEND_URL + "/api/token",
+            "https://3001-jengm-proyectofinalvet-hcx5bhx95y4.ws-us74.gitpod.io//api/token",
             opts
           );
           if (resp.status !== 200) {
-            if(resp.status === 401){
-              alert("Correo o contraseña incorrecta");
-              return false
-            }
             alert("Hay un error");
             return false;
           }
