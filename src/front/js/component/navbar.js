@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import petlogo from "../../img/petlogo.jpg";
 
 export const Navbar = () => {
+  const { store, actions } = useContext(Context);
+
   return (
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
@@ -44,6 +47,15 @@ export const Navbar = () => {
                   Contacto
                 </a>
               </li>
+              {store.token && (
+                <Link to="/">
+                  <li class="nav-item">
+                    <a class="nav-link" onClick={() => actions.logout()}>
+                      Salir
+                    </a>
+                  </li>
+                </Link>
+              )}
             </ul>
           </div>
         </div>
