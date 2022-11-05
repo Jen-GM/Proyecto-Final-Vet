@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export const Cards = () => {
   return (
     <div>
-  <h1 className="text-center mt-5 ">Beneficios</h1>
+  <h1 className="text-center mt-5 text-success">Beneficios</h1>
   <div className="row row-cols-1 row-cols-md-3 g-4 justify-content-center h-100">
   <div classname="card" style={{ width: "18rem" }}>
     <img src="..." classname="card-img-top" alt="..." />
@@ -17,9 +17,6 @@ export const Cards = () => {
         pulvinar arcu eu gravida. Curabitur elementum dui congue eros vehicula
         ultricies vitae id turpis.
       </p>
-      <a href="#" classname="btn btn-primary">
-        Go somewhere
-      </a>
     </div>
   </div>
   <div classname="card" style={{ width: "18rem" }}>
@@ -31,9 +28,6 @@ export const Cards = () => {
         pulvinar arcu eu gravida. Curabitur elementum dui congue eros vehicula
         ultricies vitae id turpis.
       </p>
-      <a href="#" classname="btn btn-primary">
-        Go somewhere
-      </a>
     </div>
   </div>
   <div classname="card" style={{ width: "18rem" }}>
@@ -45,9 +39,6 @@ export const Cards = () => {
         pulvinar arcu eu gravida. Curabitur elementum dui congue eros vehicula
         ultricies vitae id turpis.
       </p>
-      <a href="#" classname="btn btn-primary">
-        Go somewhere
-      </a>
     </div>
   </div>
   <div classname="card" style={{ width: "18rem" }}>
@@ -59,9 +50,7 @@ export const Cards = () => {
         pulvinar arcu eu gravida. Curabitur elementum dui congue eros vehicula
         ultricies vitae id turpis.
       </p>
-      <a href="#" classname="btn btn-primary">
-        Go somewhere
-      </a>
+
     </div>
   </div>
   </div>

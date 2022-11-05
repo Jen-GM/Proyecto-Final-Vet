@@ -47,7 +47,7 @@ export const Navbar = () => {
                   Contacto
                 </a>
               </li>
-              {!store.token && (
+              {sessionStorage.getItem("token") && (
                 <Link to="/">
                   <li class="nav-item">
                     <a class="nav-link" onClick={() => actions.logout()}>

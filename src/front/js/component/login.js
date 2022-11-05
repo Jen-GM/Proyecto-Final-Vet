@@ -8,14 +8,12 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleClick = async() => {
-    var entrar = await actions.login(email, password);
-    if (entrar)
-      navigate("/usuarios", { replace: true });
+  const handleClick = async () => {
+    await actions.login(email, password).then(() => navigate("/usuarios"));
   };
 
   return (
-    <div className="text-center mt-5">
+    <div className="text-center mt-5 text-success">
       <h1> Login </h1>
       <div>
         <div className="d-grid gap-2 col-3 mx-auto">
@@ -35,7 +33,7 @@ export const Login = () => {
           />
         </div>
         <div className="d-grid gap-2 col-3 mx-auto">
-          <button className="btn btn-primary" onClick={handleClick}>
+          <button className="btn btn-warning" onClick={handleClick}>
             Login
           </button>
         </div>
