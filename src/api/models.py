@@ -83,7 +83,7 @@ class Medico(db.Model):
 
 class Cliente(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(120))
+    nombre = db.Column(db.String(120), unique=True, nullable=False)
     direccion = db.Column(db.String(250), unique=True, nullable=False)
     telefono = db.Column(db.String(80), unique=True, nullable=False)
     user_id = db.Column(db.Integer, ForeignKey(
