@@ -56,8 +56,6 @@ def get_cliente(id_cliente):
     return jsonify(client.serialize()), 200
 
 # agregar Cliente nuevo
-
-                
 @api.route('/clientes', methods=["POST"])   # POST
 def add_cliente():
     body = request.get_json()   
@@ -87,13 +85,20 @@ def get_medicos():
     response_body = {"medicos": result, "msg": "medicos"}
     return jsonify(response_body), 200
 
-# lista por cada medico
+#agregar Medico nuevo
+@api.route('/medicos', methods=["POST"])   # POST
+def add_medico():
+    body = request.get_json()   
+    medico = Medico(nombre=body["nombre"], telefono=body["telefono"])                
+    db.session.add(medico)
+    db.session.commit()
+    return jsonify(medico.serialize()), 200 
 
 
 @api.route('/medicos/int:id:medico', methods=["GET"])
 def get_doctor(id_medico):
     medico = Medicos.query.get(id_medico)
-    return jsonify(medico.serialize()), 200
+    return jsonify(medico.serialize(),{"msj": "Medico agregado"}), 200
 
 # Delete medico
 
@@ -118,17 +123,17 @@ def get_mascotas():
     response_body = {"mascotas": result, "msg": "mascotas"}
     return jsonify(response_body), 200
 
+
+
+
+
 # lista mascotas por cada cliente
-
-
 @api.route('/clientes/int:id_cliente/mascotas', methods=["GET"])
 def get_mascota(client_id):
     mascota = Mascotas.query.get(id_mascota)
     return jsonify(mascotas), 200
 
 # lista una mascota de un cliente
-
-
 @api.route('/clientes/int:id_cliente/mascotas/int:id_mascota', methods=["GET"])
 def get_una_mascota(id_cliente, id_mascota):
     mascota = Mascota.query.filter_by(
@@ -136,8 +141,6 @@ def get_una_mascota(id_cliente, id_mascota):
     return jsonify(mascota.serialize()), 200
 
 # Delete Mascota
-
-
 @api.route('/clientes/int:id:cliente/mascotas/int:id_mascota', methods=["DELETE"])
 def delete_mascota(id_cliente, id_mascota):
     delete = Mascota.query.filter_by(
