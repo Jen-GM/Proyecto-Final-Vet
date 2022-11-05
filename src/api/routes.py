@@ -47,6 +47,7 @@ def get_clients ():
     response_body = {"clientes": result, "msg": "clientes"}
     return jsonify(response_body), 200
 
+
 #lista por cada cliente
 @api.route('/clientes/int:id_cliente', methods=["GET"]) 
 def get_client(id_cliente):
@@ -142,7 +143,7 @@ def get_vacunacion(id_cliente, id_mascota):
     vacunacion = Vacunacion.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
     return jsonify(vacunacion.serialize()), 200
 
-#delete ficha medica
+#delete historia clinica
 @api.route('/clientes/int:id:cliente/mascotas/int:id_mascota/ficha', methods=["DELETE"]) 
 def delete_ficha(id_cliente, id_mascota):
     delete = Ficha_Medica.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
