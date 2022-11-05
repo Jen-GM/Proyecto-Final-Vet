@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 function ContactUs() {
   return (
-    <div className="container-fluid">
+    <div className="container-fluid text-center">
       <div className="text-left m-5">
-        <h3 className="text-success">¿Necesitas contactarnos?</h3>
+        <h3 className="text-success text-center">¿Necesitas contactarnos?</h3>
       </div>
       <div className="p-3 bg-gray-700 bg-opacity-10 border border-warning rounded-pill">
-        <h5 className="p-3 text-success">Para soporte:</h5>
+        <h5 className="p-3 text-success ">Para soporte:</h5>
         <p>Puedes escribir a <strong>soporte-petsource@gmail.com</strong></p>
         <p><strong>Horario:</strong></p>
         <p>Lunes a Viernes de 11:00am UTC a 8:00pm UTC.</p>

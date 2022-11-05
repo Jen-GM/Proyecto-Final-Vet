@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       message: null,
       token: null,
+      entrar: null,
       demo: [
         {
           title: "FIRST",
@@ -52,9 +53,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             opts
           );
           if (resp.status !== 200) {
-            if(resp.status === 401){
-              alert("Correo o contraseña incorrecta");
-              return false
+            if (resp.status === 401) {
+              alert("Email o contraseña incorrecta");
+              return false;
             }
             alert("Hay un error");
             return false;
@@ -62,9 +63,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           const data = await resp.json();
           console.log("from the back", data);
-          sessionStorage.setItem("token", data.acces_token);
+          sessionStorage.setItem("token", data.access_token);
           console.log(data);
-          setStore({ token: data.acces_token });
+          setStore({ token: data.access_token });
           return true;
         } catch (error) {
           console.error("There has been an error");
