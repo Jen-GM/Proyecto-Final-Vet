@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Cliente, Medico
+from api.models import db, User, Cliente, Medico, Mascota
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -139,6 +139,17 @@ def get_una_mascota(id_cliente, id_mascota):
     mascota = Mascota.query.filter_by(
         id_cliente=id_cliente, id_mascota=id_mascota).first()
     return jsonify(mascota.serialize()), 200
+
+
+
+#agregar mascotas nuevas
+@api.route('/m', methods=["POST"])   # POST
+def add_mascota():
+    body = request.get_json()   
+    mascota = Mascota(nombre=body["nombre"], telefono=body["telefono"], especie=body["especie"], raza=body["raza"], internamiento=body["internamiento"])                
+    db.session.add(mascota)
+    db.session.commit()
+    return jsonify(mascota.serialize()), 200 
 
 # Delete Mascota
 @api.route('/clientes/int:id:cliente/mascotas/int:id_mascota', methods=["DELETE"])
