@@ -47,9 +47,9 @@ class User(db.Model):
         'user_type.id'))
     user_type = db.relationship('User_type')
     veterinaria_id = db.Column(db.Integer, db.ForeignKey(
-         'veterinaria.id'))
+        'veterinaria.id'))
     veterinaria = db.relationship('Veterinaria')
-    
+
     def __repr__(self):
         return f'<User {self.id}>'
 
@@ -88,7 +88,6 @@ class Cliente(db.Model):
     telefono = db.Column(db.String(80), unique=True, nullable=False)
     user_id = db.Column(db.Integer, ForeignKey(
         'user.id'))
-    
 
     def __repr__(self):
         return f'<Cliente {self.id}>'
@@ -99,7 +98,7 @@ class Cliente(db.Model):
             "nombre": self.nombre,
             "direccion": self.direccion,
             "telefono": self.telefono,
-            "user_id": self.user_type_id
+            "user_id": self.user_id
         }
 
 
@@ -154,6 +153,7 @@ class Mascota(db.Model):
             "cliente_id": self.cliente_id
         }
 
+
 class Desparasitacion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fecha = db.Column(db.Date, unique=False, nullable=False)
@@ -176,6 +176,7 @@ class Desparasitacion(db.Model):
             "tipo_med": self.tipo_med,
             "mascota_id": self.mascota_id
         }
+
 
 class Vacuna(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -201,6 +202,7 @@ class Vacuna(db.Model):
             "marca_vacuna": self.marca_vacuna,
             "mascota_id": self.mascota_id
         }
+
 
 class Ficha_Medica(db.Model):
     id = db.Column(db.Integer, primary_key=True)
