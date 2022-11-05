@@ -62,23 +62,12 @@ class User(db.Model):
         }
 
 
-association_table = Table(
-    'association_table',
-    Base.metadata,
-    Column('medico_id', ForeignKey('medico.id')),
-    Column('cliente_id', ForeignKey('cliente.id')),
-)
-
 class Medico(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(120), unique=True, nullable=False)
     telefono = db.Column(db.String(80), unique=True, nullable=False)
     user_id = db.Column(db.Integer, ForeignKey(
         'user.id'))
-    user = db.relationship('User')
-    clientes = relationship('Cliente',
-                    secondary=association_table,
-                    back_populates='medicos')
 
     def __repr__(self):
         return f'<Medico {self.id}>'
@@ -88,8 +77,7 @@ class Medico(db.Model):
             "id": self.id,
             "nombre": self.nombre,
             "telefono": self.telefono,
-            "user_id": self.user_id,
-            "clientes": list(map(lambda x: x.serialize(), self.clientes))
+            "user_id": self.user_id
         }
 
 
@@ -100,10 +88,7 @@ class Cliente(db.Model):
     telefono = db.Column(db.String(80), unique=True, nullable=False)
     user_id = db.Column(db.Integer, ForeignKey(
         'user.id'))
-    user = db.relationship('User')
-    medicos = relationship('Medico',
-                    secondary=association_table,
-                    back_populates='clientes')
+    
 
     def __repr__(self):
         return f'<Cliente {self.id}>'
@@ -114,8 +99,7 @@ class Cliente(db.Model):
             "nombre": self.nombre,
             "direccion": self.direccion,
             "telefono": self.telefono,
-            "user_id": self.user_type_id,
-            "medicos": list(map(lambda x: x.serialize(), self.medicos))
+            "user_id": self.user_type_id
         }
 
 
@@ -124,16 +108,16 @@ class Agenda(db.Model):
     fecha = db.Column(db.Date, unique=False, nullable=False)
     hora = db.Column(db.Time, unique=True, nullable=False)
     retira = db.Column(db.Boolean, unique=False, nullable=False)
-    direccion_retiro = db.Column(db.String(250), unique=False, nullable=False)
-    """ medico_id = db.Column(db.Integer, ForeignKey(
+    direccion_retiro = db.Column(db.String(250), unique=False, nullable=True)
+    medico_id = db.Column(db.Integer, ForeignKey(
         'medico.id'))
     medico = db.relationship('Medico')
     cliente_id = db.Column(db.Integer, ForeignKey(
         'cliente.id'))
-    cliente = db.relationship('Cliente') """
+    cliente = db.relationship('Cliente')
 
     def __repr__(self):
-        return f'<Cliente {self.id}>'
+        return f'<Agenda {self.id}>'
 
     def serialize(self):
         return {
@@ -229,6 +213,9 @@ class Ficha_Medica(db.Model):
     mascota_id = db.Column(db.Integer, ForeignKey(
         'mascota.id'))
     mascota = db.relationship('Mascota')
+    medico_id = db.Column(db.Integer, ForeignKey(
+        'medico.id'))
+    medico = db.relationship('Medico')
 
     def __repr__(self):
         return f'<Ficha_medica {self.id}>'
