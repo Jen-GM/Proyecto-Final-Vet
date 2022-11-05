@@ -41,7 +41,7 @@ def handle_hello():
 
 #lista todos los clientes
 @api.route('/clientes', methods=["GET"]) 
-def get_clients ():
+def get_clientes ():
     clients = Clientes.query.filter().all()
     result = list(map(lambda clientes: clientes.serialize(), clientes))
     response_body = {"clientes": result, "msg": "clientes"}
@@ -50,7 +50,7 @@ def get_clients ():
 
 #lista por cada cliente
 @api.route('/clientes/int:id_cliente', methods=["GET"]) 
-def get_client(id_cliente):
+def get_cliente(id_cliente):
     cliente = Clientes.query.get(id_cliente)
     return jsonify(client.serialize()), 200
 
@@ -113,7 +113,7 @@ def get_una_mascota(id_cliente, id_mascota):
 
 #Delete Mascota
 @api.route('/clientes/int:id:cliente/mascotas/int:id_mascota', methods=["DELETE"]) 
-def delete_cliente(id_cliente, id_mascota):
+def delete_mascota(id_cliente, id_mascota):
     delete = Mascota.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
     db.session.delete(delete)
     db.session.commit()
@@ -153,7 +153,7 @@ def delete_ficha(id_cliente, id_mascota):
 
 #delete desparasitación
 @api.route('/clientes/int:id:cliente/mascotas/int:id_mascota/desparasitacion', methods=["DELETE"]) 
-def delete_ficha(id_cliente, id_mascota):
+def delete_desparasitacion(id_cliente, id_mascota):
     delete = Desparasitacion.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
     db.session.delete(delete)
     db.session.commit()
@@ -161,7 +161,7 @@ def delete_ficha(id_cliente, id_mascota):
 
 #Delete Vacunacion
 @api.route('/clientes/int:id:cliente/mascotas/int:id_mascota/vacunacion', methods=["DELETE"]) 
-def delete_ficha(id_cliente, id_mascota):
+def delete_vacunacion(id_cliente, id_mascota):
     delete = Vacunacion.query.filter_by(id_cliente=id_cliente, id_mascota=id_mascota).first()
     db.session.delete(delete)
     db.session.commit()
