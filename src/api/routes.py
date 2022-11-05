@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Cliente
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -42,7 +42,7 @@ def handle_hello():
 #lista todos los clientes
 @api.route('/clientes', methods=["GET"]) 
 def get_clientes ():
-    clients = Clientes.query.filter().all()
+    clientes = Cliente.query.filter().all()
     result = list(map(lambda clientes: clientes.serialize(), clientes))
     response_body = {"clientes": result, "msg": "clientes"}
     return jsonify(response_body), 200
@@ -54,13 +54,22 @@ def get_cliente(id_cliente):
     cliente = Clientes.query.get(id_cliente)
     return jsonify(client.serialize()), 200
 
+# agregar Cliente nuevo
+@api.route('/clientes', methods=["POST"])
+def add_client():
+    clientes = Cliente(nombre = request.args.get("nombre"), direccion = request.args.get("direccion"), telefono = request.args.get("telefono"))
+    db.session.add(clientes)
+    db.session.commit()
+    return jsonify(clientes),200
+
+
 #Delete cliente
 @api.route('/clientes/int:id:cliente', methods=["DELETE"]) 
 def delete_cliente(id_cliente):
     delete = Clientes.query.filter_by(id_cliente=id_cliente).first()
     db.session.delete(delete)
     db.session.commit()
-    return jsonify({"msj":"Cliente borado"}), 200
+    return jsonify({"msj":"Cliente borado"}), 201
 
 #***********************ENPOINT MEDICOS*************************
 #---------------------------------------------------------------
