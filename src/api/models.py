@@ -126,7 +126,7 @@ class Agenda(db.Model):
             "retira": self.retira,
             "direccion_retiro": self.direccion_retiro,
             "medico_id": self.medico_id,
-            "cliente_id": self.user_type_id
+            "cliente_id": self.cliente_id
         }
 
 
