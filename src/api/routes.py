@@ -9,8 +9,11 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
+import json
+from datetime import datetime
 
 api = Blueprint('api', __name__)
+
 
 # ___________POST-TOKEN____________
 
@@ -45,7 +48,7 @@ def handle_hello():
 def get_clientes():
     clientes = Cliente.query.filter().all()
     result = list(map(lambda clientes: clientes.serialize(), clientes))
-    response_body = {"clientes": result, "msg": "clientes"}
+    response_body = {"clientes": result, "msg": "todos los clientes clientes"}
     return jsonify(response_body), 200
 
 
@@ -56,8 +59,6 @@ def get_cliente(id_cliente):
     return jsonify(cliente.serialize()), 200
 
 # Delete cliente
-
-
 @api.route('/clientes/<int:id_cliente>', methods=["DELETE"])
 def delete_cliente(id_cliente):
     delete = Cliente.query.filter_by(id=id_cliente).first()
@@ -74,20 +75,16 @@ def delete_cliente(id_cliente):
 def get_medicos():
     medicos = Medico.query.filter().all()
     result = list(map(lambda medicos: medicos.serialize(), medicos))
-    response_body = {"medicos": result, "msg": "medicos"}
+    response_body = {"medicos": result, "msg": "todos los medicos"}
     return jsonify(response_body), 200
 
 # lista por cada medico
-
-
 @api.route('/medicos/<int:id_medico>', methods=["GET"])
 def get_doctor(id_medico):
     medico = Medico.query.get(id_medico)
     return jsonify(medico.serialize()), 200
 
 # Delete medico
-
-
 @api.route('/medicos/<int:id_medico>', methods=["DELETE"])
 def delete_medico(id_medico):
     delete = Medico.query.filter_by(id=id_medico).first()
@@ -99,18 +96,14 @@ def delete_medico(id_medico):
 # ---------------------------------------------------------------
 
 # lista de mascotas
-
-
 @api.route('/mascotas', methods=["GET"])
 def get_mascotas():
     mascotas = Mascota.query.filter().all()
     result = list(map(lambda mascotas: mascotas.serialize(), mascotas))
-    response_body = {"mascotas": result, "msg": "mascotas"}
+    response_body = {"mascotas": result, "msg": "total de mascotas"}
     return jsonify(response_body), 200
 
 # lista mascotas por cada cliente
-
-
 @api.route('/clientes/<int:id_cliente>/mascotas', methods=["GET"])
 def get_mascota(id_cliente):
     mascota = Mascota.query.filter_by(cliente_id=id_cliente)
@@ -119,8 +112,6 @@ def get_mascota(id_cliente):
     return jsonify(result), 200
 
 # lista una mascota de un cliente
-
-
 @api.route('/clientes/<int:id_cliente>/mascotas/<int:id_mascota>', methods=["GET"])
 def get_una_mascota(id_cliente, id_mascota):
     mascota = Mascota.query.filter_by(
@@ -128,8 +119,6 @@ def get_una_mascota(id_cliente, id_mascota):
     return jsonify(mascota.serialize()), 200
 
 # Delete Mascota
-
-
 @api.route('/clientes/<int:id_cliente>/mascotas/<int:id_mascota>', methods=["DELETE"])
 def delete_mascota(id_cliente, id_mascota):
     delete = Mascota.query.filter_by(
@@ -159,8 +148,6 @@ def get_desparasitacion(id_cliente, id_mascota):
     return jsonify(desparasitacion.serialize()), 200
 
 # ficha vacunacion por mascota
-
-
 @api.route('/clientes/<int:id_cliente>/mascotas/<int:id_mascota>/vacunacion', methods=["GET"])
 def get_vacunacion(id_cliente, id_mascota):
     vacunacion = Vacunacion.query.filter_by(
@@ -168,8 +155,6 @@ def get_vacunacion(id_cliente, id_mascota):
     return jsonify(vacunacion.serialize()), 200
 
 # delete historia clinica
-
-
 @api.route('/clientes/<int:id_cliente>/mascotas/<int:id_mascota>/ficha', methods=["DELETE"])
 def delete_ficha(id_cliente, id_mascota):
     delete = Ficha_Medica.query.filter_by(
@@ -179,8 +164,6 @@ def delete_ficha(id_cliente, id_mascota):
     return jsonify({"msj": "Ficha eliminada eliminada"}), 200
 
 # delete desparasitación
-
-
 @api.route('/clientes/<int:id_cliente>/mascotas/<int:id_mascota>/desparasitacion', methods=["DELETE"])
 def delete_desparasitacion(id_cliente, id_mascota):
     delete = Desparasitacion.query.filter_by(
@@ -190,8 +173,6 @@ def delete_desparasitacion(id_cliente, id_mascota):
     return jsonify({"msj": "Desparasitación eliminada"}), 200
 
 # Delete Vacunacion
-
-
 @api.route('/clientes/<int:id_cliente>/mascotas/<int:id_mascota>/vacunacion', methods=["DELETE"])
 def delete_vacunacion(id_cliente, id_mascota):
     delete = Vacunacion.query.filter_by(
@@ -205,5 +186,15 @@ def delete_vacunacion(id_cliente, id_mascota):
 # --------------------------------------------------------------
 
 # agenda completa
+@api.route('/agenda', methods=["GET"])
+def get_agenda():
+    agenda = Agenda.query.filter().all()
+    result = list(map(lambda agenda: agenda.serialize(), agenda))
+    response_body = {"Eventos": result, "msg": "total de eventos"}
+    return jsonify(response_body), 200
 
-# agenda por evento
+# agenda por medico
+@api.route('/agenda/<int:medico_id>', methods=["GET"])
+def get_evento(medico_id):
+    evento = Agenda.query.filter_by(medico_id=medico_id).first()
+    return jsonify(evento.serialize()), 200
