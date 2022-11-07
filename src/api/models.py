@@ -160,6 +160,9 @@ class Desparasitacion(db.Model):
     siguiente_aplicacion = db.Column(db.Date, unique=False, nullable=False)
     peso = db.Column(db.Float, unique=False, nullable=False)
     tipo_med = db.Column(db.String(120), unique=False, nullable=False)
+    cliente_id = db.Column(db.Integer, ForeignKey(
+        'cliente.id'))
+    cliente = db.relationship('Cliente')
     mascota_id = db.Column(db.Integer, ForeignKey(
         'mascota.id'))
     mascota = db.relationship('Mascota')
@@ -174,6 +177,7 @@ class Desparasitacion(db.Model):
             "siguiente_aplicacion": self.siguiente_aplicacion,
             "peso": self.peso,
             "tipo_med": self.tipo_med,
+            "cliente_id": self.cliente_id,
             "mascota_id": self.mascota_id
         }
 
@@ -185,6 +189,9 @@ class Vacuna(db.Model):
     peso = db.Column(db.Float, unique=False, nullable=False)
     tipo_vacuna = db.Column(db.String(120), unique=False, nullable=False)
     marca_vacuna = db.Column(db.String(120), unique=False, nullable=False)
+    cliente_id = db.Column(db.Integer, ForeignKey(
+        'cliente.id'))
+    cliente = db.relationship('Cliente')
     mascota_id = db.Column(db.Integer, ForeignKey(
         'mascota.id'))
     mascota = db.relationship('Mascota')
@@ -200,6 +207,7 @@ class Vacuna(db.Model):
             "peso": self.peso,
             "tipo_vacuna": self.tipo_vacuna,
             "marca_vacuna": self.marca_vacuna,
+            "cliente_id": self.cliente_id,
             "mascota_id": self.mascota_id
         }
 
@@ -212,6 +220,9 @@ class Ficha_Medica(db.Model):
     estudios_medicos = db.Column(db.String(255), unique=False, nullable=True)
     tratamiento = db.Column(db.String(255), unique=False, nullable=False)
     recomendaciones = db.Column(db.String(255), unique=False, nullable=True)
+    cliente_id = db.Column(db.Integer, ForeignKey(
+        'cliente.id'))
+    cliente = db.relationship('Cliente')
     mascota_id = db.Column(db.Integer, ForeignKey(
         'mascota.id'))
     mascota = db.relationship('Mascota')
@@ -231,5 +242,6 @@ class Ficha_Medica(db.Model):
             "estudios_medicos": self.estudios_medicos,
             "tratamiento": self.tratamiento,
             "recomendaciones": self.recomendaciones,
+            "cliente_id": self.cliente_id,
             "mascota_id": self.mascota_id
         }
