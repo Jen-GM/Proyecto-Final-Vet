@@ -66,6 +66,16 @@ def delete_cliente(id_cliente):
     db.session.commit()
     return jsonify({"msj": "Cliente borado"}), 200
 
+    #Put cliente
+@api.route('/clientes/<int:id>', methods=["PUT"])  
+def update_cliente(id):
+    body = request.get_json() 
+    print(id)
+    cliente = Cliente.query.filter(Cliente.id == id).update({Cliente.nombre : body["nombre"], Cliente.direccion : body["direccion"], Cliente.telefono : body ["telefono"]},synchronize_session = False) 
+    db.session.commit()           
+    return jsonify({"msj" : "Cliente actualizado"}), 200   
+
+
 # ***********************ENPOINT MEDICOS*************************
 # ---------------------------------------------------------------
 
@@ -90,8 +100,16 @@ def delete_medico(id_medico):
     delete = Medico.query.filter_by(id=id_medico).first()
     db.session.delete(delete)
     db.session.commit()
-    return jsonify({"msj": "Medico borado"}), 200
+    return jsonify({"msj": "Medico borrado"}), 200
 
+#Put Medico
+@api.route('/medicos/<int:id>', methods=["PUT"])  
+def update_medico(id):
+    body = request.get_json() 
+    print(id)
+    medico = Medico.query.filter(Medico.id == id).update({Medico.nombre : body["nombre"], Medico.telefono : body ["telefono"]},synchronize_session = False) 
+    db.session.commit()           
+    return jsonify({"msj" : "Medico actualizado"}), 200 
 # ***********************ENPOINT MASCOTAS*************************
 # ---------------------------------------------------------------
 
@@ -127,6 +145,13 @@ def delete_mascota(id_cliente, id_mascota):
     db.session.commit()
     return jsonify({"msj": "Mascota eliminada"}), 200
 
+#Put Mascota
+@api.route('/clientes/<int:id>/mascotas/<int:id_mascota>', methods=["PUT"])  
+def update_mascota(id):
+    body = request.get_json() 
+    mascota = mascota.query.filter(cliente.id == id).update({mascota.especie : body["especie"], mascota.id: body["id"], mascota.internamiento : body["internamiento"], mascota.nombre : body["nombre"], mascota.raza : body ["raza"]},synchronize_session = False) 
+    db.session.commit()           
+    return jsonify({"msj" : "mascota actualizado"}), 200 
 
 # ***********************ENPOINT FICHAS MEDICAS*************************
 # ----------------------------------------------------------------------
@@ -181,6 +206,7 @@ def delete_vacunacion(id_cliente, id_mascota):
     db.session.commit()
     return jsonify({"msj": "Vacunacion eliminada"}), 200
 
+#Put Vacunacion
 
 # ***********************ENPOINT AGENDA*************************
 # --------------------------------------------------------------
