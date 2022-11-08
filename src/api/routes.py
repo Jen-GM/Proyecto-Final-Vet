@@ -192,7 +192,7 @@ def delete_desparasitacion(cliente_id, mascota_id):
     db.session.commit()
     return jsonify({"msj": "Desparasitación eliminada"}), 200
 
-# Delete Vacunacion
+# Delete Vacunacio
 
 
 @api.route('/clientes/<int:cliente_id>/mascota/<int:mascota_id>/vacunacion', methods=["DELETE"])
@@ -223,3 +223,14 @@ def get_agenda():
 def get_evento(medico_id):
     evento = Agenda.query.filter_by(medico_id=medico_id).first()
     return jsonify(evento.serialize()), 200
+
+# DELETE evento de agenda
+
+
+@api.route('/agenda/<int:medico_id>/<int:id>', methods=["DELETE"])
+def delete_evento(medico_id, id):
+    delete = Agenda.query.filter_by(
+        medico_id=medico_id, id=id).first()
+    db.session.delete(delete)
+    db.session.commit()
+    return jsonify({"msj": "Vacunacion eliminada"}), 200
