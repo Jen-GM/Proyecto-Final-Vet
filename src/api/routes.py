@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Cliente, Medico, Mascota, Vacuna, Ficha_Medica,Desparasitacion
+from api.models import db, User, Cliente, Medico, Mascota, Vacuna, Ficha_Medica,Desparasitacion, Agenda
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -139,7 +139,7 @@ def get_una_mascota(id_cliente, id_mascota):
 @api.route('/mascotas', methods=["POST"])   # POST
 def add_mascota():
     body = request.get_json()   
-    mascota = Mascota(nombre=body["nombre"], telefono=body["telefono"], especie=body["especie"], raza=body["raza"], internamiento=body["internamiento"])                
+    mascota = Mascota(nombre=body["nombre"], especie=body["especie"], raza=body["raza"], internamiento=body["internamiento"])                
     db.session.add(mascota)
     db.session.commit()
     return jsonify({"msj": "Mascota agregada"}), 200 
@@ -168,7 +168,7 @@ def get_ficha(id_cliente, id_mascota):
 @api.route('/clientes/int:id:cliente/mascotas/int:id_mascota/ficha', methods=["POST"])   # POST
 def add_ficha():
     body = request.get_json()   
-    ficha = Ficha_Medica(fecha=body["fecha"], motivo_consulta=body["motivo_consulta"], diagnostico=body["diagnostico"], estudios_medicos=body["estudios_medicos"], tratamietno=body["tratamiento"], recomendacion=body["recomendaciones"])                
+    ficha = Ficha_Medica(fecha=body["fecha"], motivo_consulta=body["motivo_consulta"], diagnostico=body["diagnostico"], estudios_medicos=body["estudios_medicos"], tratamiento=body["tratamiento"], recomendaciones=body["recomendaciones"])                
     db.session.add(ficha)
     db.session.commit()
     return jsonify({"msj": "Ficha agregada"}), 200 
@@ -248,5 +248,35 @@ def delete_vacunacion(id_cliente, id_mascota):
 # --------------------------------------------------------------
 
 # agenda completa
+@api.route('/agenda', methods=["GET"])
+def get_agenda():
+    agenda = Agenda.query.filter().all()
+    result = list(map(lambda agenda: agenda.serialize(), agenda))
+    print(result)
+    response_body = {"Eventos": result, "msg": "total de eventos"}
+    return jsonify(response_body), 200
+#_________________________agregar a la agenda_____________
+@api.route('/agenda', methods=["POST"])   # POST
+def add_agenda():
+    body = request.get_json()   
+    agenda = Agenda(fecha=body["fecha"], hora=body["hora"],  retira=body["retira"], direccion_retiro=body["direccion_retiro"])                
+    db.session.add(agenda)
+    db.session.commit()
+    return jsonify({"msj": "Agenda agregada"}), 200 
 
-# agenda por evento
+# agenda por medico
+@api.route('/agenda/<int:medico_id>', methods=["GET"])
+def get_evento(medico_id):
+    evento = Agenda.query.filter_by(medico_id=medico_id).first()
+    return jsonify(evento.serialize()), 200
+
+# DELETE evento de agenda
+
+@api.route('/agenda/<int:medico_id>/<int:id>', methods=["DELETE"])
+def delete_evento(medico_id, id):
+    delete = Agenda.query.filter_by(
+        medico_id=medico_id, id=id).first()
+    db.session.delete(delete)
+    db.session.commit()
+    return jsonify({"msj": "Vacunacion eliminada"}), 200
+
