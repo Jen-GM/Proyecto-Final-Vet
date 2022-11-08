@@ -11,10 +11,18 @@ export const Home = () => {
 
   return (
     <div>
-      <Login />
-      <Cards />
-      <AboutUs />
-      <ContactUs />
+      <div>
+        <Login />
+      </div>
+      <div>
+        <Cards />
+      </div>
+      <div>
+        <AboutUs />
+        <div>
+          <ContactUs />
+        </div>
+      </div>
     </div>
   );
 };

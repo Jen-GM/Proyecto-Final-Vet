@@ -14,12 +14,12 @@ export const Login = () => {
 
   return (
     <div className="text-center mt-5 text-success">
-      <h1> Login </h1>
+      <h1> Iniciar sesión </h1>
       <div>
         <div className="d-grid gap-2 col-3 mx-auto">
           <input
             type="text"
-            placeholder="email"
+            placeholder="Correo"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -27,20 +27,20 @@ export const Login = () => {
         <div className="d-grid gap-2 col-3 mx-auto">
           <input
             type="password"
-            placeholder="password"
+            placeholder="Contraseña"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div className="d-grid gap-2 col-3 mx-auto">
           <button className="btn btn-warning" onClick={handleClick}>
-            Login
+            Acceder
           </button>
         </div>
       </div>
       <div></div>
-      <a href="#" classname="btn btn-primary">
-        olvidaste tu contraseña?
+      <a href="#" classname="btn btn-secondary">
+        ¿Olvidaste tu contraseña?
       </a>
     </div>
   );
