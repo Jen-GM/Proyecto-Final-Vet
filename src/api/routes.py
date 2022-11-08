@@ -15,9 +15,7 @@ from datetime import datetime
 api = Blueprint('api', __name__)
 
 
-# ___________POST-TOKEN____________
-
-
+# ___________POST-TOKEN__________
 @api.route("/token", methods=["POST"])
 def login():
     email = request.json.get("email", None)
