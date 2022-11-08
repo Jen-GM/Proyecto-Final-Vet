@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Cliente, Medico, Mascota
+from api.models import db, User, Cliente, Medico, Mascota, Vacuna, Ficha_Medica,Desparasitacion
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -39,7 +39,6 @@ def handle_hello():
 # ***********************ENPOINT CLIENTES************************
 # ---------------------------------------------------------------
 
-
 # lista todos los clientes
 @api.route('/clientes', methods=["GET"])
 def get_clientes():
@@ -62,7 +61,7 @@ def add_cliente():
     cliente = Cliente(nombre=body["nombre"], direccion=body["direccion"], telefono=body["telefono"])                
     db.session.add(cliente)
     db.session.commit()
-    return jsonify(cliente.serialize()), 200 
+    return jsonify({"msj": "Cliente agregado"}), 200 
 
 
 # Delete cliente
@@ -71,7 +70,7 @@ def delete_cliente(id_cliente):
     delete = Clientes.query.filter_by(id_cliente=id_cliente).first()
     db.session.delete(delete)
     db.session.commit()
-    return jsonify({"msj": "Cliente borado"}), 201
+    return jsonify({"msj": "Cliente borrado"}), 201
 
 # ***********************ENPOINT MEDICOS*************************
 # ---------------------------------------------------------------
@@ -92,7 +91,7 @@ def add_medico():
     medico = Medico(nombre=body["nombre"], telefono=body["telefono"])                
     db.session.add(medico)
     db.session.commit()
-    return jsonify(medico.serialize()), 200 
+    return jsonify({"msj": "Medico agregado"}), 200 
 
 
 @api.route('/medicos/int:id:medico', methods=["GET"])
@@ -114,17 +113,12 @@ def delete_medico(id_medico):
 # ---------------------------------------------------------------
 
 # lista de mascotas
-
-
 @api.route('/mascotas', methods=["GET"])
 def get_mascotas():
     mascota = Mascotas.query.filter().all()
     result = list(map(lambda mascotas: mascotas.serialize(), mascotas))
     response_body = {"mascotas": result, "msg": "mascotas"}
     return jsonify(response_body), 200
-
-
-
 
 
 # lista mascotas por cada cliente
@@ -141,15 +135,14 @@ def get_una_mascota(id_cliente, id_mascota):
     return jsonify(mascota.serialize()), 200
 
 
-
 #agregar mascotas nuevas
-@api.route('/m', methods=["POST"])   # POST
+@api.route('/mascotas', methods=["POST"])   # POST
 def add_mascota():
     body = request.get_json()   
     mascota = Mascota(nombre=body["nombre"], telefono=body["telefono"], especie=body["especie"], raza=body["raza"], internamiento=body["internamiento"])                
     db.session.add(mascota)
     db.session.commit()
-    return jsonify(mascota.serialize()), 200 
+    return jsonify({"msj": "Mascota agregada"}), 200 
 
 # Delete Mascota
 @api.route('/clientes/int:id:cliente/mascotas/int:id_mascota', methods=["DELETE"])
@@ -170,8 +163,15 @@ def get_ficha(id_cliente, id_mascota):
     ficha = Ficha_Medica.query.filter_by(
         id_cliente=id_cliente, id_mascota=id_mascota).first()
     return jsonify(ficha.serialize()), 200
-# mas dele
 
+#__________________________________agregar ficha POST_______
+@api.route('/clientes/int:id:cliente/mascotas/int:id_mascota/ficha', methods=["POST"])   # POST
+def add_ficha():
+    body = request.get_json()   
+    ficha = Ficha_Medica(fecha=body["fecha"], motivo_consulta=body["motivo_consulta"], diagnostico=body["diagnostico"], estudios_medicos=body["estudios_medicos"], tratamietno=body["tratamiento"], recomendacion=body["recomendaciones"])                
+    db.session.add(ficha)
+    db.session.commit()
+    return jsonify({"msj": "Ficha agregada"}), 200 
 
 # ficha desparasitación por mascota
 @api.route('/clientes/int:id_cliente/mascotas/int:id_mascota/desparasitacion', methods=["GET"])
@@ -180,14 +180,31 @@ def get_desparasitacion(id_cliente, id_mascota):
         id_cliente=id_cliente, id_mascota=id_mascota).first()
     return jsonify(desparasitacion.serialize()), 200
 
-# ficha vacunacion por mascota
-
+# agregar desparasitacion
+@api.route('/clientes/int:id_cliente/mascotas/int:id_mascota/desparasitacion', methods=["POST"])   # POST
+def add_desparasitacion():
+    body = request.get_json()   
+    desparasitacion = Desparasitacion(fecha=body["fecha"], siguiente_aplicacion=body["siguiente_aplicacion"], peso=body["peso"], tipo_med=body["tipo_med"])                
+    db.session.add(desparasitacion)
+    db.session.commit()
+    return jsonify({"msj": "Desparasitacion agregada"}), 200 
 
 @api.route('/clientes/int:id_cliente/animals/int:id_mascota/vacunacion', methods=["GET"])
 def get_vacunacion(id_cliente, id_mascota):
     vacunacion = Vacunacion.query.filter_by(
         id_cliente=id_cliente, id_mascota=id_mascota).first()
     return jsonify(vacunacion.serialize()), 200
+
+#__________________________________agregar vacuna POST_______
+@api.route('/clientes/int:id_cliente/animals/int:id_mascota/vacunacion', methods=["POST"])   # POST
+def add_vacunacion():
+    body = request.get_json()   
+    vacunacion = Vacuna(fecha=body["fecha"], siguiente_aplicacion=body["siguiente_aplicacion"], peso=body["peso"], tipo_vacuna=body["tipo_vacuna"], marca_vacuna=body["marca_vacuna"])                
+    db.session.add(vacunacion)
+    db.session.commit()
+    return jsonify({"msj": "Vacuna agregada"}), 200 
+
+
 
 # delete historia clinica
 
@@ -199,6 +216,10 @@ def delete_ficha(id_cliente, id_mascota):
     db.session.delete(delete)
     db.session.commit()
     return jsonify({"msj": "Ficha eliminada eliminada"}), 200
+
+
+
+
 
 # delete desparasitación
 
