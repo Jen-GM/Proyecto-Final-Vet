@@ -122,7 +122,7 @@ class Agenda(db.Model):
         return {
             "id": self.id,
             "fecha": self.fecha,
-            "hora": self.hora,
+            "hora": self.hora.strftime("%H:%M"),
             "retira": self.retira,
             "direccion_retiro": self.direccion_retiro,
             "medico_id": self.medico_id,

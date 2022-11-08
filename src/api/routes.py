@@ -212,6 +212,7 @@ def delete_vacunacion(cliente_id, mascota_id):
 def get_agenda():
     agenda = Agenda.query.filter().all()
     result = list(map(lambda agenda: agenda.serialize(), agenda))
+    print(result)
     response_body = {"Eventos": result, "msg": "total de eventos"}
     return jsonify(response_body), 200
 
