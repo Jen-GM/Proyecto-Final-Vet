@@ -214,7 +214,7 @@ def add_ficha(cliente_id, mascota_id):
     return jsonify({"msj": "Ficha agregada"}), 200
 
 
-# ficha desparasitación por mascota
+# ficha desparasitación por mascota_
 @api.route('/clientes/<int:cliente_id>/mascota/<int:mascota_id>/desparasitacion', methods=["GET"])
 def get_desparasitacion(cliente_id, mascota_id):
     desparasitacion = Desparasitacion.query.filter_by(
@@ -245,7 +245,7 @@ def get_vacunacion(cliente_id, mascota_id):
         cliente_id=cliente_id, mascota_id=mascota_id).first()
     return jsonify(vacunacion.serialize()), 200
 
-# ___Agregar ficha de  vacuna por mascota ____
+# ___Agregar ficha de  vacuna por mascota __
 #  POST
 @api.route('/clientes/int:id_cliente/mascota/int:id_mascota/vacunacion', methods=["POST"])
 def add_vacunacion():
