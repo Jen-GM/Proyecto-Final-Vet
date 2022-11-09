@@ -60,12 +60,13 @@ def get_cliente(id_cliente):
 
 
 @api.route('/clientes', methods=["POST"])  #  POST
-def add_cliente():
+def add_cliente(id_user):
     body = request.get_json()
     cliente = Cliente(
         nombre=body["nombre"],
         direccion=body["direccion"],
-        telefono=body["telefono"]
+        telefono=body["telefono"],
+        user_id=id_user        
     )
     db.session.add(cliente)
     db.session.commit()
@@ -154,12 +155,16 @@ def get_una_mascota(id_cliente, id_mascota):
 
     # _________Agregar_Mascotas____
 
-
-@api.route('/mascotas', methods=["POST"])  #  POST
-def add_mascota():
+@api.route('/clientes/<int:id_cliente>/mascotas', methods=["POST"])
+def add_mascota(id_cliente):
     body = request.get_json()
-    mascota = Mascota(nombre=body["nombre"], especie=body["especie"],
-                      raza=body["raza"], internamiento=body["internamiento"])
+    mascota = Mascota(
+        nombre=body["nombre"],
+        especie=body["especie"],
+        raza=body["raza"],
+        internamiento=body["internamiento"],
+        cliente_id=id_cliente)
+        
     db.session.add(mascota)
     db.session.commit()
     return jsonify({"msj": "Mascota agregada"}), 200
