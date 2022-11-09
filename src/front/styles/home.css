@@ -3,13 +3,13 @@
   padding: 0;
 }
 
-/* body {
-    background: url('https://images.unsplash.com/photo-1636953056323-9c09fdd74fa6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80') no-repeat center center fixed;
+body {
+    background: url('https://color-hex.org/colors/faf3e3.png') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-  } */
+  }
 
 #navigation,
 .navbar .navbar-expand-lg {
@@ -21,14 +21,22 @@
   font-weight: bold;
   background: -webkit-linear-gradient(
     left top,
-    rgb(133, 197, 186),
+    rgb(228, 227, 171),
     rgb(26, 77, 46)
   );
   background: linear-gradient(
     to bottom right,
-    rgb(170, 230, 220),
+    rgb(228, 227, 171),
     rgb(26, 77, 46)
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+#loginScreen, .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+

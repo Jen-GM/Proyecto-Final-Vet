@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import "../../styles/home.css";
 import "../../img/LogotipoPS.png";
 import "../../img/navbar2.png";
-import "../../styles/home.css";
+import "../../img/dogs.png";
 
 
 export const Navbar = () => {
@@ -21,11 +22,6 @@ export const Navbar = () => {
             className="d-inline-block align-text-top"
             />
         </a>
-        <img src= "navbar2.png"
-            alt="Logo"
-            width="270"
-            height="170" 
-            className="fixed-bottom"/>
         <div>
           <button
             className="navbar-toggler"
@@ -40,19 +36,24 @@ export const Navbar = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav p-5">
-              <li className="nav-item border border-white rounded mx-2 border-opacity-75">
+              <li className="nav-item border border-white rounded mx-3 border-opacity-75 shadow-lg">
+                <a className="nav-link px-4" href="#">
+                  Beneficios
+                </a>
+              </li>
+              <li className="nav-item border border-white rounded mx-3 border-opacity-75">
                 <a className="nav-link px-4" href="#">
                   Nosotros
                 </a>
               </li>
-              <li className="nav-item border border-white rounded mx-4 border-opacity-75">
+              <li className="nav-item border border-white rounded mx-3 border-opacity-75">
                 <a className="nav-link px-4" href="#">
                   Contacto
                 </a>
               </li>
               {sessionStorage.getItem("token") && (
                 <Link to="/">
-                  <li className="nav-item border border-white rounded mx-4 border-opacity-75">
+                  <li className="nav-item border border-white rounded mx-3 border-opacity-75">
                     <a className="nav-link" onClick={() => actions.logout()}>
                       Salir
                     </a>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function ContactUs() {
   return (
-    <div className="container-fluid text-center">
+    <div className="container-fluid">
       <div className="text-left m-5">
         <h3 className="text-success text-center">¿Necesitas contactarnos?</h3>
       </div>
