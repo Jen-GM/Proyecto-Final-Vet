@@ -146,12 +146,30 @@ def delete_mascota(id_cliente, id_mascota):
     return jsonify({"msj": "Mascota eliminada"}), 200
 
 #Put Mascota
-@api.route('/clientes/<int:id>/mascotas/<int:id_mascota>', methods=["PUT"])  
-def update_mascota(id):
+""" @api.route('/clientes/<int:cliente_id>/mascotas/<int:id_mascota>', methods=["PUT"])  
+def update_mascota(cliente_id, id_mascota):
+    print (id_mascota)
     body = request.get_json() 
-    mascota = mascota.query.filter(cliente.id == id).update({mascota.especie : body["especie"], mascota.id: body["id"], mascota.internamiento : body["internamiento"], mascota.nombre : body["nombre"], mascota.raza : body ["raza"]},synchronize_session = False) 
+    mascota = Mascota.query.filter(Mascota.cliente_id == cliente_id, Mascota.id == id_mascota).update({Mascota.especie : body["especie"], Mascota.internamiento : body["internamiento"], Mascota.nombre : body["nombre"], Mascota.raza : body ["raza"]},synchronize_session = False) 
     db.session.commit()           
     return jsonify({"msj" : "mascota actualizado"}), 200 
+ """
+@api.route('clientes/<int:cliente_id>/mascotas/<int:id_mascota>', methods=["PUT"])
+def mod_mascota(cliente_id, id_mascota):
+    body = Mascota.query.filter_by(
+        cliente_id=cliente_id, id=id_mascota).first()
+    nombre = request.json['nombre']
+    especie = request.json['especie']
+    raza = request.json['raza']
+    internamiento = request.json['internamiento']
+
+    body.nombre = nombre
+    body.especie = especie
+    body.raza = raza
+    body.internamiento = internamiento
+
+    db.session.commit()
+    return jsonify({"msj": "Mascota modificade"}), 200
 
 # ***********************ENPOINT FICHAS MEDICAS*************************
 # ----------------------------------------------------------------------
