@@ -153,7 +153,7 @@ def get_una_mascota(id_cliente, id_mascota):
         cliente_id=id_cliente, id=id_mascota).first()
     return jsonify(mascota.serialize()), 200
 
-    # _________Agregar_Mascotas____
+    # ________Agregar_Mascotas____
 
 @api.route('/clientes/<int:id_cliente>/mascotas', methods=["POST"])
 def add_mascota(id_cliente):
