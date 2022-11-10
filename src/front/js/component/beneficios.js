@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, Component } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import "../../styles/home.css";
 import "../../img/citaperro.jpg";
 import "../../img/informacionmedica.png";
 import "../../img/mismolugar.jpg";
@@ -8,8 +9,8 @@ import "../../img/perrocita.jpeg";
 
 export const Beneficios = () => {
   return (
-    <div>
-      <h1 className="text-center mt-5 text-success">Beneficios</h1>
+    <div className="m-5 p-5 vw-50 vh-50">
+      <h2 className="text-center fs-1 text-success">Beneficios</h2>
       <div
         id="carouselBeneficios"
         className="carousel carousel-dark slide"

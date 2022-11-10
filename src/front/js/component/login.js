@@ -16,14 +16,15 @@ export const Login = () => {
 
   return (
     <div className="container-fluid" id="loginScreen">
-      <div className="d-flex flex-column">
+      <div className="d-flex flex-column ">
         <div className="d-flex p-2">
           <div className="text-center mt-5 text-success">
             <div>
-              <h1> Iniciar sesión </h1>
+              <h1 className="text-rigth"> Iniciar sesión </h1>
               <div>
                 <div className="d-grid gap-2 col-3 mx-auto">
                   <input
+                    className="fs-5 my-3"
                     type="text"
                     placeholder="Correo"
                     value={email}
@@ -32,6 +33,7 @@ export const Login = () => {
                 </div>
                 <div className="d-grid gap-2 col-3 mx-auto">
                   <input
+                    className="fs-5"
                     type="password"
                     placeholder="Contraseña"
                     value={password}
@@ -39,19 +41,19 @@ export const Login = () => {
                   />
                 </div>
                 <div className="d-grid gap-2 col-3 mx-auto">
-                  <button className="btn btn-warning" onClick={handleClick}>
+                  <button className="btn btn-warning fs-5 mt-2" onClick={handleClick}>
                     Acceder
                   </button>
                 </div>
               </div>
             </div>
             <div></div>
-            <a href="#" classname="btn btn-secondary">
+            <a href="#" className="fs-5">
               ¿Olvidaste tu contraseña?
             </a>
           </div>
         </div>
-        <div className="d-flex">
+        <div className="d-flex align-self-center">
           <img
             src="perrogato.png"
             alt="Perro y gato"
@@ -64,5 +66,3 @@ export const Login = () => {
     </div>
   );
 };
-
-

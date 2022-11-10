@@ -5,9 +5,9 @@ import "../../img/contactenos.png";
 function ContactUs() {
   return (
     <div>
-      <div className="d-flex flex-row-reverse justify-content-start">
-        <div className="d-flex p-2">
-          <div className="mt-3">
+      <div className="d-flex flex-row-reverse justify-content-center">
+        <div className="d-flex p-2 mx-5">
+          <div className="mt-3 border border-warning border-4 rounded-3 p-5">
             <h3 className="text-success fs-1">¿Necesitas contactarnos?
             </h3>
             <h5 className="py-3 text-success fs-2">Para soporte:</h5>
@@ -30,7 +30,7 @@ function ContactUs() {
             <p className="fs-4">Lunes a Viernes de 11:00am UTC a 8:00pm UTC.</p>
           </div>
         </div>
-        <div className="d-flex p-2">
+        <div className="d-flex p-2 ">
           <img
             src="contactenos.png"
             alt="Perro y gato"

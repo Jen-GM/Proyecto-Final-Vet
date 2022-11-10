@@ -34,10 +34,30 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-#loginScreen,
+/* #loginScreen,
 .container-fluid {
   display: flex;
   align-items: center;
   justify-content: center;
+} */
+
+.carousel-item img {  
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
+  height:100vh;
 }
 
+.carousel-item:before {
+  content: "";
+  background-image:
+    linear-gradient(
+      to bottom,
+      transparent, rgba(0,0,0,0.5)
+    );
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
