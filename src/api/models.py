@@ -68,6 +68,7 @@ class Medico(db.Model):
     telefono = db.Column(db.String(80), unique=True, nullable=False)
     user_id = db.Column(db.Integer, ForeignKey(
         'user.id'))
+    id_user = db.relationship('User')
 
     def __repr__(self):
         return f'<Medico {self.id}>'
@@ -87,7 +88,8 @@ class Cliente(db.Model):
     direccion = db.Column(db.String(250), unique=True, nullable=False)
     telefono = db.Column(db.String(80), unique=True, nullable=False)
     user_id = db.Column(db.Integer, ForeignKey(
-        'user.id'))
+        'user.id'), unique=True, nullable=False)
+    id_user = db.relationship('User')
 
     def __repr__(self):
         return f'<Cliente {self.id}>'
