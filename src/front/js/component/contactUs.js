@@ -8,7 +8,7 @@ function ContactUs() {
       <div className="d-flex flex-row-reverse justify-content-center">
         <div className="d-flex p-2 mx-5">
           <div className="mt-3 border border-warning border-4 rounded-3 p-5">
-            <h3 className="text-success fs-1">¿Necesitas contactarnos?
+            <h3 className="text-success text-center fs-1">¿Necesitas contactarnos?
             </h3>
             <h5 className="py-3 text-success fs-2">Para soporte:</h5>
             <p className="fs-4">

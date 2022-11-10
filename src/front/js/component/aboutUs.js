@@ -7,7 +7,7 @@ function AboutUs() {
     <div className="">
       <div className="d-flex flex-row justify-content-center m-5">
         <div className="d-flex m-1 p-2 w-50">
-          <div className="border border-secondary border-4 rounded-3 p-5">
+          <div className="border border-dark border-4 rounded-3 p-5">
             <h3 className="text-success text-center py-3 fs-1">
               Sobre nosotros
             </h3>

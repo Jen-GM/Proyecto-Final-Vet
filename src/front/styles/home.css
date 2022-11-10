@@ -34,12 +34,9 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-/* #loginScreen,
-.container-fluid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
+#bgBeneficios, .container {
+  background-image: url("https://t4.ftcdn.net/jpg/04/08/61/21/360_F_408612126_uaBqO3AVV6vlZWJq4GiX93aJKk1cMtu7.jpg");
+}
 
 .carousel-item img {  
   object-fit: cover;

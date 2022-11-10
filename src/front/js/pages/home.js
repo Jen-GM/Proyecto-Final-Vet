@@ -11,18 +11,10 @@ export const Home = () => {
 
   return (
     <div>
-      <div>
         <Login />
-      </div>
-      <div>
         <Beneficios />
-      </div>
-      <div>
         <AboutUs />
-      </div>
-      <div>
         <ContactUs />
-      </div>
       <div>
         <img
           src="navbar2.png"
