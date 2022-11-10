@@ -19,9 +19,9 @@ export const Home = () => {
       </div>
       <div>
         <AboutUs />
-        <div>
-          <ContactUs />
-        </div>
+      </div>
+      <div>
+        <ContactUs />
       </div>
       <div>
         <img
