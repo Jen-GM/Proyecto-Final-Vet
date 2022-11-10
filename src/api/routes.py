@@ -157,8 +157,8 @@ def get_una_mascota(id_cliente, id_mascota):
 
     # ___Agregar una Mascota a cliente____
 
-@api.route('/clientes/<int:id_cliente>/mascotas', methods=["POST"])
-def add_mascota(id_cliente):
+@api.route('/clientes/<int:id_cliente>/mascotas/<int:id_mascota>', methods=["POST"])
+def add_mascota(id_cliente, id_mascota):
     body = request.get_json()
     mascota = Mascota(
         nombre=body["nombre"],
@@ -166,6 +166,7 @@ def add_mascota(id_cliente):
         raza=body["raza"],
         internamiento=body["internamiento"],
         cliente_id=id_cliente,
+
        )
         
     db.session.add(mascota)
@@ -194,7 +195,7 @@ def get_ficha(cliente_id, mascota_id):
     return jsonify(ficha.serialize()), 200
 
 # __agregar ficha historia clinica por mascota _______
-#  POST
+
 @api.route('/clientes/<int:cliente_id>/mascota/<int:mascota_id>/ficha', methods=["POST"])
 def add_ficha(cliente_id, mascota_id):
     body = request.get_json()
@@ -207,7 +208,7 @@ def add_ficha(cliente_id, mascota_id):
         recomendaciones=body["recomendaciones"],
         cliente_id=cliente_id,
         mascota_id=mascota_id,
-        medico_id=body["medico_id"]       
+        medico_id=body["medico_id"]              
     )
     db.session.add(ficha)
     db.session.commit()
@@ -224,13 +225,16 @@ def get_desparasitacion(cliente_id, mascota_id):
 # agregar desparasitacion por mascota
 
 #  POST
-@api.route('/clientes/int:id_cliente/mascotas/int:id_mascota/desparasitacion', methods=["POST"])
-def add_desparasitacion():
+@api.route('/clientes/<int:cliente_id>/mascota/<int:mascota_id>/desparasitacion', methods=["POST"])
+def add_desparasitacion(cliente_id, mascota_id):
     body = request.get_json()
     desparasitacion = Desparasitacion(
         fecha=body["fecha"],
         siguiente_aplicacion=body["siguiente_aplicacion"],
-        peso=body["peso"], tipo_med=body["tipo_med"]
+        peso=body["peso"], 
+        tipo_med=body["tipo_med"],
+        cliente_id=cliente_id,
+        mascota_id=mascota_id
     )
     db.session.add(desparasitacion)
     db.session.commit()
@@ -247,15 +251,18 @@ def get_vacunacion(cliente_id, mascota_id):
 
 # ___Agregar ficha de  vacuna por mascota __
 #  POST
-@api.route('/clientes/int:id_cliente/mascota/int:id_mascota/vacunacion', methods=["POST"])
-def add_vacunacion():
+@api.route('/clientes/<int:cliente_id>/mascota/<int:mascota_id>/vacunacion', methods=["POST"])
+def add_vacunacion(cliente_id,mascota_id):
     body = request.get_json()
     vacunacion = Vacuna(
         fecha=body["fecha"],
         siguiente_aplicacion=body["siguiente_aplicacion"],
         peso=body["peso"],
         tipo_vacuna=body["tipo_vacuna"],
-        marca_vacuna=body["marca_vacuna"])
+        marca_vacuna=body["marca_vacuna"],
+        cliente_id=cliente_id,
+        mascota_id=mascota_id
+        )
     db.session.add(vacunacion)
     db.session.commit()
     return jsonify({"msj": "Vacuna agregada"}), 200
