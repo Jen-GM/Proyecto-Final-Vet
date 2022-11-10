@@ -101,6 +101,8 @@ def get_doctor(id_medico):
     return jsonify(medico.serialize()), 200
 
 # __________Agregar_Medicos_________
+
+
 @api.route('/medicos', methods=["POST"])  #  POST
 def add_medico():
     body = request.get_json()
@@ -164,6 +166,26 @@ def add_mascota():
     db.session.commit()
     return jsonify({"msj": "Mascota agregada"}), 200
 
+# PUT
+
+
+@api.route('clientes/<int:cliente_id>/mascotas/<int:id_mascota>', methods=["PUT"])
+def mod_mascota(cliente_id, id_mascota):
+    body = Mascota.query.filter_by(
+        cliente_id=cliente_id, id=id_mascota).first()
+    nombre = request.json['nombre']
+    especie = request.json['especie']
+    raza = request.json['raza']
+    internamiento = request.json['internamiento']
+
+    body.nombre = nombre
+    body.especie = especie
+    body.raza = raza
+    body.internamiento = internamiento
+
+    db.session.commit()
+    return jsonify({"msj": "Mascota modificade"}), 200
+
 
 # Delete Mascota
 @api.route('/clientes/<int:id_cliente>/mascotas/<int:id_mascota>', methods=["DELETE"])
@@ -187,6 +209,8 @@ def get_ficha(cliente_id, mascota_id):
 
 # __agregar ficha historia clinica por mascota _______
 #  POST
+
+
 @api.route('/clientes/int:id:cliente/mascotas/int:id_mascota/ficha', methods=["POST"])
 def add_ficha():
     body = request.get_json()
@@ -213,6 +237,8 @@ def get_desparasitacion(cliente_id, mascota_id):
 # agregar desparasitacion por mascota
 
 #  POST
+
+
 @api.route('/clientes/int:id_cliente/mascotas/int:id_mascota/desparasitacion', methods=["POST"])
 def add_desparasitacion():
     body = request.get_json()
@@ -237,6 +263,8 @@ def get_vacunacion(cliente_id, mascota_id):
 # ___Agregar ficha de  vacuna por mascota ____
 
 #  POST
+
+
 @api.route('/clientes/int:id_cliente/animals/int:id_mascota/vacunacion', methods=["POST"])
 def add_vacunacion():
     body = request.get_json()
@@ -304,6 +332,7 @@ def get_evento(medico_id):
     return jsonify(evento.serialize()), 200
 
 # __agregar a la agenda por medico____
+
 
 @api.route('/agenda', methods=["POST"])  #  POST
 def add_agenda():
