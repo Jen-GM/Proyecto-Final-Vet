@@ -4,12 +4,13 @@
 }
 
 body {
-    background: url('https://color-hex.org/colors/faf3e3.png') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-  }
+  background: url("https://color-hex.org/colors/faf3e3.png") no-repeat center
+    center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
 
 #navigation,
 .navbar .navbar-expand-lg {
@@ -33,10 +34,10 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-#loginScreen, .container-fluid {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+#loginScreen,
+.container-fluid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 

@@ -4,12 +4,14 @@ import "../../img/sobrenosotros.png";
 
 function AboutUs() {
   return (
-    <div className="container-total">
-      <div className="d-flex flex-row">
-        <div className="d-flex p-2">
-          <div>
-            <h2 className="text-success">Sobre nosotros</h2>
-            <p className="text">
+    <div >
+      <div className="d-flex flex-row justify-content-center m-4">
+        <div className="d-flex m-1 p-2 w-50">
+          <div className="">
+            <h3 className="text-success text-center py-3 fs-1">
+              Sobre nosotros
+            </h3>
+            <p className="text text-start fs-4">
               <strong>Petsource</strong> es una app pensada para facilitar la
               comunicación entre el personal veterinario y los dueños de
               mascotas. Sabemos que nuestras mascotas son parte de la familia y
