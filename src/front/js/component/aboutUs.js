@@ -4,7 +4,7 @@ import "../../img/sobrenosotros.png";
 
 function AboutUs() {
   return (
-    <div>
+    <div id="aboutUs">
       <div className="d-flex flex-row justify-content-center m-5">
         <div className="d-flex m-1 p-2 w-50">
           <div className="border border-dark border-4 rounded-3 p-5">

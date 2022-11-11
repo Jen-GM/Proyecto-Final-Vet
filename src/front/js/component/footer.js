@@ -4,7 +4,10 @@ import "../../styles/home.css";
 export const Footer = () => (
   <>
     {/* Footer */}
-    <footer className="text-center text-lg-start text-white mt-3" id="footer-container">
+    <footer
+      className="text-center text-lg-start text-white mt-3"
+      id="footer-container"
+    >
       {/* Section: Social media */}
       {/* Section: Links  */}
       <section className="w-100">
@@ -27,10 +30,27 @@ export const Footer = () => (
             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-2">
               {/* Links */}
               <h6 className="text-uppercase fw-bold mb-4">Servicios</h6>
-              <p className="text-reset">Instalación del software</p>
-              <p className="text-reset">Soporte del software</p>
+              <p>
+                <a className="text-reset" href="#loginScreen">
+                  Acceder
+                </a>
+              </p>
+              <p>
+                <a className="text-reset" href="#bgBeneficios">
+                  Beneficios
+                </a>
+              </p>
+              <p>
+                <a className="text-reset" href="#aboutUs">
+                  Sobre nosotros
+                </a>
+              </p>
+              <p>
+                <a className="text-reset" href="#contactUs">
+                  Contáctenos
+                </a>
+              </p>
             </div>
-
             <div className="col-md-1 col-lg-1 col-xl-3 mx-auto mb-md-0 mb-1">
               {/* Links */}
               <h6 className="text-uppercase fw-bold mb-3">Contactenos</h6>

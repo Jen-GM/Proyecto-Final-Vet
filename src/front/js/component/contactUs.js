@@ -4,7 +4,7 @@ import "../../img/contactenos.png";
 
 function ContactUs() {
   return (
-    <div>
+    <div id="contactUs">
       <div className="d-flex flex-row-reverse justify-content-center">
         <div className="d-flex p-2 mx-5">
           <div className="mt-3 border border-warning border-4 rounded-3 p-5">

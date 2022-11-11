@@ -11,7 +11,7 @@ export const Navbar = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <nav className="navbar navbar-expand-lg bg-light " id="navigation">
+    <nav className="navbar navbar-expand-sm bg-light " id="navigation">
       <div className="container-fluid">
         <a className="navbar-brand ms-5 ps-2" href="/">
           <img
@@ -37,17 +37,17 @@ export const Navbar = () => {
           <div className="collapse navbar-collapse" id="#navbarNav">
             <ul className="navbar-nav p-5">
               <li className="nav-item border border-white rounded mx-3 border-opacity-75 shadow-lg">
-                <a className="nav-link px-4" href="bgBeneficios">
+                <a className="nav-link px-4" href="/#bgBeneficios">
                   Beneficios
                 </a>
               </li>
               <li className="nav-item border border-white rounded mx-3 border-opacity-75">
-                <a className="nav-link px-4" href="#">
+                <a className="nav-link px-4" href="#aboutUs">
                   Nosotros
                 </a>
               </li>
               <li className="nav-item border border-white rounded mx-3 border-opacity-75">
-                <a className="nav-link px-4" href="#">
+                <a className="nav-link px-4" href="#contactUs">
                   Contacto
                 </a>
               </li>
