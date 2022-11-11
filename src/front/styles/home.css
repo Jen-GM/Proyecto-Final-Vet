@@ -35,26 +35,15 @@ body {
 }
 
 #bgBeneficios, .container {
-  background-image: url("https://t4.ftcdn.net/jpg/04/08/61/21/360_F_408612126_uaBqO3AVV6vlZWJq4GiX93aJKk1cMtu7.jpg");
+  background-image: url("https://wallpaperaccess.com/full/1860753.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.carousel-item img {  
+.carousel-inner img {  
   object-fit: cover;
   object-position: center;
   overflow: hidden;
   height:100vh;
 }
 
-.carousel-item:before {
-  content: "";
-  background-image:
-    linear-gradient(
-      to bottom,
-      transparent, rgba(0,0,0,0.5)
-    );
-  display: block;
-  position: absolute;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-}
