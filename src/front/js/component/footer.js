@@ -20,16 +20,16 @@ export const Footer = () => (
               <img
                 src="LogotipoPS.png"
                 alt="Logo"
-                width="120"
-                height="110"
-                className="align-middle pb-2 mb-4"
+                width="135"
+                height="120"
+                className="align-middle"
               />
             </div>
             {/* Grid column */}
             {/* Grid column */}
             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-2">
               {/* Links */}
-              <h6 className="text-uppercase fw-bold mb-4">Servicios</h6>
+              <h6 className="text-uppercase fw-bold mb-3">Servicios</h6>
               <p>
                 <a className="text-reset" href="#loginScreen">
                   Acceder

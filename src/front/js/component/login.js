@@ -14,6 +14,8 @@ export const Login = () => {
     await actions.login(email, password).then(() => navigate("/usuarios"));
   };
 
+
+
   return (
     <div>
       <div className="container-fluid" id="loginScreen">
@@ -26,7 +28,7 @@ export const Login = () => {
                   <div className="d-grid gap-2 col-3 mx-auto">
                     <input
                       className="fs-5 my-3"
-                      type="text"
+                      type="email"
                       placeholder="Correo"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
