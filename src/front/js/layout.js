@@ -12,7 +12,8 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Login } from "./component/login";
-import { Cards } from "./component/cards";
+
+
 
 
 //create your first component
