@@ -1,10 +1,13 @@
 import React, { useContext, useState, Component } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 import "../../styles/home.css";
 import "../../img/perrogato.png";
 
+
 export const Login = () => {
+  const Swal = require('sweetalert2')
   const { store, actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

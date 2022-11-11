@@ -48,7 +48,7 @@ export const Beneficios = () => {
                     className="d-block w-100"
                     alt="perro al telefono"
                   />
-                  <div className="carousel-caption d-none d-md-block bg-dark text-white">
+                  <div className="carousel-caption d-none d-md-block bg-dark text-white p-2">
                     <h5 className="fs-3">Todo en un mismo lugar...</h5>
                     <p className="fs-5">
                       ¿Tenés miles de expedientes para tus clientes en papel?
@@ -67,7 +67,7 @@ export const Beneficios = () => {
                     className="d-block w-100"
                     alt="gato en la veterinaria"
                   />
-                  <div className="carousel-caption d-none d-md-block bg-light text-dark">
+                  <div className="carousel-caption d-none d-md-block bg-light text-dark p-2">
                     <h5 className="fs-3">
                       Tenés la información médica de tu mascota a mano...
                     </h5>
@@ -88,7 +88,7 @@ export const Beneficios = () => {
                     className="d-block w-100"
                     alt="perro y gato viendo la computadora"
                   />
-                  <div className="carousel-caption d-none d-md-block bg-dark text-white">
+                  <div className="carousel-caption d-none d-md-block bg-dark text-white p-2">
                     <h5 className="fs-3">Agendar tu cita en línea...</h5>
                     <p className="fs-5">
                       ¿Requerís una cita para tu mascota? Ahora podés hacerlo a
