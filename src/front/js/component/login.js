@@ -2,7 +2,6 @@ import React, { useContext, useState, Component } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2/dist/sweetalert2.js";
-import validator from "validator";
 import "../../styles/home.css";
 import "../../img/perrogato.png";
 import "../../img/cat-error.png";
@@ -21,7 +20,7 @@ export const Login = () => {
 
   const handleChange = (e) => {
     if (!isValidEmail(e.target.value)) {
-      setError("Correo no válido");
+      setError("Formato de correo inválido");
       console.log(error);
     } else {
       setError(null);
