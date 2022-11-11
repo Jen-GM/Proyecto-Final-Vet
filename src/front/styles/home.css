@@ -34,21 +34,22 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-#bgBeneficios, .container {
+#bgBeneficios,
+.container {
   background-image: url("https://wallpaperaccess.com/full/1860753.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-.carousel-inner img {  
+.carousel-inner img {
   object-fit: cover;
   object-position: center;
   overflow: hidden;
-  height:100vh;
+  height: 100vh;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
+
+#footer-container, .footer {
+  background-image: url("https://wallpaperaccess.com/full/1860753.jpg");
   width: 100%;
 }

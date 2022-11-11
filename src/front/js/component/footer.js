@@ -1,24 +1,25 @@
 import React, { Component } from "react";
+import "../../styles/home.css";
 
 export const Footer = () => (
   <>
     {/* Footer */}
-    <footer className="text-center text-lg-start text-white mt-3">
+    <footer className="text-center text-lg-start text-white mt-3" id="footer-container">
       {/* Section: Social media */}
       {/* Section: Links  */}
-      <section className="">
-        <div className="container text-center text-md-start mt-5 pt-1">
+      <section className="w-100">
+        <div className="container-fluid text-center text-md-start mt-5 pt-1">
           {/* Grid row */}
           <div className="row mt-5">
             {/* Grid column */}
-            <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-3">
+            <div className="col-md-3 col-lg-4 col-xl-1 mx-auto mb-3">
               {/* Content */}
               <img
                 src="LogotipoPS.png"
                 alt="Logo"
-                width="150"
-                height="140"
-                className="d-inline-block align-text-top"
+                width="120"
+                height="110"
+                className="align-middle pb-2 mb-4"
               />
             </div>
             {/* Grid column */}

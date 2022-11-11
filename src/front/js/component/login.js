@@ -15,56 +15,58 @@ export const Login = () => {
   };
 
   return (
-    <div className="container-fluid" id="loginScreen">
-      <div className="d-grid grid-column">
-        <div className="d-grid align-self-center m-0 my-3 p-0">
-          <div className="text-center mt-5 text-success">
-            <div>
-              <h1 className="text-rigth"> Iniciar sesión </h1>
+    <div>
+      <div className="container-fluid" id="loginScreen">
+        <div className="d-grid grid-column">
+          <div className="d-grid align-self-center m-0 my-3 p-0">
+            <div className="text-center mt-5 text-success">
               <div>
-                <div className="d-grid gap-2 col-3 mx-auto">
-                  <input
-                    className="fs-5 my-3"
-                    type="text"
-                    placeholder="Correo"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                <div className="d-grid gap-2 col-3 mx-auto">
-                  <input
-                    className="fs-5"
-                    type="password"
-                    placeholder="Contraseña"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-                <div className="d-grid gap-2 col-3 mx-auto">
-                  <button
-                    className="btn btn-warning fs-5 mt-2"
-                    onClick={handleClick}
-                  >
-                    Acceder
-                  </button>
+                <h1 className="text-rigth"> Iniciar sesión </h1>
+                <div>
+                  <div className="d-grid gap-2 col-3 mx-auto">
+                    <input
+                      className="fs-5 my-3"
+                      type="text"
+                      placeholder="Correo"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                  <div className="d-grid gap-2 col-3 mx-auto">
+                    <input
+                      className="fs-5"
+                      type="password"
+                      placeholder="Contraseña"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                  <div className="d-grid gap-2 col-3 mx-auto">
+                    <button
+                      className="btn btn-warning fs-5 mt-2"
+                      onClick={handleClick}
+                    >
+                      Acceder
+                    </button>
+                  </div>
                 </div>
               </div>
+              <div></div>
+              <a href="#" className="fs-5">
+                ¿Olvidaste la contraseña?
+              </a>
             </div>
-            <div></div>
-            <a href="#" className="fs-5">
-              ¿Olvidaste tu contraseña?
-            </a>
           </div>
-        </div>
-        <div className="d-grid align-self-end">
-          <div className="text-center ps-5 ms-5">
-            <img
-              src="perrogato.png"
-              alt="Perro y gato"
-              width="860"
-              height="704"
-              className="align-self-end"
-            />
+          <div className="d-grid align-self-end">
+            <div className="text-center ps-5 ms-5">
+              <img
+                src="perrogato.png"
+                alt="Perro y gato"
+                width="860"
+                height="704"
+                className="align-self-end"
+              />
+            </div>
           </div>
         </div>
       </div>
