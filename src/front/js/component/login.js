@@ -1,23 +1,37 @@
 import React, { useContext, useState, Component } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import validator from "validator";
 import "../../styles/home.css";
 import "../../img/perrogato.png";
-
+import "../../img/cat-error.png";
 
 export const Login = () => {
-  const Swal = require('sweetalert2')
+  const Swal = require("sweetalert2");
   const { store, actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
+
+  const handleChange = (e) => {
+    if (!isValidEmail(e.target.value)) {
+      setError("Correo no válido");
+      console.log(error);
+    } else {
+      setError(null);
+    }
+    setEmail(e.target.value);
+  };
 
   const handleClick = async () => {
     await actions.login(email, password).then(() => navigate("/usuarios"));
   };
-
-
 
   return (
     <div>
@@ -30,12 +44,12 @@ export const Login = () => {
                 <div>
                   <div className="d-grid gap-2 col-3 mx-auto">
                     <input
-                      className="fs-5 my-3"
-                      type="email"
+                      className="fs-5 my-2"
+                      type="text"
                       placeholder="Correo"
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
+                      onChange={handleChange}
+                    /> {error && <h5 style={{ color: "red", paddingBottom: '0.5rem', display: 'block' }}>{error}</h5>}
                   </div>
                   <div className="d-grid gap-2 col-3 mx-auto">
                     <input
