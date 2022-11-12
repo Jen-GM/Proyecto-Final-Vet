@@ -13,7 +13,7 @@ body {
 }
 
 #navigation,
-.navbar .navbar-expand-lg {
+.navbar .navbar-expand-sm {
   background-image: url("https://wallpaperaccess.com/full/1860753.jpg");
 }
 
@@ -34,8 +34,7 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-#bgBeneficios,
-.container {
+#bgBeneficios {
   background-image: url("https://wallpaperaccess.com/full/1860753.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -49,7 +48,7 @@ body {
 }
 
 
-#footer-container, .footer {
+#footer-container {
   background-image: url("https://wallpaperaccess.com/full/1860753.jpg");
   width: 100%;
 }
