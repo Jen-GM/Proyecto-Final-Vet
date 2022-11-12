@@ -10,7 +10,7 @@ import interactionPlugin, {
 } from "@fullcalendar/interaction";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
-
+var moment = require("moment");
 export default function EventCalendar() {
   const [agenda, setAgenda] = useState([]);
 
@@ -22,7 +22,8 @@ export default function EventCalendar() {
         let aux = response.Eventos.map((element, index) => {
           return {
             title: element.cliente_id,
-            start: element.fecha + " " + element.hora,
+            start:
+              moment(element.fecha).format("YYYY-MM-DD") + "T" + element.hora, // 2017-06-01T08:30
           };
         });
         setAgenda(aux);
