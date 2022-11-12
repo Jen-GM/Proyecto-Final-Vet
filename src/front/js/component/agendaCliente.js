@@ -4,11 +4,10 @@ import { Link } from "react-router-dom";
 
 export const AgendaCliente = () => {
   return (
-    <>
-      <p>HOLA</p>
+    <div className="h-100">
       <button
         type="button"
-        class="btn btn-success"
+        className="btn btn-success position-absolute top-50 end-0 translate-middle-y"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
         data-bs-whatever="@mdo"
@@ -24,7 +23,7 @@ export const AgendaCliente = () => {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">
-                  New message
+                  Agendar Cita
                 </h5>
                 <button
                   type="button"
@@ -37,13 +36,28 @@ export const AgendaCliente = () => {
                 <form>
                   <div className="mb-3">
                     <label for="recipient-name" class="col-form-label">
-                      Recipient:
+                      Cliente:
                     </label>
                     <input
                       type="text"
                       className="form-control"
                       id="recipient-name"
                     />
+                  </div>
+                  <div className="mb-5">
+                    <div class="form-check">
+                      <h6>Mascotas que nos van a visitar:</h6>
+                      <input
+                        className="form-check-input position-static"
+                        id="mascota1"
+                        type="checkbox"
+                        value="option1"
+                        aria-label="Bobby"
+                      />
+                      <label className="form-check-label" for="mascota1">
+                        Bobby
+                      </label>
+                    </div>
                   </div>
                   <div className="mb-3">
                     <label for="message-text" class="col-form-label">
@@ -72,6 +86,6 @@ export const AgendaCliente = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
