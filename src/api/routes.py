@@ -71,7 +71,12 @@ def delete_cliente(id_cliente):
 def update_cliente(id):
     body = request.get_json() 
     print(id)
-    cliente = Cliente.query.filter(Cliente.id == id).update({Cliente.nombre : body["nombre"], Cliente.direccion : body["direccion"], Cliente.telefono : body ["telefono"]},synchronize_session = False) 
+    cliente = Cliente.query.filter(Cliente.id == id).update({
+    Cliente.nombre : body["nombre"], 
+    Cliente.direccion : body["direccion"], 
+    Cliente.telefono : body ["telefono"],
+    Cliente.user_id : body ["user_id"]}
+    ,synchronize_session = False) 
     db.session.commit()           
     return jsonify({"msj" : "Cliente actualizado"}), 200   
 
@@ -107,7 +112,11 @@ def delete_medico(id_medico):
 def update_medico(id):
     body = request.get_json() 
     print(id)
-    medico = Medico.query.filter(Medico.id == id).update({Medico.nombre : body["nombre"], Medico.telefono : body ["telefono"]},synchronize_session = False) 
+    medico = Medico.query.filter(Medico.id == id).update({
+     Medico.nombre : body["nombre"],
+     Medico.telefono : body ["telefono"],
+     Medico.user_id : bdoy["user_id"]},
+     synchronize_session = False) 
     db.session.commit()           
     return jsonify({"msj" : "Medico actualizado"}), 200 
 # ***********************ENPOINT MASCOTAS*************************
@@ -146,14 +155,6 @@ def delete_mascota(id_cliente, id_mascota):
     return jsonify({"msj": "Mascota eliminada"}), 200
 
 #Put Mascota
-""" @api.route('/clientes/<int:cliente_id>/mascotas/<int:id_mascota>', methods=["PUT"])  
-def update_mascota(cliente_id, id_mascota):
-    print (id_mascota)
-    body = request.get_json() 
-    mascota = Mascota.query.filter(Mascota.cliente_id == cliente_id, Mascota.id == id_mascota).update({Mascota.especie : body["especie"], Mascota.internamiento : body["internamiento"], Mascota.nombre : body["nombre"], Mascota.raza : body ["raza"]},synchronize_session = False) 
-    db.session.commit()           
-    return jsonify({"msj" : "mascota actualizado"}), 200 
- """
 @api.route('clientes/<int:cliente_id>/mascotas/<int:id_mascota>', methods=["PUT"])
 def mod_mascota(cliente_id, id_mascota):
     body = Mascota.query.filter_by(
@@ -169,7 +170,7 @@ def mod_mascota(cliente_id, id_mascota):
     body.internamiento = internamiento
 
     db.session.commit()
-    return jsonify({"msj": "Mascota modificade"}), 200
+    return jsonify({"msj": "Mascota modificada"}), 200
 
 # ***********************ENPOINT FICHAS MEDICAS*************************
 # ----------------------------------------------------------------------
@@ -226,6 +227,12 @@ def delete_vacunacion(id_cliente, id_mascota):
 
 #Put Vacunacion
 
+
+
+
+
+#Put desparacitacion
+
 # ***********************ENPOINT AGENDA*************************
 # --------------------------------------------------------------
 
@@ -242,3 +249,6 @@ def get_agenda():
 def get_evento(medico_id):
     evento = Agenda.query.filter_by(medico_id=medico_id).first()
     return jsonify(evento.serialize()), 200
+
+#Put Agenda
+
