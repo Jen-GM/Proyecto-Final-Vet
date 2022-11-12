@@ -37,7 +37,7 @@ export const Navbar = () => {
           <div className="collapse navbar-collapse" id="#navbarNav">
             <ul className="navbar-nav p-5">
               <li className="nav-item border border-white rounded mx-3 border-opacity-75 shadow-lg">
-                <a className="nav-link px-4" href="/#bgBeneficios">
+                <a className="nav-link px-4" href="#bgBeneficios">
                   Beneficios
                 </a>
               </li>
