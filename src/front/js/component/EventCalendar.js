@@ -23,7 +23,7 @@ export default function EventCalendar() {
           return {
             title: element.cliente_id,
             start:
-              moment(element.fecha).format("YYYY-MM-DD") + "T" + element.hora, // 2017-06-01T08:30
+              moment(element.fecha).format("YYYY-MM-DD") + "T" + element.hora,
           };
         });
         setAgenda(aux);
