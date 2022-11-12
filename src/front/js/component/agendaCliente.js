@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
-export const AgendaCliente = (props) => {
+export const AgendaCliente = () => {
   return (
     <>
+      <p>HOLA</p>
       <button
         type="button"
         class="btn btn-success"
