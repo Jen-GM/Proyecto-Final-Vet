@@ -11,33 +11,30 @@ import interactionPlugin, {
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
 
-const data = [
-  {
-    // title: store.agenda.cliente_id,
-    // start: store.agenda.fecha,
-  },
-  { title: "Matar gato Ninja", start: "2022-11-10T10:40:00" },
-  { title: "Eutanasia Caballo", start: "2022-11-11T14:30:00" },
-  { title: "Amputar pata de perro", start: "2022-11-11T09:30:00" },
-];
 export default function EventCalendar() {
-  const [agenda, setAgenda] = useState([
-    { title: "Matar gato Ninja", start: "2022-11-10T10:40:00" },
-    { title: "Eutanasia Caballo", start: "2022-11-11T14:30:00" },
-    { title: "Amputar pata de perro", start: "2022-11-11T09:30:00" },
-  ]);
-  useEffect(() => {
-    fetchAgenda();
-  }, []);
+  const [agenda, setAgenda] = useState([]);
+
   //Aqui fetch !!!
   const fetchAgenda = async () => {
     await fetch(process.env.BACKEND_URL + "/api/agenda")
       .then((response) => response.json())
-      .then((response) => setAgenda(response))
+      .then((response) => {
+        let aux = response.Eventos.map((element, index) => {
+          return {
+            title: element.cliente_id,
+            start: element.fecha + " " + element.hora,
+          };
+        });
+        setAgenda(aux);
+      })
       .catch((error) => console.log("Error en la solicitud de agenda"));
   };
 
   console.log(agenda);
+
+  useEffect(() => {
+    fetchAgenda();
+  }, []);
 
   return (
     <div className="bg-dark">
@@ -65,6 +62,7 @@ export default function EventCalendar() {
           selectable={true}
           selectMirror={true}
           dayMaxEvents={true}
+          //eventTextColor="red"
           events={agenda}
         />
       </div>
