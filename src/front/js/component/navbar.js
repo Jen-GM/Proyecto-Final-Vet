@@ -54,7 +54,7 @@ export const Navbar = () => {
               {sessionStorage.getItem("token") && (
                 <Link to="/">
                   <li className="nav-item border border-white rounded mx-3 border-opacity-75">
-                    <a className="nav-link" onClick={() => actions.logout()}>
+                    <a className="nav-link px-4" onClick={() => actions.logout()}>
                       Salir
                     </a>
                   </li>

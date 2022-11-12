@@ -34,7 +34,7 @@ export const Login = () => {
 
   return (
     <div>
-      <div className="container-fluid" id="loginScreen">
+      <div className="container-fluid mb-0" id="loginScreen">
         <div className="d-grid grid-column">
           <div className="d-grid align-self-center m-0 my-3 p-0">
             <div className="text-center mt-5 text-success">
