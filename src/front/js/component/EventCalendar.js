@@ -14,7 +14,30 @@ var moment = require("moment");
 export default function EventCalendar() {
   const [agenda, setAgenda] = useState([]);
 
-  //Aqui fetch !!!
+  const [medico, setMedico] = useState([]);
+
+  const [cliente, setCliente] = useState([]);
+
+  //--------------------fetch tabla MEDICOS-------------------------
+  //---------------------------------------------------------------
+  const fetchmedico = async () => {
+    await fetch(process.env.BACKEND_URL + "/api/medicos")
+      .then((response) => response.json())
+      .then((response) => {
+        let aux = response.medicos.map((element, index) => {
+          return {
+            medico: element,
+          };
+        });
+        setMedico(aux);
+      })
+      .catch((error) => console.log("Error en la solicitud de medicos"));
+  };
+
+  console.log(medico);
+
+  //--------------------fetch tabla AGENDA-------------------------
+  //---------------------------------------------------------------
   const fetchAgenda = async () => {
     await fetch(process.env.BACKEND_URL + "/api/agenda")
       .then((response) => response.json())
@@ -33,9 +56,31 @@ export default function EventCalendar() {
 
   console.log(agenda);
 
+  //--------------------fetch tabla CLIENTES-------------------------
+  //---------------------------------------------------------------
+  const fetchCliente = async () => {
+    await fetch(process.env.BACKEND_URL + "/api/clientes")
+      .then((response) => response.json())
+      .then((response) => {
+        let aux = response.clientes.map((element, index) => {
+          return {
+            name: element,
+          };
+        });
+        setCliente(aux);
+      })
+      .catch((error) => console.log("Error en la solicitud de clientes"));
+  };
+
+  console.log(cliente);
+
   useEffect(() => {
-    fetchAgenda();
+    fetchAgenda(), fetchCliente(), fetchmedico();
   }, []);
+
+  // useEffect(() => {
+  //   fetchCliente();
+  // }, []);
 
   return (
     <div className="bg-dark">
@@ -51,7 +96,8 @@ export default function EventCalendar() {
           navLinks={true}
           dayHeaderClassNames={"bg-dark"}
           viewClassNames={"bg-dark"}
-          eventClassNames={"shadow-lg p-2 mb-1 rounded bg-warning"}
+          //eventClassNames={"shadow-lg p-2 mb-1 rounded bg-warning"}
+          eventColor={"#378006"}
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           initialView="timeGridWeek"
           slotDuration="00:15:00"
