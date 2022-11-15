@@ -10,6 +10,7 @@ import interactionPlugin, {
 } from "@fullcalendar/interaction";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
+import { element } from "prop-types";
 var moment = require("moment");
 export default function EventCalendar() {
   const [agenda, setAgenda] = useState([]);
@@ -44,7 +45,7 @@ export default function EventCalendar() {
       .then((response) => {
         let aux = response.Eventos.map((element, index) => {
           return {
-            title: element.cliente_id,
+            title: fetchCliente(element),
             start:
               moment(element.fecha).format("YYYY-MM-DD") + "T" + element.hora,
           };
@@ -58,16 +59,15 @@ export default function EventCalendar() {
 
   //--------------------fetch tabla CLIENTES-------------------------
   //---------------------------------------------------------------
-  const fetchCliente = async () => {
-    await fetch(process.env.BACKEND_URL + "/api/clientes/1")
+  const fetchCliente = async (element) => {
+    await fetch(process.env.BACKEND_URL + "/api/clientes/" + element.cliente_id)
       .then((response) => response.json())
       .then((response) => {
         console.log(response.nombre);
+        return response.nombre;
       })
       .catch((error) => console.log("Error en la solicitud de clientes"));
   };
-
-  //console.log(response);
 
   useEffect(() => {
     fetchAgenda(), fetchCliente(), fetchmedico();
