@@ -47,23 +47,34 @@ export const Map = () => {
   };
 
   return isLoaded ? (
-    <div>
+    <div className="container">
       <GoogleMap
         mapContainerStyle={containerStyle}
+        defaultZoom={6}
         center={center}
-        defaultZoom={14}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
         {/* Child components, such as markers, info windows, etc. */}
         <></>
       </GoogleMap>
-      <Autocomplete>
-        <input type="text" placeholder="Origin" ref={originRef} />
-      </Autocomplete>
-      <button type="submit" onClick={setPlace}>
-        Go
-      </button>
+      <div className="input-group mb-3">
+        <Autocomplete>
+          <input
+            className="form-control rounded shadow my-2"
+            type="text"
+            placeholder="Origin"
+            ref={originRef}
+          />
+        </Autocomplete>
+        <button
+          className="btn btn-outline-warning rounded"
+          type="submit"
+          onClick={setPlace}
+        >
+          Go
+        </button>
+      </div>
     </div>
   ) : (
     <></>
