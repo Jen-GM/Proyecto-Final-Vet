@@ -59,20 +59,15 @@ export default function EventCalendar() {
   //--------------------fetch tabla CLIENTES-------------------------
   //---------------------------------------------------------------
   const fetchCliente = async () => {
-    await fetch(process.env.BACKEND_URL + "/api/clientes")
+    await fetch(process.env.BACKEND_URL + "/api/clientes/1")
       .then((response) => response.json())
       .then((response) => {
-        let aux = response.clientes.map((element, index) => {
-          return {
-            name: element,
-          };
-        });
-        setCliente(aux);
+        console.log(response.nombre);
       })
       .catch((error) => console.log("Error en la solicitud de clientes"));
   };
 
-  console.log(cliente);
+  //console.log(response);
 
   useEffect(() => {
     fetchAgenda(), fetchCliente(), fetchmedico();
