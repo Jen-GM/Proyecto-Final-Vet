@@ -1,45 +1,71 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import {
-  useJsApiLoader,
   GoogleMap,
+  useJsApiLoader,
   Marker,
   Autocomplete,
   DirectionsRenderer,
 } from "@react-google-maps/api";
+import { useRef, useState } from "react";
 
-const center = { lat: 48.8584, lng: 2.2945 };
+const containerStyle = {
+  width: "800px",
+  height: "800px",
+};
+
+const center = {
+  lat: -42.9136,
+  lng: -71.3108,
+};
 
 export const Map = () => {
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    id: "google-map-script",
+    googleMapsApiKey: "AIzaSyBa7EylxqVyLQ6mZyNaLbmtZlePTrHWPj4",
     libraries: ["places"],
   });
-  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
+
+  const [map, setMap] = React.useState(null);
   const [directionsResponse, setDirectionsResponse] = useState(null);
-  const [distance, setDistance] = useState("");
-  const [duration, setDuration] = useState("");
-  if (!isLoaded) {
-    return <div>Loading...</div>;
-  }
-  return (
+  const originRef = useRef();
+
+  const onLoad = React.useCallback(function callback(map) {
+    // This is just an example of getting and using the map instance!!! don't just blindly copy!
+    const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+
+    setMap(map);
+  }, []);
+
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null);
+  }, []);
+
+  const setPlace = async () => {
+    console.log(originRef);
+    setDirectionsResponse(originRef);
+  };
+
+  return isLoaded ? (
     <div>
       <GoogleMap
+        mapContainerStyle={containerStyle}
         center={center}
-        zoom={15}
-        mapContainerStyle={{ width: "100%", height: "100%" }}
-        options={{
-          zoomControl: false,
-          streetViewControl: false,
-          mapTypeControl: false,
-          fullscreenControl: false,
-        }}
-        onLoad={(map) => setMap(map)}
+        defaultZoom={14}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
       >
-        <Marker position={center} />
-        {directionsResponse && (
-          <DirectionsRenderer directions={directionsResponse} />
-        )}
+        {/* Child components, such as markers, info windows, etc. */}
+        <></>
       </GoogleMap>
+      <Autocomplete>
+        <input type="text" placeholder="Origin" ref={originRef} />
+      </Autocomplete>
+      <button type="submit" onClick={setPlace}>
+        Go
+      </button>
     </div>
+  ) : (
+    <></>
   );
 };
