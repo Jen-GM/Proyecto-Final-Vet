@@ -75,6 +75,7 @@
 	"dependencies": {
 		"@react-google-maps/api": "^2.17.0",
 		"@sweetalert2/theme-bulma": "^5.0.14",
+		"g-mapify": "^2.3.1",
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
 		"react-dom": "^16.8.4",

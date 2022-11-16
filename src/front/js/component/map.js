@@ -13,10 +13,6 @@ const containerStyle = {
   height: "800px",
 };
 
-const center = {
-  lat: -42.9136,
-  lng: -71.3108,
-};
 
 export const Map = () => {
   const { isLoaded } = useJsApiLoader({
@@ -30,9 +26,8 @@ export const Map = () => {
   const originRef = useRef();
 
   const onLoad = React.useCallback(function callback(map) {
-    // This is just an example of getting and using the map instance!!! don't just blindly copy!
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
+    map.setCenter(new google.maps.LatLng(-42.9136, -71.3108));
+    map.setZoom(15);
 
     setMap(map);
   }, []);
@@ -42,7 +37,10 @@ export const Map = () => {
   }, []);
 
   const setPlace = async () => {
-    console.log(originRef);
+    const place = autocomplete.getPlace().geometry.location
+    var lat = place.geometry.location.lat()
+    var long = place.geometry.location.lng()
+    console.log(lat, long);
     setDirectionsResponse(originRef);
   };
 
@@ -50,8 +48,6 @@ export const Map = () => {
     <div className="container">
       <GoogleMap
         mapContainerStyle={containerStyle}
-        defaultZoom={6}
-        center={center}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >

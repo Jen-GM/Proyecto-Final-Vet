@@ -14,6 +14,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Login } from "./component/login";
 import { Map } from "./component/map";
+import { Map2Test } from "./component/map2Test";
 
 //create your first component
 const Layout = () => {
@@ -29,6 +30,7 @@ const Layout = () => {
           <Routes>
             <Route element={<Home />} path="/" />
             <Route element={<Map />} path="/map" />
+            <Route element={<Map2Test />} path="/map2Test" />
             <Route element={<Profile />} path="/profile" />
             <Route element={<Usuarios />} path="/usuarios" />
             <Route element={<Demo />} path="/demo" />
