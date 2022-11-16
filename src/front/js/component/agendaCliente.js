@@ -60,15 +60,69 @@ export const AgendaCliente = () => {
                     </div>
                   </div>
                   <div className="mb-3">
+                    <label for="appointment-date" class="col-form-label">
+                      Fecha:
+                    </label>
+                    <input
+                      type="date"
+                      className="form-control"
+                      id="appointment-date"
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label for="appointment-time" class="col-form-label">
+                      Hora:
+                    </label>
+                    <input
+                      type="time"
+                      className="form-control"
+                      id="appointment-time"
+                    />
+                  </div>
+                  <>
+                    <div className="form-check">
+                      <p className="text">
+                        ¿Necesita transporte para su mascota?
+                      </p>
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="flexRadioDefault"
+                        id="flexRadioDefault1"
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="flexRadioDefault1"
+                      >
+                        Sí
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="flexRadioDefault"
+                        id="flexRadioDefault2"
+                        defaultChecked=""
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="flexRadioDefault2"
+                      >
+                        No
+                      </label>
+                    </div>
+                  </>
+                </form>
+                <div className="mb-3">
                     <label for="message-text" class="col-form-label">
-                      Message:
+                      Seleccione la dirección:
                     </label>
                     <textarea
                       className="form-control"
                       id="message-text"
                     ></textarea>
                   </div>
-                </form>
               </div>
               <div className="modal-footer">
                 <button
@@ -76,10 +130,10 @@ export const AgendaCliente = () => {
                   className="btn btn-secondary"
                   data-bs-dismiss="modal"
                 >
-                  Close
+                  Cerrar
                 </button>
                 <button type="button" className="btn btn-primary">
-                  Send message
+                  Solicitar cita
                 </button>
               </div>
             </div>
