@@ -17,21 +17,6 @@ export default function EventCalendar() {
 
   const [medico, setMedico] = useState([]);
 
-  const [cliente, setCliente] = useState([]);
-
-  //--------------------fetch tabla CLIENTES-------------------------
-  //---------------------------------------------------------------
-
-  const fetchCliente = async (element) => {
-    await fetch(process.env.BACKEND_URL + "/api/clientes/" + element.cliente_id)
-      .then((response) => response.json())
-      .then((response) => {
-        console.log(response.nombre);
-        return response.nombre;
-      })
-      .catch((error) => console.log("Error en la solicitud de clientes"));
-  };
-
   //--------------------fetch tabla AGENDA-------------------------
   //---------------------------------------------------------------
   const fetchAgenda = async () => {
@@ -39,54 +24,62 @@ export default function EventCalendar() {
       .then((response) => response.json())
       .then((response) => {
         let aux = response.Eventos.map((element, index) => {
+          let color = "red";
+          if (element.medico_id === 1) {
+            color = "green";
+          } else if (element.medico_id === 2) {
+            color = "blue";
+          }
           return {
-            title: fetchCliente(element),
+            title: element.nombre,
             start:
               moment(element.fecha).format("YYYY-MM-DD") + "T" + element.hora,
+            backgroundColor: color,
           };
         });
         setAgenda(aux);
       })
       .catch((error) => console.log("Error en la solicitud de agenda"));
   };
-
   console.log(agenda);
 
+  //----------------------------------------------------------------------
   useEffect(() => {
-    fetchCliente(), fetchAgenda();
+    fetchAgenda();
   }, []);
 
   return (
     <div className="bg-dark">
-      <div className="container bg-secondary text-light rounded">
-        <FullCalendar
-          headerToolbar={{
-            left: "prev,next",
-            center: "title",
-            right: "dayGridMonth,timeGridWeek,timeGridDay",
-          }}
-          locale={"es"}
-          timeZone={"America/Buenos_Aires"}
-          navLinks={true}
-          dayHeaderClassNames={"bg-dark"}
-          viewClassNames={"bg-dark"}
-          //eventClassNames={"shadow-lg p-2 mb-1 rounded bg-warning"}
-          eventColor={"#FF9F29"}
-          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          initialView="timeGridWeek"
-          slotDuration="00:15:00"
-          slotLabelInterval={{ hours: 0.5 }}
-          //scrollTime="02:00"
-          slotMaxTime={"18:00:00"}
-          slotMinTime={"09:00:00"}
-          editable={true}
-          selectable={true}
-          selectMirror={true}
-          dayMaxEvents={true}
-          //eventTextColor="red"
-          events={agenda}
-        />
-      </div>
+      {agenda && (
+        <div className="container bg-secondary text-light rounded">
+          <FullCalendar
+            headerToolbar={{
+              left: "prev,next",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay",
+            }}
+            locale={"es"}
+            timeZone={"America/Buenos_Aires"}
+            navLinks={true}
+            dayHeaderClassNames={"bg-dark"}
+            viewClassNames={"bg-dark"}
+            //eventClassNames={"shadow-lg p-2 mb-1 rounded bg-warning"}
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            initialView="timeGridWeek"
+            slotDuration="00:15:00"
+            slotLabelInterval={{ hours: 0.5 }}
+            //scrollTime="02:00"
+            slotMaxTime={"18:00:00"}
+            slotMinTime={"09:00:00"}
+            editable={true}
+            selectable={true}
+            selectMirror={true}
+            dayMaxEvents={true}
+            //eventTextColor="red"
+            events={agenda}
+          />
+        </div>
+      )}
     </div>
   );
 }
