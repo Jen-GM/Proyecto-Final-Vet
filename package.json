@@ -73,7 +73,10 @@
 		]
 	},
 	"dependencies": {
+		"@material-ui/core": "^4.12.4",
+		"@material-ui/icons": "^4.11.3",
 		"@sweetalert2/theme-bulma": "^5.0.14",
+		"material-table": "^1.69.3",
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
 		"react-dom": "^16.8.4",

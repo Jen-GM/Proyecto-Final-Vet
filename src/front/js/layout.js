@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
-import {Profile} from "./pages/profile";
+import { Profile } from "./pages/profile";
+import { Datatable } from "./pages/datatable";
 import { Usuarios } from "./pages/usuarios";
 import { Demo } from "./pages/demo";
 import { AtencionMedica } from "./pages/atencionMedica";
@@ -33,6 +34,7 @@ const Layout = () => {
                         <Route element={<Home />} path="/" />
                         <Route element={<Profile />} path="/profile" />
                         <Route element={<Usuarios />} path="/usuarios" />
+                        <Route element={<Datatable />} path="/datatable" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Expediente/>} path="/expediente"/>
