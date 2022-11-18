@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MaterialTable from "material-table";
 import { forwardRef } from 'react';
+import axios from "axios";
+import {Modal, TextField} from '@material-ui/core'
 
 
 import AddBox from '@material-ui/icons/AddBox';
@@ -39,198 +41,16 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
   };
 
-
-
-
-
-const clientes = [
-  {
-  direccion: "Calle C", 
-  id: 1,
-  cliente: "Kevin Sr. Developer",
-  telefono: "555-2555-55",
-  user_id: 2,
-  email : 'test@test.com',
-  mascotas: 'Gato'
-  },
-  {
-  direccion: "Calle C", 
-  id: 2,
-  cliente: "Kevin Sr. Developer",
-  telefono: "555-2555-55",
-  user_id: 2,
-  email : 'test@test.com',
-  mascotas: 'Gato'
-  },
-  {
-  direccion: "Calle C", 
-  id: 3,
-  cliente: "Kevin Sr. Developer",
-  telefono: "555-2555-55",
-  user_id: 2,
-  email : 'test@test.com',
-  mascotas: 'Gato'
-  },
-  {
-  direccion: "Calle C", 
-  id: 4,
-  cliente: "Kevin Sr. Developer",
-  telefono: "555-2555-55",
-  user_id: 2,
-  email : 'test@test.com',
-  mascotas: 'Gato'
-  },
-  {
-  direccion: "Calle C", 
-  id: 5,
-  cliente: "Kevin Sr. Developer",
-  telefono: "555-2555-55",
-  user_id: 2,
-  email : 'test@test.com',
-  mascotas: 'Gato'
-  },
-  {
-  direccion: "Calle C", 
-  id: 6,
-  cliente: "Kevin Sr. Developer",
-  telefono: "555-2555-55",
-  user_id: 2,
-  email : 'test@test.com',
-  mascotas: 'Gato'
-  },
-  {
-  direccion: "Calle C", 
-  id: 7,
-  cliente: "Kevin Sr. Developer",
-  telefono: "555-2555-55",
-  user_id: 2,
-  email : 'test@test.com',
-  mascotas: 'Gato'
-  },
-  {
-  direccion: "Calle C", 
-  id: 8,
-  cliente: "Kevin Sr. Developer",
-  telefono: "555-2555-55",
-  user_id: 2,
-  email : 'test@test.com',
-  mascotas: 'Gato'
-  },
-  {
-  direccion: "Calle Z", 
-  id: 9,
-  cliente: "Jen Miss Developer",
-  telefono: "111-1155-55",
-  user_id: 2, 
-  email: 'test2@test.com',
-  mascotas: 'Perro'
-  },
-  {
-  direccion: "Calle Z", 
-  id: 10,
-  cliente: "Jen Miss Developer",
-  telefono: "111-1155-55",
-  user_id: 2, 
-  email: 'test2@test.com',
-  mascotas: 'Perro'
-  },
-  {
-  direccion: "Calle Z", 
-  id: 11,
-  cliente: "Jen Miss Developer",
-  telefono: "111-1155-55",
-  user_id: 2, 
-  email: 'test2@test.com',
-  mascotas: 'Perro'
-  },
-  {
-  direccion: "Calle Z", 
-  id: 12,
-  cliente: "Jen Miss Developer",
-  telefono: "111-1155-55",
-  user_id: 2, 
-  email: 'test2@test.com',
-  mascotas: 'Perro'
-  },
-  {
-  direccion: "Calle Z", 
-  id: 13,
-  cliente: "Jen Miss Developer",
-  telefono: "111-1155-55",
-  user_id: 2, 
-  email: 'test2@test.com',
-  mascotas: 'Perro'
-  },
-  {
-  direccion: "Calle Z", 
-  id: 14,
-  cliente: "Jen Miss Developer",
-  telefono: "111-1155-55",
-  user_id: 2, 
-  email: 'test2@test.com',
-  mascotas: 'Perro'
-  },
-  {
-  direccion: "Calle Z", 
-  id: 15,
-  cliente: "Jen Miss Developer",
-  telefono: "111-1155-55",
-  user_id: 2, 
-  email: 'test2@test.com',
-  mascotas: 'Perro'
-  },
-  {
-  direccion: "Calle Z", 
-  id: 16,
-  cliente: "Jen Miss Developer",
-  telefono: "111-1155-55",
-  user_id: 2, 
-  email: 'test2@test.com',
-  mascotas: 'Perro'
-  },
-  {
-  direccion: "Calle Z", 
-  id: 17,
-  cliente: "Jen Miss Developer",
-  telefono: "111-1155-55",
-  user_id: 2, 
-  email: 'test2@test.com',
-  mascotas: 'Perro'
-  },
-  {
-  direccion: "Calle Z", 
-  id: 18,
-  cliente: "Jen Miss Developer",
-  telefono: "111-1155-55",
-  user_id: 2, 
-  email: 'test2@test.com',
-  mascotas: 'Perro'
-  },
-  {
-  direccion: "Calle Z", 
-  id: 19,
-  cliente: "Jen Miss Developer",
-  telefono: "111-1155-55",
-  user_id: 2, 
-  email: 'test2@test.com',
-  mascotas: 'Perro'
-  }
-  ];
-
   const columnas = [
     {
         title: 'ID',
-        field: 'id'
+        field: 'id',
+        type: 'numeric'
         
     },
     {
         title: 'Cliente',
-        field: 'cliente'
-        
-    },
-    {
-        title: 'Email',
-        field: 'email'
+        field: 'nombre'
         
     },
     {
@@ -239,31 +59,71 @@ const clientes = [
         
     },
     {
+        title: 'Teléfono',
+        field: 'telefono'
+        
+    },
+    {
         title: 'Mascotas',
-        field: 'mascotas'
+        field: 'nombre_mascota'
         
     }
 ];
 
+//Tabla clientes vista medica url
+const clientesUrl = 'https://3001-jengm-proyectofinalvet-59uioavjffq.ws-us74.gitpod.io/api/clientes';
+
+const clientes = [
+  {
+    direccion: "ni idea",
+    id: 1,
+    nombre: "Bruce lee",
+    nombre_mascota: "Chuleta",
+    telefono: "00-000-0",
+    user_id: 1
+  }
+];
+  
+  
+
+
+
 export const Datatable = () => {
+const [pacientes, setPacientes] = useState([]);
+
+const getClientes = async () => {
+    await axios.get(clientesUrl)
+    .then(res => {
+    setPacientes((JSON.stringify(res.data)));
+    console.log(res.data);
+    })
+
+}
+
+useEffect(()=> {
+    getClientes();
+
+},[])
+
+
   return (
     <>
   
    <MaterialTable
    columns={columnas}
-   data={clientes}
+   data={pacientes}
    icons={tableIcons}
    title={"Lista de Clientes"}
    actions={[
     {
         icon: Edit,
         tooltip: 'Editar Cliente',
-        onClick: (event,rowData)=> alert('Has presionado editar al cliente: ' + rowData.cliente)
+        onClick: (event,rowData)=> alert('Editar  cliente: ' + rowData.nombre)
     },
     {
         icon: DeleteOutline,
         tooltip: 'Eliminar Cliente',
-        onClick: (event,rowData)=> window.confirm('Has presionado eliminar al cliente: ' + rowData.cliente)
+        onClick: (event,rowData)=> window.confirm('Eliminar cliente: ' + rowData.nombre)
     },
    ]}
    options={{
