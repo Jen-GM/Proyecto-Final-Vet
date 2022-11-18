@@ -20,11 +20,20 @@ api = Blueprint('api', __name__)
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    # ___usuario de prueba para probar funcionamiento
-    if email != "test" or password != "test":
-        return jsonify({"msg": "Bad email or password"}), 401
-    access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
+    print("*****************")
+    print(email, password)
+    user = User.query.filter().all()
+    result = list(map(lambda user: user.serialize(), user))
+    print("==================RESULT============>")
+    print(result)
+    for x in result:
+        print("============X=============>")
+        print(x["email"] + " " + x["password"])
+        if (x["email"] == email) and (x["password"] == password):
+            access_token = create_access_token(identity=email)
+            return jsonify(access_token=access_token)
+        else:
+            return jsonify({"msg": "Bad email or password"}), 401
 
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -46,7 +55,7 @@ def handle_hello():
 def get_clientes():
     clientes = Cliente.query.filter().all()
     result = list(map(lambda clientes: clientes.serialize(), clientes))
-    response_body = {"clientes": result, "msg": "todos los clientes clientes"}
+    response_body = {"clientes": result, "msg": "todos los clientes"}
     return jsonify(response_body), 200
 
 
