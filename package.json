@@ -73,6 +73,7 @@
 		]
 	},
 	"dependencies": {
+		"@reach/combobox": "^0.18.0",
 		"@react-google-maps/api": "^2.17.0",
 		"@sweetalert2/theme-bulma": "^5.0.14",
 		"g-mapify": "^2.3.1",
@@ -82,6 +83,7 @@
 		"react-polyfills": "0.0.1",
 		"react-router-dom": "^6.3.0",
 		"sweetalert2": "^11.6.8",
+		"use-places-autocomplete": "^4.0.0",
 		"validator": "^13.7.0"
 	}
 }
