@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import MaterialTable from "material-table";
 import { forwardRef } from 'react';
 import axios from "axios";
-import {Modal, TextField} from '@material-ui/core'
+import {Modal, TextField, Button} from '@material-ui/core';
+import {makeStyles} from '@material-ui/core/styles';
 
 
 import AddBox from '@material-ui/icons/AddBox';
@@ -64,7 +65,7 @@ const tableIcons = {
         
     },
     {
-        title: 'Mascotas',
+        title: 'Mascota',
         field: 'nombre_mascota'
         
     }
@@ -73,69 +74,78 @@ const tableIcons = {
 //Tabla clientes vista medica url
 const clientesUrl = 'https://3001-jengm-proyectofinalvet-59uioavjffq.ws-us74.gitpod.io/api/clientes';
 
-const clientes = [
-  {
-    direccion: "ni idea",
-    id: 1,
-    nombre: "Bruce lee",
-    nombre_mascota: "Chuleta",
-    telefono: "000-000-0",
-    user_id: 1
-  }
-];
-  
-  
+//estilos para material-table
 
+const useStyles = makeStyles((theme) => ({
+    modal: {
+      position: 'absolute',
+      width: 400,
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)'
+    },
+    iconos:{
+      cursor: 'pointer'
+    }, 
+    inputMaterial:{
+      width: '100%'
+    }
+  }));
+  
+  
 
 
 export const Datatable = () => {
-const [pacientes, setPacientes] = useState([]);
+    const style = useStyles();
+  const [datos, setDatos] = useState([]);
 
-const getClientes = async () => {
+  const getClientes = async () => {
     await axios.get(clientesUrl)
-    .then(res => {
-    setPacientes((JSON.stringify(res.data)));
-    console.log(res.data);
-    })
+          .then(res => {
+          setDatos(res.data.clientes);
+        console.log(res.data.clientes);
+    });
+  };
 
-}
-
-useEffect(()=> {
+  useEffect(() => {
     getClientes();
-
-},[])
-
+  }, []);
 
   return (
     <>
   
-   <MaterialTable
-   columns={columnas}
-   data={pacientes}
-   icons={tableIcons}
-   title={"Lista de Clientes"}
-   actions={[
-    {
-        icon: Edit,
-        tooltip: 'Editar Cliente',
-        onClick: (event,rowData)=> alert('Editar  cliente: ' + rowData.nombre)
-    },
-    {
-        icon: DeleteOutline,
-        tooltip: 'Eliminar Cliente',
-        onClick: (event,rowData)=> window.confirm('Eliminar cliente: ' + rowData.nombre)
-    },
-   ]}
-   options={{
-    actionsColumnIndex: -1
-   }}
-   localization={{
-    header:{
-        actions: "Editar"
-    }
-   }}
-   
-   />
+      <MaterialTable
+        columns={columnas}
+        data={datos}
+        icons={tableIcons}
+        title={"Lista de Clientes"}
+        actions={[
+          {
+            icon: Edit,
+            tooltip: "Editar Cliente",
+            onClick: (event, rowData) =>
+              alert("Editar  cliente: " + rowData.nombre),
+          },
+          {
+            icon: DeleteOutline,
+            tooltip: "Eliminar Cliente",
+            onClick: (event, rowData) =>
+              window.confirm("Eliminar cliente: " + rowData.nombre),
+          },
+        ]}
+        options={{
+          actionsColumnIndex: -1,
+        }}
+        localization={{
+          header: {
+            actions: "Editar",
+          },
+        }}
+      />
     </>
-  )
+  );
 };
