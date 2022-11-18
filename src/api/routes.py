@@ -168,6 +168,11 @@ def update_medico(id):
 def get_mascotas():
     mascotas = Mascota.query.filter().all()
     result = list(map(lambda mascotas: mascotas.serialize(), mascotas))
+    final_result = []
+    for x in result:
+        nombre = Cliente.query.filter_by(id=x["cliente_id"]).first()
+        nombre = nombre.serialize()
+        x["nombre_cliente"] = nombre["nombre"]
     response_body = {"mascotas": result, "msg": "total de mascotas"}
     return jsonify(response_body), 200
 
