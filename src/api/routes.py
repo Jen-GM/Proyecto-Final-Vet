@@ -485,3 +485,5 @@ def update_agenda(medico_id, agenda_id):
         })
     db.session.commit()
     return jsonify({"msj": "Agenda actualizada"}), 200
+
+# Fabricado con amor
