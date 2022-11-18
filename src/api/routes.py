@@ -119,8 +119,6 @@ def get_doctor(id_medico):
     return jsonify(medico.serialize()), 200
 
 # __________Agregar_Medicos_________
-
-
 @api.route('/medicos', methods=["POST"])  #  POST
 def add_medico():
     body = request.get_json()
@@ -203,26 +201,6 @@ def add_mascota(id_cliente, id_mascota):
     db.session.commit()
     return jsonify({"msj": "Mascota agregada"}), 200
 
-# PUT
-
-
-@api.route('clientes/<int:cliente_id>/mascotas/<int:id_mascota>', methods=["PUT"])
-def mod_mascota(cliente_id, id_mascota):
-    body = Mascota.query.filter_by(
-        cliente_id=cliente_id, id=id_mascota).first()
-    nombre = request.json['nombre']
-    especie = request.json['especie']
-    raza = request.json['raza']
-    internamiento = request.json['internamiento']
-
-    body.nombre = nombre
-    body.especie = especie
-    body.raza = raza
-    body.internamiento = internamiento
-
-    db.session.commit()
-    return jsonify({"msj": "Mascota modificade"}), 200
-
 
 # Delete Mascota
 @api.route('/clientes/<int:id_cliente>/mascotas/<int:id_mascota>', methods=["DELETE"])
@@ -263,7 +241,7 @@ def get_ficha(cliente_id, mascota_id):
     return jsonify(ficha.serialize()), 200
 
 # __agregar ficha historia clinica por mascota _______
-#  POST
+
 @api.route('/clientes/<int:cliente_id>/mascota/<int:mascota_id>/ficha', methods=["POST"])
 def add_ficha(cliente_id, mascota_id):
     body = request.get_json()
@@ -419,15 +397,9 @@ def update_vacuna(cliente_id, mascota_id, vacuna_id):
 def get_agenda():
     agenda = Agenda.query.filter().all()
     result = list(map(lambda agenda: agenda.serialize(), agenda))
-    final_result = []
-    for x in result:
-        cliente = Cliente.query.filter_by(id=x["cliente_id"]).first()
-        nombre = cliente.serialize()
-        x["nombre"] = nombre["nombre"]
-        final_result.append(x)
-    response_body = {"Eventos": final_result, "msg": "total de eventos"}
+    print(result)
+    response_body = {"Eventos": result, "msg": "total de eventos"}
     return jsonify(response_body), 200
-
 
 # agenda por medico
 
@@ -438,7 +410,7 @@ def get_evento(medico_id):
     return jsonify(evento.serialize()), 200
 
 # __agregar a la agenda por medico____
-#  POST
+
 @api.route('/agenda/<int:medico_id>', methods=["POST"])  #  POST
 def add_agenda(medico_id):
     body = request.get_json()
