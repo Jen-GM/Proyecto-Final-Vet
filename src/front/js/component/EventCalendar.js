@@ -12,6 +12,8 @@ import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
 import { element } from "prop-types";
 var moment = require("moment");
+
+
 export default function EventCalendar() {
   const [agenda, setAgenda] = useState([]);
 
