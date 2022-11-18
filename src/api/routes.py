@@ -20,11 +20,14 @@ api = Blueprint('api', __name__)
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    # ___usuario de prueba para probar funcionamiento
-    if email != "test" or password != "test":
-        return jsonify({"msg": "Bad email or password"}), 401
-    access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
+    user = User.query.filter().all()
+    result = list(map(lambda user: user.serialize(), user))
+    for x in result:
+        if (x["email"] == email) and (x["password"] == password):
+            access_token = create_access_token(identity=email)
+            return jsonify(access_token=access_token)
+        else:
+            return jsonify({"msg": "Bad email or password"}), 401
 
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -174,6 +177,11 @@ def update_medico(id):
 def get_mascotas():
     mascotas = Mascota.query.filter().all()
     result = list(map(lambda mascotas: mascotas.serialize(), mascotas))
+    final_result = []
+    for x in result:
+        nombre = Cliente.query.filter_by(id=x["cliente_id"]).first()
+        nombre = nombre.serialize()
+        x["nombre_cliente"] = nombre["nombre"]
     response_body = {"mascotas": result, "msg": "total de mascotas"}
     return jsonify(response_body), 200
 
@@ -428,8 +436,13 @@ def update_vacuna(cliente_id, mascota_id, vacuna_id):
 def get_agenda():
     agenda = Agenda.query.filter().all()
     result = list(map(lambda agenda: agenda.serialize(), agenda))
-    print(result)
-    response_body = {"Eventos": result, "msg": "total de eventos"}
+    final_result = []
+    for x in result:
+        cliente = Cliente.query.filter_by(id=x["cliente_id"]).first()
+        nombre = cliente.serialize()
+        x["nombre"] = nombre["nombre"]
+        final_result.append(x)
+    response_body = {"Eventos": final_result, "msg": "total de eventos"}
     return jsonify(response_body), 200
 
 # agenda por medico
@@ -486,3 +499,8 @@ def update_agenda(medico_id, agenda_id):
         })
     db.session.commit()
     return jsonify({"msj": "Agenda actualizada"}), 200
+<<<<<<< HEAD
+=======
+
+# Fabricado con amor
+>>>>>>> f541661bbd358704693666a9f56595eeeb3ab62a

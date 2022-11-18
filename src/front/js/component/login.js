@@ -29,7 +29,7 @@ export const Login = () => {
   };
 
   const handleClick = async () => {
-    await actions.login(email, password).then(() => navigate("/usuarios"));
+    await actions.login(email, password).then(() => navigate("/calendar"));
   };
 
   return (
