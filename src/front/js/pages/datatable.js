@@ -256,12 +256,12 @@ export const Datatable = () => {
    title={"Lista de Clientes"}
    actions={[
     {
-        icon: 'edit',
+        icon: Edit,
         tooltip: 'Editar Cliente',
         onClick: (event,rowData)=> alert('Has presionado editar al cliente: ' + rowData.cliente)
     },
     {
-        icon: 'delete',
+        icon: DeleteOutline,
         tooltip: 'Eliminar Cliente',
         onClick: (event,rowData)=> window.confirm('Has presionado eliminar al cliente: ' + rowData.cliente)
     },
