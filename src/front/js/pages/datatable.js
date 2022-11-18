@@ -79,7 +79,7 @@ const clientes = [
     id: 1,
     nombre: "Bruce lee",
     nombre_mascota: "Chuleta",
-    telefono: "00-000-0",
+    telefono: "000-000-0",
     user_id: 1
   }
 ];
