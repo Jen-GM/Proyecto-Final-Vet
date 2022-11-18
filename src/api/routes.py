@@ -120,7 +120,6 @@ def get_doctor(id_medico):
 
 # __________Agregar_Medicos_________
 
-
 @api.route('/medicos', methods=["POST"])  #  POST
 def add_medico():
     body = request.get_json()
@@ -132,7 +131,6 @@ def add_medico():
     db.session.add(medico)
     db.session.commit()
     return jsonify({"msj": "Medico agregado"}), 200
-
 
 # Delete medico
 @api.route('/medicos/<int:id_medico>', methods=["DELETE"])
