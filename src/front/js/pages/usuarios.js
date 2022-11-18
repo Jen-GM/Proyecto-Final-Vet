@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState, Component } from "react";
 import { Modal } from "./modal";
 
 
 export const Usuarios = () => {
+
+  const [show, setShow] = useState(false);
+
+  const handleShow = () => setShow(true);
+
   return (
     <>
       {/* //______________ tabla usuarios_____________ */}
@@ -21,10 +26,12 @@ export const Usuarios = () => {
                 {/* --------boton para abrir modal------------ */}
                 <button type="button" className="btn btn-primary"
                  data-bs-toggle="modal"
-                 data-bs-target="editUser">
+                 data-bs-target="editUser"
+                 onClick={handleShow}>
                   {" "}
-                  <i className="fas fa-notes-medical"> </i> Nuevo
+                  <i className="fas fa-notes-medical">  </i> Nuevo 
                 </button>
+                <Modal show={show}></Modal>
               </th>
             </tr>
           </thead>
@@ -102,7 +109,7 @@ export const Usuarios = () => {
         </table>
       </div>
       {/* //______________ fin de tabla_____________ */}
-<Modal />
+
       
 </>
 
