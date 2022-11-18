@@ -24,7 +24,7 @@ class User_type(db.Model):
 class Veterinaria(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     vet_name = db.Column(db.String(80), unique=False, nullable=False)
-    direccion = db.Column(db.String(250), unique=True, nullable=False)
+    direccion = db.Column(db.String(250), unique=False, nullable=False)
     telefono = db.Column(db.String(80), unique=True, nullable=False)
 
     def __repr__(self):
@@ -67,7 +67,7 @@ class Medico(db.Model):
     nombre = db.Column(db.String(120), unique=True, nullable=False)
     telefono = db.Column(db.String(80), unique=True, nullable=False)
     user_id = db.Column(db.Integer, ForeignKey(
-        'user.id'))
+        'user.id'), unique=True, nullable=False)
     id_user = db.relationship('User')
 
     def __repr__(self):
@@ -85,7 +85,7 @@ class Medico(db.Model):
 class Cliente(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(120), unique=True, nullable=False)
-    direccion = db.Column(db.String(250), unique=True, nullable=False)
+    direccion = db.Column(db.String(250), unique=False, nullable=False)
     telefono = db.Column(db.String(80), unique=True, nullable=False)
     user_id = db.Column(db.Integer, ForeignKey(
         'user.id'), unique=True, nullable=False)
