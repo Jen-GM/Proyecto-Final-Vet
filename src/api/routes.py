@@ -20,11 +20,20 @@ api = Blueprint('api', __name__)
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    # ___usuario de prueba para probar funcionamiento
-    if email != "test" or password != "test":
-        return jsonify({"msg": "Bad email or password"}), 401
-    access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
+    print("*****************")
+    print(email, password)
+    user = User.query.filter().all()
+    result = list(map(lambda user: user.serialize(), user))
+    print("==================RESULT============>")
+    print(result)
+    for x in result:
+        print("============X=============>")
+        print(x["email"] + " " + x["password"])
+        if (x["email"] == email) and (x["password"] == password):
+            access_token = create_access_token(identity=email)
+            return jsonify(access_token=access_token)
+        else:
+            return jsonify({"msg": "Bad email or password"}), 401
 
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -46,7 +55,7 @@ def handle_hello():
 def get_clientes():
     clientes = Cliente.query.filter().all()
     result = list(map(lambda clientes: clientes.serialize(), clientes))
-    response_body = {"clientes": result, "msg": "todos los clientes clientes"}
+    response_body = {"clientes": result, "msg": "todos los clientes"}
     return jsonify(response_body), 200
 
 
@@ -168,6 +177,11 @@ def update_medico(id):
 def get_mascotas():
     mascotas = Mascota.query.filter().all()
     result = list(map(lambda mascotas: mascotas.serialize(), mascotas))
+    final_result = []
+    for x in result:
+        nombre = Cliente.query.filter_by(id=x["cliente_id"]).first()
+        nombre = nombre.serialize()
+        x["nombre_cliente"] = nombre["nombre"]
     response_body = {"mascotas": result, "msg": "total de mascotas"}
     return jsonify(response_body), 200
 
@@ -485,3 +499,5 @@ def update_agenda(medico_id, agenda_id):
         })
     db.session.commit()
     return jsonify({"msj": "Agenda actualizada"}), 200
+
+# Fabricado con amor

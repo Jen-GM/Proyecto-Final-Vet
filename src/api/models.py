@@ -58,7 +58,8 @@ class User(db.Model):
             "id": self.id,
             "email": self.email,
             "user_type_id": self.user_type_id,
-            "veterinaria_id": self.veterinaria_id
+            "veterinaria_id": self.veterinaria_id,
+            "password": self.password
         }
 
 
