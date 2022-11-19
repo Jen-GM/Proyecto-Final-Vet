@@ -49,11 +49,19 @@ def handle_hello():
 def get_clientes():
     clientes = Cliente.query.filter().all()
     result = list(map(lambda clientes: clientes.serialize(), clientes))
-    response_body = {"clientes": result, "msg": "todos los clientes"}
+    final_result = []
+    for x in result:
+        mascota = Mascota.query.filter_by(cliente_id=x["id"]).first()
+        mascota = mascota.serialize()
+        x["nombre_mascota"] = mascota["nombre"]
+        final_result.append(x)
+    response_body = {"clientes": final_result,
+                     "msg": "todos los clientes clientes"}
     return jsonify(response_body), 200
 
-
 # lista por cada cliente
+
+
 @api.route('/clientes/<int:id_cliente>', methods=["GET"])
 def get_cliente(id_cliente):
     cliente = Cliente.query.get(id_cliente)
