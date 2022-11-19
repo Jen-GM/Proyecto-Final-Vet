@@ -6,15 +6,17 @@ import { Home } from "./pages/home";
 import { Profile } from "./pages/profile";
 import { Datatable } from "./pages/datatable";
 import { Usuarios } from "./pages/usuarios";
-import { Demo } from "./pages/demo";
 import { AtencionMedica } from "./pages/atencionMedica";
-import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Login } from "./component/login";
 import { Expediente } from "./component/expediente";
+import EventCalendar from "./component/EventCalendar";
+
+
+
 
 
 
@@ -37,9 +39,10 @@ const Layout = () => {
                         <Route element={<Datatable />} path="/datatable" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Login />} path="/login" />
+                        <Route element={<EventCalendar />} path="/calendar" />                    
                         <Route element={<Expediente/>} path="/expediente"/>
                         <Route element={<AtencionMedica/>} path = "/atencion-medica"/>
-                        <Route element={<Single />} path="/single/:theid" />
+{/*                         <Route element={<Modal />} path = "/modal"/> */}
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
