@@ -22,6 +22,7 @@ def login():
     password = request.json.get("password", None)
     user = User.query.filter().all()
     result = list(map(lambda user: user.serialize(), user))
+    # print(result)
     for x in result:
         if (x["email"] == email) and (x["password"] == password):
             access_token = create_access_token(identity=email)
@@ -493,5 +494,3 @@ def update_agenda(medico_id, agenda_id):
         })
     db.session.commit()
     return jsonify({"msj": "Agenda actualizada"}), 200
-
-# Fabricado con amor
