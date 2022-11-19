@@ -1,3 +1,6 @@
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "../../img/cat-error.png";
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -54,10 +57,26 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           if (resp.status !== 200) {
             if (resp.status === 401) {
-              alert("Email o contraseña incorrecta");
+              Swal.fire({
+                imageUrl: "cat-error.png",
+                imageWidth: 180,
+                imageHeight: 180,
+                imageAlt: "cat",
+                title: "Ups",
+                text: "Correo o contraseña incorrecta",
+                confirmButtonColor: "orange"
+              });
               return false;
             }
-            alert("Hay un error");
+            Swal.fire({
+              imageUrl: "cat-error.png",
+              imageWidth: 180,
+              imageHeight: 180,
+              imageAlt: "cat",
+              title: "Ups",
+              text: "Error al accesar. Intente de nuevo.",
+              confirmButtonColor: "orange"
+            });
             return false;
           }
 

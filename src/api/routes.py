@@ -27,7 +27,7 @@ def login():
             access_token = create_access_token(identity=email)
             return jsonify(access_token=access_token)
         else:
-            return jsonify({"msg": "Bad email or password"}), 401
+            return jsonify({"msg": "Correo o contraseña incorrectos"}), 401
 
 
 @api.route('/hello', methods=['POST', 'GET'])
