@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
-import {Profile} from "./pages/profile";
+import { Profile } from "./pages/profile";
 import { Usuarios } from "./pages/usuarios";
 import { AtencionMedica } from "./pages/atencionMedica";
 import injectContext from "./store/appContext";
@@ -13,11 +13,7 @@ import { Footer } from "./component/footer";
 import { Login } from "./component/login";
 import { Expediente } from "./component/expediente";
 import EventCalendar from "./component/EventCalendar";
-
-
-
-
-
+import { Map } from "./component/map";
 
 
 //create your first component
@@ -33,6 +29,7 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
+                        <Route element={<Map />} path="/map" />
                         <Route element={<Profile />} path="/profile" />
                         <Route element={<Usuarios />} path="/usuarios" />
                         <Route element={<Login />} path="/login" />
