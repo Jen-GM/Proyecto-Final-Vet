@@ -58,7 +58,8 @@ class User(db.Model):
             "id": self.id,
             "email": self.email,
             "user_type_id": self.user_type_id,
-            "veterinaria_id": self.veterinaria_id
+            "veterinaria_id": self.veterinaria_id,
+            "password": self.password
         }
 
 
@@ -67,7 +68,7 @@ class Medico(db.Model):
     nombre = db.Column(db.String(120), unique=True, nullable=False)
     telefono = db.Column(db.String(80), unique=True, nullable=False)
     user_id = db.Column(db.Integer, ForeignKey(
-        'user.id'))
+        'user.id'), unique=True, nullable=False)
     id_user = db.relationship('User')
 
     def __repr__(self):
