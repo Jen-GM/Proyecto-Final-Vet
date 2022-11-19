@@ -73,17 +73,25 @@
 		]
 	},
 	"dependencies": {
-		"@reach/combobox": "^0.18.0",
+    "@reach/combobox": "^0.18.0",
 		"@react-google-maps/api": "^2.17.0",
+    "g-mapify": "^2.3.1",
+    "@fullcalendar/bootstrap5": "^5.11.3",
+    "@fullcalendar/core": "^5.11.3",
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@fullcalendar/interaction": "^5.11.3",
+    "@fullcalendar/react": "^5.11.2",
+    "@fullcalendar/timegrid": "^5.11.3",
+    "bootstrap": "^5.2.2",
+    "bootstrap-icons": "^1.9.1",
+    "moment": "^2.29.4",
 		"@sweetalert2/theme-bulma": "^5.0.14",
-		"g-mapify": "^2.3.1",
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
 		"react-dom": "^16.8.4",
 		"react-polyfills": "0.0.1",
 		"react-router-dom": "^6.3.0",
 		"sweetalert2": "^11.6.8",
-		"use-places-autocomplete": "^4.0.0",
 		"validator": "^13.7.0"
 	}
 }
