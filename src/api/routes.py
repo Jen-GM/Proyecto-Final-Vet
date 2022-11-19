@@ -61,7 +61,8 @@ def get_clientes():
         mascota = mascota.serialize()
         x["nombre_mascota"] = mascota["nombre"]
         final_result.append(x)
-    response_body = {"clientes": final_result, "msg": "todos los clientes clientes"}
+    response_body = {"clientes": final_result,
+                     "msg": "todos los clientes clientes"}
     return jsonify(response_body), 200
 
 
@@ -96,7 +97,7 @@ def delete_cliente(id_cliente):
     delete = Cliente.query.filter_by(id=id_cliente).first()
     db.session.delete(delete)
     db.session.commit()
-    return jsonify({"msj": "Cliente borado"}), 200
+    return jsonify({"msj": "Cliente borrado"}), 200
 
 # Put Cliente
 

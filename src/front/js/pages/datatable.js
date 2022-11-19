@@ -44,15 +44,19 @@ const tableIcons = {
 
   const columnas = [
     {
-        title: 'ID',
+        title: 'Avatar',
         field: 'id',
-        type: 'numeric'
+             
+      
+     },
         
-    },
-    {
+ {
         title: 'Cliente',
-        field: 'nombre'
-        
+        field: 'nombre',
+        headerStyle: {
+            backgroundColor: '#0099ff',
+            color: '#FFF'
+          },
     },
     {
         title: 'Dirección',
@@ -65,14 +69,19 @@ const tableIcons = {
         
     },
     {
-        title: 'Mascota',
-        field: 'nombre_mascota'
-        
+        title: 'Mascota(s)',
+        field: 'nombre_mascota',
+        headerStyle: {
+            backgroundColor: '#0099ff',
+            color: '#FFF'
+          },
+    
     }
+   
 ];
 
 //Tabla clientes vista medica url
-const clientesUrl = 'https://3001-jengm-proyectofinalvet-59uioavjffq.ws-us74.gitpod.io/api/clientes';
+const clientesUrl = 'https://3001-jengm-proyectofinalvet-jz9gcwspzua.ws-us77.gitpod.io/api/clientes';
 
 //estilos para material-table
 
@@ -100,24 +109,109 @@ const useStyles = makeStyles((theme) => ({
 
 
 export const Datatable = () => {
-    const style = useStyles();
+  const styles = useStyles();
   const [datos, setDatos] = useState([]);
+  const [modalInsertar, setModalInsertar] = useState(false);
+  const [clienteInput, setClienteInput] = useState(
+     {
+        direccion: "",
+        id: "",
+        nombre: "",
+        nombre_mascota: "",
+        telefono: "",
+        user_id: ""
+      }
+    );
 
+    const handleChange=e=>{
+      const {name, value}=e.target;
+      setClienteInput(prevState=>({
+        ...prevState,
+        [name]: value
+      }));
+
+        
+        console.log(clienteInput);
+    }
+//___________metodo GET____________
   const getClientes = async () => {
-    await axios.get(clientesUrl)
-          .then(res => {
-          setDatos(res.data.clientes);
-        console.log(res.data.clientes);
+    await axios.get(clientesUrl).then((res) => {
+      setDatos(res.data.clientes);
+      console.log(res.data.clientes);
     });
   };
+//__________metodo POST____________
+const postCliente = async()=>{
+  await axios.post(clientesUrl, clienteInput)
+  .then(res=>{
+    setDatos(data.concat(res.data.clientes));
+    abrirCerrarModalinsertar();
+  }).catch(error=>{
+    console.log(error);
+  })
+}
+
+
 
   useEffect(() => {
     getClientes();
   }, []);
 
+
+  const abrirCerrarModalinsertar = () => {
+    setModalInsertar(!modalInsertar)
+  }
+
+  //body  para insertar Clientes
+  const bodyInsertar = (
+    <div className={styles.modal}>
+      <h3>Nuevo Cliente</h3>
+      <TextField
+        className={styles.inputMaterial}
+        label="Cliente"
+        name="cliente"
+        onChange={handleChange}
+        
+      />
+      <br />
+      <TextField
+        className={styles.inputMaterial}
+        label="Dirección"
+        name="direccion"
+        onChange={handleChange}
+       
+      />
+      <br />
+      <TextField
+        className={styles.inputMaterial}
+        label="Teléfono"
+        name="telefono"
+        onChange={handleChange}
+        
+      />
+      <br />
+      <TextField
+        className={styles.inputMaterial}
+        label="Mascota(s)"
+        name="nombre_mascota"
+        // onChange={handleChange}
+        
+      />
+      <br />
+      <br />
+      <div align="right">
+        <Button color="primary" onClick={postCliente()} >
+          Guardar
+        </Button>
+        <Button onClick={()=>abrirCerrarModalinsertar()}>Cancelar</Button>
+      </div>
+    </div>
+  );
+
   return (
     <>
-  
+      <Button  color="primary" onClick={()=>abrirCerrarModalinsertar()}>Nuevo</Button>
+      
       <MaterialTable
         columns={columnas}
         data={datos}
@@ -144,8 +238,17 @@ export const Datatable = () => {
           header: {
             actions: "Editar",
           },
+          
         }}
       />
+ 
+     <Modal
+     open={modalInsertar}
+     onClose={abrirCerrarModalinsertar}
+     >{bodyInsertar}</Modal>
+        
+            
+
     </>
   );
 };
