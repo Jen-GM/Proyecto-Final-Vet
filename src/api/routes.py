@@ -20,15 +20,9 @@ api = Blueprint('api', __name__)
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    print("*****************")
-    print(email, password)
     user = User.query.filter().all()
     result = list(map(lambda user: user.serialize(), user))
-    print("==================RESULT============>")
-    print(result)
     for x in result:
-        print("============X=============>")
-        print(x["email"] + " " + x["password"])
         if (x["email"] == email) and (x["password"] == password):
             access_token = create_access_token(identity=email)
             return jsonify(access_token=access_token)
@@ -499,5 +493,3 @@ def update_agenda(medico_id, agenda_id):
         })
     db.session.commit()
     return jsonify({"msj": "Agenda actualizada"}), 200
-
-# Fabricado con amor
