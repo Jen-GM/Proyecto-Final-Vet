@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import { MapaAgenda } from "./mapaAgenda";
 
 export const AgendaCliente = () => {
   return (
     <div className="h-100">
       <button
         type="button"
-        className="btn btn-success position-absolute top-50 end-0 translate-middle-y"
+        className="btn btn-success top-50 end-0"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
         data-bs-whatever="@mdo"
@@ -115,14 +116,11 @@ export const AgendaCliente = () => {
                   </>
                 </form>
                 <div className="mb-3">
-                    <label for="message-text" class="col-form-label">
-                      Seleccione la dirección:
-                    </label>
-                    <textarea
-                      className="form-control"
-                      id="message-text"
-                    ></textarea>
-                  </div>
+                  <label for="message-text" class="col-form-label">
+                    Ingrese la dirección:
+                  </label>
+                  <div> <MapaAgenda/> </div>
+                </div>
               </div>
               <div className="modal-footer">
                 <button

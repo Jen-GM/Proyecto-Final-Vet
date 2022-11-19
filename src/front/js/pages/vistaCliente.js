@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
-import { AgendaCliente } from "../component/agendaCliente";
 import { Context } from "../store/appContext";
-
+import { AgendaCliente } from "../component/agendaCliente";
 
 export const VistaCliente = () => {
   const { store, actions } = useContext(Context);
 
   return (
     <div>
-        <AgendaCliente/>
+      <div>
+        <AgendaCliente />
+      </div>
     </div>
   );
 };
