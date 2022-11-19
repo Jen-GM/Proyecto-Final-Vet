@@ -7,7 +7,6 @@ import {Profile} from "./pages/profile";
 import { Usuarios } from "./pages/usuarios";
 import { AtencionMedica } from "./pages/atencionMedica";
 import { VistaCliente } from "./pages/vistaCliente";
-import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -37,7 +36,6 @@ const Layout = () => {
                         <Route element={<Home />} path="/" />
                         <Route element={<Profile />} path="/profile" />
                         <Route element={<Usuarios />} path="/usuarios" />
-                        <Route element={<Demo />} path="/demo" />
                         <Route element={<VistaCliente />} path="/vistaCliente" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<EventCalendar />} path="/calendar" />                    
