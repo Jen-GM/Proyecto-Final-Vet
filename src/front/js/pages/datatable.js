@@ -161,14 +161,14 @@ export const Datatable = () => {
         name="nombre"
         onChange={handleChange}
       />
-      <br />
+      <br/>
       <TextField
         className={styles.inputMaterial}
         label="Dirección"
         name="direccion"
         onChange={handleChange}
       />
-      <br />
+      <br/>
       <TextField
         className={styles.inputMaterial}
         label="Teléfono"
