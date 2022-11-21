@@ -2,10 +2,9 @@ import React from "react";
 import { GMapify, AddressFormatter } from "g-mapify";
 import { useRef, useState } from "react";
 import "../../styles/map.css";
-/* import  'g-mapify/dist/index.css'; */
 import "../../img/dog-location.png";
 
-export const Map = () => {
+export const MapaAgenda = () => {
   const mapOptions = {
     zoom: 15,
     zoomControl: true,
