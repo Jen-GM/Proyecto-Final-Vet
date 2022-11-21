@@ -32,7 +32,7 @@ export default function EventCalendar() {
             color = "#008080";
           }
           if (element.retira == false) {
-            element.direccion_retiro = "En local";
+            element.direccion_retiro = "(En local)";
           }
           return {
             title: element.nombre + " " + element.direccion_retiro,
@@ -66,15 +66,14 @@ export default function EventCalendar() {
               locale={"es"}
               timeZone={"America/Buenos_Aires"}
               navLinks={true}
-              dayHeaderClassNames={"bg-dark"}
-              eventBackgroundColor={"rgb(228, 227, 171)"}
-              viewClassNames={"bg-secondary"}
-              //eventClassNames={"shadow-lg p-2 mb-1 rounded bg-warning"}
+              dayHeaderClassNames={"bg-warning "}
+              viewClassNames={"bg-dark"}
+              eventClassNames={"shadow-lg p-2 mb-1 rounded "}
               plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
               eventTextColor={"black"}
               initialView="timeGridWeek"
               slotDuration="00:15:00"
-              slotLabelInterval={{ hours: 0.5 }}
+              slotLabelInterval={{ hours: 0.3 }}
               //scrollTime="02:00"
               slotMaxTime={"18:00:00"}
               slotMinTime={"09:00:00"}
