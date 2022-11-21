@@ -53,7 +53,7 @@ export default function EventCalendar() {
   }, []);
 
   return (
-    <div className="m-3">
+    <div className="m-2">
       <div className=" ">
         {agenda && (
           <div className=" bg-dark text-dark rounded">
@@ -67,7 +67,7 @@ export default function EventCalendar() {
               timeZone={"America/Buenos_Aires"}
               navLinks={true}
               dayHeaderClassNames={"bg-warning "}
-              viewClassNames={"bg-dark"}
+              viewClassNames={"bg-light"}
               eventClassNames={"shadow-lg p-2 mb-1 rounded "}
               plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
               eventTextColor={"black"}
