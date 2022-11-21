@@ -2,10 +2,12 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { MapaAgenda } from "./mapaAgenda";
+import "../../styles/modalAgenda.css";
+
 
 export const AgendaCliente = () => {
   return (
-    <div className="h-100">
+    <div className="m-5 p-5">
       <button
         type="button"
         className="btn btn-success top-50 end-0"

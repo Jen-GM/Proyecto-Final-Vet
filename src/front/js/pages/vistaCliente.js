@@ -6,10 +6,8 @@ export const VistaCliente = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div>
       <div>
         <AgendaCliente />
       </div>
-    </div>
   );
 };
