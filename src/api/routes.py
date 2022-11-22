@@ -68,22 +68,46 @@ def get_cliente(id_cliente):
     return jsonify(cliente.serialize()), 200
 
 # ____Agregar clientes___
-
-
-@api.route('/clientes', methods=["POST"])  #  POST
+@api.route('/clientes', methods=["POST"])
 def add_cliente():
-    body = request.get_json()
-    cliente = Cliente(
-        nombre=body["nombre"],
-        direccion=body["direccion"],
-        telefono=body["telefono"],
-        user_id=body["user_id"]
+    nombre = request.json.get("nombre", None)
+    telefono = request.json.get("telefono", None)
+    direccion = request.json.get("direccion", None)
+    nombre_mascota = request.json.get("nombre_mascota", None)
+    especie = request.json.get("especie", None)
+    raza = request.json.get("raza", None)
+    internamiento = request.json.get("internamiento", None)
+    user_id = request.json.get("user_id", None)
 
+    if nombre is None:
+        return jsonify({"msg": "Bad request"}), 400
+    if telefono is None:
+        return jsonify({"msg": "Bad request"}), 400
+    if direccion is None:
+        return jsonify({"msg": "Bad request"}), 400
+    if nombre_mascota is None:
+        return jsonify({"msg": "Bad request"}), 400
+    if especie is None:
+        return jsonify({"msg": "Bad request"}), 400
+    if raza is None:
+        return jsonify({"msg": "Bad request"}), 400
+    if internamiento is None:
+        return jsonify({"msg": "Bad request"}), 400
+    if user_id is None:
+        return jsonify({"msg": "Bad request"}), 400
 
-    )
+    cliente = Cliente(nombre=nombre, telefono=telefono, direccion=direccion, user_id=user_id)
     db.session.add(cliente)
     db.session.commit()
-    return jsonify({"msj": "Cliente agregado"}), 200
+
+    mascota = Mascota(nombre=nombre_mascota, especie=especie, raza=raza, internamiento=internamiento, cliente_id=cliente.id)
+    db.session.add(mascota)
+    db.session.commit()
+
+    return jsonify("msg: Datos del cliente añadidos"), 200
+
+
+
 
 
 # Delete cliente
@@ -92,7 +116,7 @@ def delete_cliente(id_cliente):
     delete = Cliente.query.filter_by(id=id_cliente).first()
     db.session.delete(delete)
     db.session.commit()
-    return jsonify({"msj": "Cliente borado"}), 200
+    return jsonify({"msj": "Cliente borrado"}), 200
 
 # Put Cliente
 
