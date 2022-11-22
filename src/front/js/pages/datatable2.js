@@ -224,7 +224,7 @@ const abrirCerrarModalInsertar = () => {
       <br />
       <br />
       <div align="right">
-        <Button color="primary" onClick={() => {postCliente(); etTimeout(() => {
+        <Button color="primary" onClick={() => {postCliente(); SetTimeout(() => {
       abrirCerrarModalinsertar();
     }, 2000); }}>
           Guardar

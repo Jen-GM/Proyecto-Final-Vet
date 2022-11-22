@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import MaterialTable from "material-table";
 import { forwardRef } from "react";
 import axios from "axios";
-import { Modal, TextField, Button, Avatar, FormGroup, FormControlLabel, Checkbox  } from "@material-ui/core";
+import { Modal, TextField, Button, Avatar, FormGroup, FormControlLabel, Checkbox } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
@@ -127,6 +127,7 @@ export const Datatable = () => {
       .post(clientesUrl, clienteInput)
       .then((res) => {
         setDatos(data.concat(res.data));
+        
         
         
       })
