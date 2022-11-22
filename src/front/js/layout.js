@@ -13,8 +13,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Login } from "./component/login";
 import { Expediente } from "./component/expediente";
-import EventCalendar from "./component/EventCalendar";
-import { Map } from "./component/map";
+import EventCalendar from "./pages/EventCalendar";
 import { Vacunacionydesparasitacion } from "./component/vacunacionydesparasitacion";
 
 
@@ -31,11 +30,11 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
-                        <Route element={<Map />} path="/map" />
                         <Route element={<Profile />} path="/profile" />
                         <Route element={<Usuarios />} path="/usuarios" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<EventCalendar />} path="/calendar" />                    
+                        <Route element={<VistaCliente />} path="/cliente" />                    
                         <Route element={<Expediente/>} path="/expediente"/>
                         <Route element={<AtencionMedica/>} path = "/atencion-medica"/>
                         <Route element={<Vacunacionydesparasitacion/>} path="/vacunacion-desparasitacion"/>
