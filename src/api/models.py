@@ -140,7 +140,7 @@ class Mascota(db.Model):
     raza = db.Column(db.String(100), unique=False, nullable=False)
     internamiento = db.Column(db.Boolean, unique=False, nullable=False)
     cliente_id = db.Column(db.Integer, ForeignKey(
-        'cliente.id'))
+        'cliente.id'), nullable=False)
     cliente = db.relationship('Cliente')
 
     def __repr__(self):
@@ -167,7 +167,7 @@ class Desparasitacion(db.Model):
         'cliente.id'), nullable=False)
     cliente = db.relationship('Cliente')
     mascota_id = db.Column(db.Integer, ForeignKey(
-        'mascota.id'))
+        'mascota.id'), nullable=False)
     mascota = db.relationship('Mascota')
 
     def __repr__(self):
