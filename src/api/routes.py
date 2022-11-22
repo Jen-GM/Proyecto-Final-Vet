@@ -18,17 +18,18 @@ api = Blueprint('api', __name__)
 # ___________POST-TOKEN__________
 @api.route("/token", methods=["POST"])
 def login():
+    userIn = False
     email = request.json.get("email", None)
     password = request.json.get("password", None)
     user = User.query.filter().all()
     result = list(map(lambda user: user.serialize(), user))
     for x in result:
         if (email == x["email"]) and (password == x["password"]):
+            userIn = True
             access_token = create_access_token(identity=email)
-            final_value = jsonify(access_token=access_token)
-        else:
-            final_value = jsonify({"msg": "Correo o contraseña incorrectos"}), 401
-    return final_value
+            return jsonify(access_token=access_token)
+    if (userIn == False):
+        return jsonify({"msg": "Correo o contraseña incorrectos"}), 401
 
 
 @api.route('/hello', methods=['POST', 'GET'])
