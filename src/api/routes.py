@@ -23,11 +23,12 @@ def login():
     user = User.query.filter().all()
     result = list(map(lambda user: user.serialize(), user))
     for x in result:
-        if (x["email"] == email) and (x["password"] == password):
+        if (email == x["email"]) and (password == x["password"]):
             access_token = create_access_token(identity=email)
-            return jsonify(access_token=access_token)
+            final_value = jsonify(access_token=access_token)
         else:
-            return jsonify({"msg": "Correo o contraseña incorrectos"}), 401
+            final_value = jsonify({"msg": "Correo o contraseña incorrectos"}), 401
+    return final_value
 
 
 @api.route('/hello', methods=['POST', 'GET'])
