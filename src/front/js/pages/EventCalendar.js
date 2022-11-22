@@ -75,7 +75,7 @@ export default function EventCalendar() {
               slotDuration="00:15:00"
               slotLabelInterval={{ hours: 0.3 }}
               //scrollTime="02:00"
-              slotMaxTime={"18:00:00"}
+              slotMaxTime={"19:00:00"}
               slotMinTime={"09:00:00"}
               editable={true}
               selectable={true}
