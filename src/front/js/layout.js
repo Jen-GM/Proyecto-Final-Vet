@@ -14,7 +14,7 @@ import { Login } from "./component/login";
 import { Expediente } from "./component/expediente";
 import EventCalendar from "./component/EventCalendar";
 import { Map } from "./component/map";
-
+import { Vacunacionydesparasitacion } from "./component/vacunacionydesparasitacion";
 
 //create your first component
 const Layout = () => {
@@ -36,6 +36,7 @@ const Layout = () => {
                         <Route element={<EventCalendar />} path="/calendar" />                    
                         <Route element={<Expediente/>} path="/expediente"/>
                         <Route element={<AtencionMedica/>} path = "/atencion-medica"/>
+                        <Route element={<Vacunacionydesparasitacion/>} path="/vacunacion-desparasitacion"/>
 {/*                         <Route element={<Modal />} path = "/modal"/> */}
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
