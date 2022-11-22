@@ -44,10 +44,10 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     user_type_id = db.Column(db.Integer, db.ForeignKey(
-        'user_type.id'))
+        'user_type.id'), nullable=False)
     user_type = db.relationship('User_type')
     veterinaria_id = db.Column(db.Integer, db.ForeignKey(
-        'veterinaria.id'))
+        'veterinaria.id'), nullable=False)
     veterinaria = db.relationship('Veterinaria')
 
     def __repr__(self):
@@ -140,7 +140,7 @@ class Mascota(db.Model):
     raza = db.Column(db.String(100), unique=False, nullable=False)
     internamiento = db.Column(db.Boolean, unique=False, nullable=False)
     cliente_id = db.Column(db.Integer, ForeignKey(
-        'cliente.id'))
+        'cliente.id'), nullable=False)
     cliente = db.relationship('Cliente')
 
     def __repr__(self):
@@ -167,7 +167,7 @@ class Desparasitacion(db.Model):
         'cliente.id'))
     cliente = db.relationship('Cliente')
     mascota_id = db.Column(db.Integer, ForeignKey(
-        'mascota.id'))
+        'mascota.id'), nullable=False)
     mascota = db.relationship('Mascota')
 
     def __repr__(self):
@@ -196,7 +196,7 @@ class Vacuna(db.Model):
         'cliente.id'))
     cliente = db.relationship('Cliente')
     mascota_id = db.Column(db.Integer, ForeignKey(
-        'mascota.id'))
+        'mascota.id'), nullable=False)
     mascota = db.relationship('Mascota')
 
     def __repr__(self):
@@ -227,7 +227,7 @@ class Ficha_Medica(db.Model):
         'cliente.id'))
     cliente = db.relationship('Cliente')
     mascota_id = db.Column(db.Integer, ForeignKey(
-        'mascota.id'))
+        'mascota.id'), nullable=False)
     mascota = db.relationship('Mascota')
     medico_id = db.Column(db.Integer, ForeignKey(
         'medico.id'))
