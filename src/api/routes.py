@@ -39,6 +39,19 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
+# ***********************ENPOINT USUARIOS************************
+# ---------------------------------------------------------------
+
+# lista todos los médicos
+@api.route('/usuarios', methods=["GET"])
+def get_usuarios():
+    usuarios = User.query.filter().all()
+    result = list(map(lambda usuarios: usuarios.serialize(), usuarios))
+    response_body = {"usuario": result, "msg": "todos los usuarios"}
+    return jsonify(response_body), 200
+
+
+
 
 # ***********************ENPOINT CLIENTES************************
 # ---------------------------------------------------------------

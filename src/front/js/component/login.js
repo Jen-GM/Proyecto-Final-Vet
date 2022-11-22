@@ -29,16 +29,24 @@ export const Login = () => {
   };
 
   const handleClick = async () => {
-    await actions.login(email, password).then(() => navigate("/calendar"));
+    await actions.login(email, password).then(() =>
+      fetch(process.env.BACKEND_URL + "/api/usuarios")
+        .then((resp) => resp.json())
+        .then((resp) => {
+          console.log(resp);
+          resp.usuario.map((element, index) => {
+            if (element.user_type_id === 1) {
+              console.log(element.user_type_id);
+            } else if (element.user_type_id === 2) {
+              console.log(element.user_type_id);
+            }
+          });
+        })
+        .catch((error) =>
+          console.log("Error identificando el tipo de usuario", error)
+        )
+    );
   };
-
-/*   const loginProcess = () => {
-    if (store.token && store.token != "" && store.token != undefined) {
-
-      
-
-    }
-  } */
 
   return (
     <div>
@@ -56,7 +64,18 @@ export const Login = () => {
                       placeholder="Correo"
                       value={email}
                       onChange={handleChange}
-                    /> {error && <h5 style={{ color: "red", paddingBottom: '0.5rem', display: 'block' }}>{error}</h5>}
+                    />{" "}
+                    {error && (
+                      <h5
+                        style={{
+                          color: "red",
+                          paddingBottom: "0.5rem",
+                          display: "block",
+                        }}
+                      >
+                        {error}
+                      </h5>
+                    )}
                   </div>
                   <div className="d-grid gap-2 col-3 mx-auto">
                     <input
