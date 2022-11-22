@@ -30,26 +30,13 @@ export const Login = () => {
   };
 
   const handleClick = async () => {
-    await actions.login(email, password).then(() =>
-      fetch(process.env.BACKEND_URL + "/api/usuarios")
-        .then((resp) => resp.json())
-        .then((resp) => {
-          console.log(email);
-          resp.usuario.map((element, index) => {
-            if (email === element.email && element.user_type_id === 1 && store.token) {
-              console.log(element.user_type_id);
-              navigate("/calendar");
-            } else if (email === element.email && element.user_type_id === 2 && store.token) {
-              console.log(element.user_type_id);
-              navigate("/profile");
-            }
-          });
-         
-        })
-        .catch((error) =>
-          console.log("Error identificando el tipo de usuario", error)
-        )
-    );
+    await actions.loginType(email, password).then(() =>{
+      if (store.tipoUsuario === 1){
+        navigate("/calendar");
+      }else{
+        navigate("/profile");
+      }
+    })
   };
 
   return (

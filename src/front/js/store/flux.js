@@ -7,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       message: null,
       token: null,
       entrar: null,
+      tipoUsuario: null,
       demo: [
         {
           title: "FIRST",
@@ -31,7 +32,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log("Aplication loaded, synching the session storage token");
         if (token && token != "" && token != undefined)
           setStore({ token: token });
-
       },
 
       logout: () => {
@@ -65,7 +65,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 imageAlt: "cat",
                 title: "Ups",
                 text: "Correo o contraseña incorrecta",
-                confirmButtonColor: "orange"
+                confirmButtonColor: "orange",
               });
               return false;
             }
@@ -76,7 +76,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               imageAlt: "cat",
               title: "Ups",
               text: "Error al accesar. Intente de nuevo.",
-              confirmButtonColor: "orange"
+              confirmButtonColor: "orange",
             });
             return false;
           }
@@ -90,6 +90,35 @@ const getState = ({ getStore, getActions, setStore }) => {
         } catch (error) {
           console.error("There has been an error");
         }
+      },
+
+      loginType: async (email, password) => {
+        await getActions()
+          .login(email, password)
+          .then(() =>
+            fetch(process.env.BACKEND_URL + "/api/usuarios")
+              .then((resp) => resp.json())
+              .then((resp) => {
+                resp.usuario.map((element, index) => {
+                  if (
+                    email === element.email &&
+                    element.user_type_id === 1
+                  ) {
+                    console.log(element.user_type_id);
+                    setStore({ tipoUsuario: 1 });
+                  } else if (
+                    email === element.email &&
+                    element.user_type_id === 2
+                  ) {
+                    console.log(element.user_type_id);
+                    setStore({ tipoUsuario: 2 });
+                  }
+                });
+              })
+              .catch((error) =>
+                console.log("Error identificando el tipo de usuario", error)
+              )
+          );
       },
 
       getMessage: () => {
@@ -108,6 +137,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log("Error loading message from backend", error)
           );
       },
+
       changeColor: (index, color) => {
         //get the store
         const store = getStore();

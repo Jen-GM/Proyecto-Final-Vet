@@ -55,13 +55,12 @@ export const Navbar = () => {
                   </li>
                 </>
               )}
-              {userLogueado && (
+              {userLogueado && store.tipoUsuario === 1 &&(
                 <>
                   <Link to="/">
                     <li className="nav-item border border-white rounded mx-3 border-opacity-75">
                       <a
                         className="nav-link px-4"
-                        onClick={() => actions.logout()}
                       >
                         Agenda
                       </a>
@@ -71,7 +70,6 @@ export const Navbar = () => {
                     <li className="nav-item border border-white rounded mx-3 border-opacity-75">
                       <a
                         className="nav-link px-4"
-                        onClick={() => actions.logout()}
                       >
                         Usuarios
                       </a>
@@ -81,7 +79,6 @@ export const Navbar = () => {
                     <li className="nav-item border border-white rounded mx-3 border-opacity-75">
                       <a
                         className="nav-link px-4"
-                        onClick={() => actions.logout()}
                       >
                         Mascotas
                       </a>
@@ -91,7 +88,29 @@ export const Navbar = () => {
                     <li className="nav-item border border-white rounded mx-3 border-opacity-75">
                       <a
                         className="nav-link px-4"
+                      >
+                        Mi perfil
+                      </a>
+                    </li>
+                  </Link>
+                  <Link to="/">
+                    <li className="nav-item border border-white rounded mx-3 border-opacity-75">
+                      <a
+                        className="nav-link px-4"
                         onClick={() => actions.logout()}
+                      >
+                        Salir
+                      </a>
+                    </li>
+                  </Link>
+                </>
+              )}
+              {userLogueado && store.tipoUsuario === 2 &&(
+                <>
+                  <Link to="/">
+                    <li className="nav-item border border-white rounded mx-3 border-opacity-75">
+                      <a
+                        className="nav-link px-4"
                       >
                         Mi perfil
                       </a>
