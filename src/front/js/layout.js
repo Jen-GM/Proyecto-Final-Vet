@@ -6,6 +6,7 @@ import { Home } from "./pages/home";
 import { Profile } from "./pages/profile";
 import { Usuarios } from "./pages/usuarios";
 import { AtencionMedica } from "./pages/atencionMedica";
+import { VistaCliente } from "./pages/vistaCliente";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -15,6 +16,7 @@ import { Expediente } from "./component/expediente";
 import EventCalendar from "./component/EventCalendar";
 import { Map } from "./component/map";
 import { Vacunacionydesparasitacion } from "./component/vacunacionydesparasitacion";
+
 
 //create your first component
 const Layout = () => {
