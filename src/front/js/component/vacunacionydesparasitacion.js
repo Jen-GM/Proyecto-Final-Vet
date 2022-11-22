@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 export const Vacunacionydesparasitacion = () => {
     return(
         <div>
-        <h3>Vacunacion</h3>
+            <h3 className="text-center">Bruno || Perro || 3 años</h3>
+        <h5>Vacunacion</h5>
   
         <div className="card text-center">
           <div className="card-header">
@@ -69,7 +70,7 @@ export const Vacunacionydesparasitacion = () => {
       
     <div>
     <div>
-        <h3>Desparasitacion</h3>
+        <h5>Desparasitacion</h5>
   
         <div className="card text-center">
           <div className="card-header">
