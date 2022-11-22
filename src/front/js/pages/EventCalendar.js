@@ -11,6 +11,7 @@ import interactionPlugin, {
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
 import { element } from "prop-types";
+import "../../styles/home.css";
 var moment = require("moment");
 export default function EventCalendar() {
   const [agenda, setAgenda] = useState([]);
@@ -26,12 +27,15 @@ export default function EventCalendar() {
         let aux = response.Eventos.map((element, index) => {
           let color = "red";
           if (element.medico_id === 1) {
-            color = "green";
+            color = "	#00FF00";
           } else if (element.medico_id === 2) {
-            color = "blue";
+            color = "#008080";
+          }
+          if (element.retira == false) {
+            element.direccion_retiro = "(En local)";
           }
           return {
-            title: element.nombre,
+            title: element.nombre + " " + element.direccion_retiro,
             start:
               moment(element.fecha).format("YYYY-MM-DD") + "T" + element.hora,
             backgroundColor: color,
@@ -49,37 +53,40 @@ export default function EventCalendar() {
   }, []);
 
   return (
-    <div className="bg-dark">
-      {agenda && (
-        <div className="container bg-secondary text-light rounded">
-          <FullCalendar
-            headerToolbar={{
-              left: "prev,next",
-              center: "title",
-              right: "dayGridMonth,timeGridWeek,timeGridDay",
-            }}
-            locale={"es"}
-            timeZone={"America/Buenos_Aires"}
-            navLinks={true}
-            dayHeaderClassNames={"bg-dark"}
-            viewClassNames={"bg-dark"}
-            //eventClassNames={"shadow-lg p-2 mb-1 rounded bg-warning"}
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            initialView="timeGridWeek"
-            slotDuration="00:15:00"
-            slotLabelInterval={{ hours: 0.5 }}
-            //scrollTime="02:00"
-            slotMaxTime={"18:00:00"}
-            slotMinTime={"09:00:00"}
-            editable={true}
-            selectable={true}
-            selectMirror={true}
-            dayMaxEvents={true}
-            //eventTextColor="red"
-            events={agenda}
-          />
-        </div>
-      )}
+    <div className="m-2">
+      <div className=" ">
+        {agenda && (
+          <div className=" bg-dark text-dark rounded">
+            <FullCalendar
+              headerToolbar={{
+                left: "prev,next",
+                center: "title",
+                right: "dayGridMonth,timeGridWeek,timeGridDay",
+              }}
+              locale={"es"}
+              timeZone={"America/Buenos_Aires"}
+              navLinks={true}
+              dayHeaderClassNames={"bg-warning "}
+              viewClassNames={"bg-light"}
+              eventClassNames={"shadow-lg p-2 mb-1 rounded "}
+              plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+              eventTextColor={"black"}
+              initialView="timeGridWeek"
+              slotDuration="00:15:00"
+              slotLabelInterval={{ hours: 0.3 }}
+              //scrollTime="02:00"
+              slotMaxTime={"19:00:00"}
+              slotMinTime={"09:00:00"}
+              editable={true}
+              selectable={true}
+              selectMirror={true}
+              dayMaxEvents={true}
+              //eventTextColor="red"
+              events={agenda}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

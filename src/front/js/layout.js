@@ -8,18 +8,15 @@ import { Datatable } from "./pages/datatable";
 import { Datatable2 } from "./pages/datatable2.js";
 import { Usuarios } from "./pages/usuarios";
 import { AtencionMedica } from "./pages/atencionMedica";
+import { VistaCliente } from "./pages/vistaCliente";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Login } from "./component/login";
 import { Expediente } from "./component/expediente";
-import EventCalendar from "./component/EventCalendar";
-
-
-
-
-
+import EventCalendar from "./pages/EventCalendar";
+import { Vacunacionydesparasitacion } from "./component/vacunacionydesparasitacion";
 
 
 //create your first component
@@ -41,8 +38,10 @@ const Layout = () => {
                         <Route element={<Datatable2 />} path="/datatable2" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<EventCalendar />} path="/calendar" />                    
+                        <Route element={<VistaCliente />} path="/cliente" />                    
                         <Route element={<Expediente/>} path="/expediente"/>
                         <Route element={<AtencionMedica/>} path = "/atencion-medica"/>
+                        <Route element={<Vacunacionydesparasitacion/>} path="/vacunacion-desparasitacion"/>
 {/*                         <Route element={<Modal />} path = "/modal"/> */}
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
