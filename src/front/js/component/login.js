@@ -32,6 +32,14 @@ export const Login = () => {
     await actions.login(email, password).then(() => navigate("/calendar"));
   };
 
+/*   const loginProcess = () => {
+    if (store.token && store.token != "" && store.token != undefined) {
+
+      
+
+    }
+  } */
+
   return (
     <div>
       <div className="container-fluid mb-0" id="loginScreen">

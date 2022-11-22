@@ -31,6 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log("Aplication loaded, synching the session storage token");
         if (token && token != "" && token != undefined)
           setStore({ token: token });
+
       },
 
       logout: () => {
