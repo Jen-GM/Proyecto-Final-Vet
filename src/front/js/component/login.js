@@ -31,9 +31,9 @@ export const Login = () => {
 
   const handleClick = async () => {
     await actions.loginType(email, password).then(() =>{
-      if (store.tipoUsuario === 1){
+      if (store.tipoUsuario === 1 && store.token){
         navigate("/calendar");
-      }else{
+      }else if(store.tipoUsuario === 2 && store.token){
         navigate("/profile");
       }
     })

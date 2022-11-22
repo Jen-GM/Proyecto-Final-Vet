@@ -104,13 +104,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                     email === element.email &&
                     element.user_type_id === 1
                   ) {
-                    console.log(element.user_type_id);
                     setStore({ tipoUsuario: 1 });
                   } else if (
                     email === element.email &&
                     element.user_type_id === 2
                   ) {
-                    console.log(element.user_type_id);
                     setStore({ tipoUsuario: 2 });
                   }
                 });
