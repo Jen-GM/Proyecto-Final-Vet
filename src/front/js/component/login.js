@@ -12,6 +12,7 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [ingreso, setIngreso] = useState(null);
   const navigate = useNavigate();
 
   function isValidEmail(email) {
@@ -33,14 +34,17 @@ export const Login = () => {
       fetch(process.env.BACKEND_URL + "/api/usuarios")
         .then((resp) => resp.json())
         .then((resp) => {
-          console.log(resp);
+          console.log(email);
           resp.usuario.map((element, index) => {
-            if (element.user_type_id === 1) {
+            if (email === element.email && element.user_type_id === 1 && store.token) {
               console.log(element.user_type_id);
-            } else if (element.user_type_id === 2) {
+              navigate("/calendar");
+            } else if (email === element.email && element.user_type_id === 2 && store.token) {
               console.log(element.user_type_id);
+              navigate("/profile");
             }
           });
+         
         })
         .catch((error) =>
           console.log("Error identificando el tipo de usuario", error)
