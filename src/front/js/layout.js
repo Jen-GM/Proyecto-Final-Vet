@@ -5,6 +5,7 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./pages/home";
 import { Profile } from "./pages/profile";
 import { Datatable } from "./pages/datatable";
+import { Datatable2 } from "./pages/datatable2.js";
 import { Usuarios } from "./pages/usuarios";
 import { AtencionMedica } from "./pages/atencionMedica";
 import injectContext from "./store/appContext";
@@ -37,6 +38,7 @@ const Layout = () => {
                         <Route element={<Profile />} path="/profile" />
                         <Route element={<Usuarios />} path="/usuarios" />
                         <Route element={<Datatable />} path="/datatable" />
+                        <Route element={<Datatable2 />} path="/datatable2" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<EventCalendar />} path="/calendar" />                    
                         <Route element={<Expediente/>} path="/expediente"/>

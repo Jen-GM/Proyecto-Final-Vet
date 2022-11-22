@@ -46,27 +46,28 @@ const tableIcons = {
 };
 
 const columnas = [
+
   {
-    title: "Cliente",
+    title: "Mascota",
     field: "nombre",
   },
   {
-    title: "Dirección",
-    field: "direccion",
+    title: "Dueño",
+    field: "nombre_cliente",
   },
   {
-    title: "Teléfono",
-    field: "telefono",
+    title: "Especie",
+    field: "especie",
   },
   {
-    title: "Mascota(s)",
-    field: "nombre_mascota",
+    title: "Edad",
+    field: "edad",
   },
 ];
 
 //Tabla clientes vista medica url
 const clientesUrl =
-  "https://3001-jengm-proyectofinalvet-no8lcclvgr0.ws-us77.gitpod.io/api/clientes";
+  "https://3001-jengm-proyectofinalvet-no8lcclvgr0.ws-us77.gitpod.io/api/mascotas";
 
 //estilos para material-table
 
@@ -90,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Datatable = () => {
+export const Datatable2 = () => {
   const styles = useStyles();
   const [datos, setDatos] = useState([]);
   const [modalInsertar, setModalInsertar] = useState(false);
@@ -104,6 +105,27 @@ export const Datatable = () => {
     internamiento: true,
     user_id: 4,
   });
+//_________________DATOS FALSOS_________________
+const [columns1, setColumns1] = useState([
+  { title: 'Mascota', field: 'mascota' },
+  { title: 'Dueño', field: 'dueno', initialEditValue: 'initial edit value' },
+  { title: 'Especie', field: 'especie'  },
+  { title: 'Edad', field: 'edad'  },
+  { title: 'Sexo', field: 'sexo'  },
+  
+]);
+
+const [falso, setFalso] = useState([
+  { mascota: 'chucho', dueno: 'Baran', especie: "perro", edad: 63 , sexo: "M"},
+  
+]);
+
+
+//__________________FIN DE DATOS FALSOS___________
+
+const abrirCerrarModalInsertar = () => {
+  setModalInsertar(!modalInsertar);
+};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -117,8 +139,8 @@ export const Datatable = () => {
   //___________metodo GET____________
   const getClientes = async () => {
     await axios.get(clientesUrl).then((res) => {
-      setDatos(res.data.clientes);
-      console.log(res.data.clientes);
+      setDatos(res.data.mascotas);
+      console.log(res.data);
     });
   };
   //__________metodo POST____________
@@ -127,8 +149,7 @@ export const Datatable = () => {
       .post(clientesUrl, clienteInput)
       .then((res) => {
         setDatos(data.concat(res.data));
-        
-        
+        abrirCerrarModalInsertar();
       })
       
   };
@@ -137,22 +158,20 @@ export const Datatable = () => {
     getClientes();
   }, []);
 
-  const abrirCerrarModalInsertar = () => {
-    setModalInsertar(!modalInsertar);
-  };
+  
 
   //body  para insertar Clientes
   const bodyInsertar = (
     <div className={styles.modal}>
       <Avatar
-        alt="foto-prueba"
+        alt="Remy Sharp"
         src="https://cdn-icons-png.flaticon.com/512/1995/1995549.png"
       />
       <h3>Nuevo Cliente</h3>
       <TextField
         className={styles.inputMaterial}
-        label="Nombre Completo"
-        name="nombre"
+        label="Dueño"
+        name="nombre_cliente"
         onChange={handleChange}
       />
       <br/>
@@ -205,7 +224,11 @@ export const Datatable = () => {
       <br />
       <br />
       <div align="right">
-      <Button color="primary" onClick={() => {postCliente(); abrirCerrarModalInsertar();  window.location.reload(false);}}>Guardar</Button>
+        <Button color="primary" onClick={() => {postCliente(); etTimeout(() => {
+      abrirCerrarModalinsertar();
+    }, 2000); }}>
+          Guardar
+        </Button>
         <Button onClick={() => abrirCerrarModalInsertar()}>Cancelar</Button>
       </div>
     </div>
@@ -218,32 +241,43 @@ export const Datatable = () => {
           columns={columnas}
           data={datos}
           icons={tableIcons}
-          title={"Lista de Clientes"}
-          actions={[
-            {
-              icon: Edit,
-              tooltip: "Editar Cliente",
-              onClick: (event, rowData) =>
-                alert("Editar  cliente: " + rowData.nombre),
-            },
-            {
-              icon: DeleteOutline,
-              tooltip: "Eliminar Cliente",
-              onClick: (event, rowData) =>
-                window.confirm("Eliminar cliente: " + rowData.nombre),
-            },
-            {
-              icon: SaveRounded,
-              tooltip: "Añadir Cliente",
-              isFreeAction: true,
-              onClick: (event) => abrirCerrarModalInsertar(),
-            },
-          ]}
-          options={{
+          title={"Lista de Mascotas"}
+          editable={{
+            onRowAdd: newDatos =>
+              new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  setDatos([...datos, newDatos]);
+                  
+                  resolve();
+                }, 1000)
+              }),
+            onRowUpdate: (newDatos, oldDatos) =>
+              new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  const dataUpdate = [...datos];
+                  const index = oldDatos.tableData.id;
+                  dataUpdate[index] = newDatos;
+                  setDatos([...dataUpdate]);
+    
+                  resolve();
+                }, 1000)
+              }),
+            onRowDelete: oldDatos =>
+              new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  const dataDelete = [...datos];
+                  const index = oldDatos.tableData.id;
+                  dataDelete.splice(index, 1);
+                  setDatos([...dataDelete]);
+                  resolve()
+                }, 1000)
+              }),
+          }}
+         options={{
             actionsColumnIndex: -1,
             exportButton: true,
             headerStyle: {
-              backgroundColor: "#279f7e",
+              backgroundColor: "#3e8227",
               color: "#FFF",
               ttableLayout: "fixed",
               grouping: true,
@@ -252,14 +286,14 @@ export const Datatable = () => {
           localization={{
             header: {
               actions: "Editar",
-              fontSize: 104,
+              body: { 
+                editRow: 
+                { deleteText: '¿Estás seguro de borrar esta Mascota?' } }              
             },
           }}
         />
 
-        <Modal open={modalInsertar} onClose={abrirCerrarModalInsertar}>
-          {bodyInsertar}
-        </Modal>
+       
       </div>
     </>
   );
