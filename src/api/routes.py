@@ -27,7 +27,7 @@ def login():
             access_token = create_access_token(identity=email)
             return jsonify(access_token=access_token)
         else:
-            return jsonify({"msg": "Bad email or password"}), 401
+            return jsonify({"msg": "Correo o contraseña incorrectos"}), 401
 
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -38,6 +38,19 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+# ***********************ENPOINT USUARIOS************************
+# ---------------------------------------------------------------
+
+# lista todos los médicos
+@api.route('/usuarios', methods=["GET"])
+def get_usuarios():
+    usuarios = User.query.filter().all()
+    result = list(map(lambda usuarios: usuarios.serialize(), usuarios))
+    response_body = {"usuario": result, "msg": "todos los usuarios"}
+    return jsonify(response_body), 200
+
+
 
 
 # ***********************ENPOINT CLIENTES************************

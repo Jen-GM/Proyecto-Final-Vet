@@ -12,6 +12,7 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [ingreso, setIngreso] = useState(null);
   const navigate = useNavigate();
 
   function isValidEmail(email) {
@@ -29,7 +30,13 @@ export const Login = () => {
   };
 
   const handleClick = async () => {
-    await actions.login(email, password).then(() => navigate("/usuarios"));
+    await actions.loginType(email, password).then(() =>{
+      if (store.tipoUsuario === 1){
+        navigate("/calendar");
+      }else{
+        navigate("/profile");
+      }
+    })
   };
 
   return (
@@ -48,7 +55,18 @@ export const Login = () => {
                       placeholder="Correo"
                       value={email}
                       onChange={handleChange}
-                    /> {error && <h5 style={{ color: "red", paddingBottom: '0.5rem', display: 'block' }}>{error}</h5>}
+                    />{" "}
+                    {error && (
+                      <h5
+                        style={{
+                          color: "red",
+                          paddingBottom: "0.5rem",
+                          display: "block",
+                        }}
+                      >
+                        {error}
+                      </h5>
+                    )}
                   </div>
                   <div className="d-grid gap-2 col-3 mx-auto">
                     <input
