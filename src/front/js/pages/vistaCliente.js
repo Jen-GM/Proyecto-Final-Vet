@@ -16,7 +16,7 @@ export const VistaCliente = () => {
           <div className="ms-5">
             <h4 className="text-success text-sm-start m-2">Sus mascotas:</h4>
           </div>
-          <div className="text-center ">
+          <div className="">
             <AgendaCliente />
           </div>
         </div>
@@ -24,7 +24,6 @@ export const VistaCliente = () => {
           <ListaMascotasCliente />
           <Expediente />
         </div>
-        
       </div>
     </>
   );

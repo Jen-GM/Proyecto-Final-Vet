@@ -7,7 +7,7 @@ import "../../styles/modalAgenda.css";
 
 export const AgendaCliente = () => {
   return (
-    <div className="" >
+    <div>
       <button
         type="button"
         className="btn btn-success top-50 end-0"
@@ -58,7 +58,7 @@ export const AgendaCliente = () => {
                         aria-label="Bobby"
                       />
                       <label className="form-check-label" for="mascota1">
-                        Bobby
+                        Bruno Castillo
                       </label>
                     </div>
                   </div>
