@@ -1,11 +1,33 @@
 import React, { useState, useEffect, useContext, Component } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import { Tab, Tabs } from "react-bootstrap";
+import "../../styles/cliente.css";
+
 
 export const Expediente = () => {
   return (
     <div>
-      <div className="card text-center">
+      <div>
+        <Tabs
+          id="salud-mascota"
+          defaultActiveKey="expediente"
+          transition={false}
+          className="mb-3 rounded bg-secondary text-white"
+          justify
+        >
+          <Tab eventKey="expediente" title="Expediente">
+            Lo que sea
+          </Tab>
+          <Tab eventKey="vacunacion" title="Vacunación">
+            Lo que sea pero vacunado
+          </Tab>
+          <Tab eventKey="desparasitacion" title="Desparasitación">
+            Ya sin bichos lo que sea en serio
+          </Tab>
+        </Tabs>
+      </div>
+      {/* <div className="card text-center">
         <div className="card-header">
           <ul className="nav nav-tabs card-header-tabs">
             <li className="nav-item">
@@ -93,7 +115,7 @@ export const Expediente = () => {
             </table>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

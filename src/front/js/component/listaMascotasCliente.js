@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext, Component } from "react";
-import { Tab, Tabs } from "react-bootstrap";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../img/perrin.jpg";
 
 export const ListaMascotasCliente = () => {
-  const [key, setKey] = useState("expediente");
+
 
   return (
     <div>
@@ -29,25 +28,8 @@ export const ListaMascotasCliente = () => {
           </div>
         </div>
       </div>
-      {/* Esta parte son los tabs con la informacion medica del animal */}
-      <div>
-        <Tabs
-          defaultActiveKey="expediente"
-          transition={false}
-          id="noanim-tab-example"
-          className="mb-3"
-        >
-          <Tab eventKey="expediente" title="Expediente">
-            Lo que sea
-          </Tab>
-          <Tab eventKey="vacunacion" title="Vacunación">
-            Lo que sea pero vacunado
-          </Tab>
-          <Tab eventKey="desparasitacion" title="Desparasitación">
-            Ya sin bichos lo que sea en serio
-          </Tab>
-        </Tabs>
-      </div>
+      
+      
 
       {/* <div className="card text-center">
         <div className="card-header">
