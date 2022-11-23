@@ -1,13 +1,32 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import Swal from "sweetalert2/dist/sweetalert2.js";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { MapaAgenda } from "./mapaAgenda";
+import "../../img/happydog.jpg";
 import "../../styles/modalAgenda.css";
 
-
 export const AgendaCliente = () => {
+  const Swal = require("sweetalert2");
+  const [domicilio, setDomicilio] = useState();
+  const [transporte, setTransporte] = useState();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    Swal.fire({
+      position: "center",
+      imageUrl: "happydog.jpg",
+      imageWidth: 180,
+      imageHeight: 150,
+      imageAlt: "cat",
+      title: "¡Su cita ha sido agendada con éxito!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
+
   return (
-    <div className="m-5 p-5">
+    <div>
       <button
         type="button"
         className="btn btn-success top-50 end-0"
@@ -58,7 +77,7 @@ export const AgendaCliente = () => {
                         aria-label="Bobby"
                       />
                       <label className="form-check-label" for="mascota1">
-                        Bobby
+                        Bruno Castillo
                       </label>
                     </div>
                   </div>
@@ -82,47 +101,108 @@ export const AgendaCliente = () => {
                       id="appointment-time"
                     />
                   </div>
-                  <>
-                    <div className="form-check">
-                      <p className="text">
-                        ¿Necesita transporte para su mascota?
-                      </p>
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault1"
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault1"
-                      >
-                        Sí
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault2"
-                        defaultChecked=""
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault2"
-                      >
-                        No
-                      </label>
-                    </div>
-                  </>
+                  <div className="form-check">
+                    <p className="text">¿Desea su cita a domicilio?</p>
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="flexRadioDefault"
+                      id="flexRadioDefault1"
+                      value={domicilio}
+                      onClick={() => {
+                        setDomicilio(true), console.log(domicilio);
+                      }}
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="flexRadioDefault1"
+                    >
+                      Sí
+                    </label>
+                  </div>
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="flexRadioDefault"
+                      id="flexRadioDefault2"
+                      value={domicilio}
+                      onClick={() => {
+                        setDomicilio(false), console.log(domicilio);
+                      }}
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="flexRadioDefault2"
+                    >
+                      No
+                    </label>
+                  </div>
+                  {domicilio == false && (
+                    <>
+                      <div className="form-check">
+                        <p className="text">
+                          ¿Necesita transporte para su mascota?
+                        </p>
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="flexRadioDefault"
+                          id="flexRadioDefault3"
+                          onClick={() => {
+                            setTransporte(true), console.log(transporte);
+                          }}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor="flexRadioDefault3"
+                        >
+                          Sí
+                        </label>
+                      </div>
+                      <div className="form-check">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="flexRadioDefault"
+                          id="flexRadioDefault4"
+                          defaultChecked=""
+                          onClick={() => {
+                            setTransporte(false), console.log(transporte);
+                          }}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor="flexRadioDefault4"
+                        >
+                          No
+                        </label>
+                      </div>
+                    </>
+                  )}
                 </form>
-                <div className="mb-3">
-                  <label for="message-text" class="col-form-label">
-                    Ingrese la dirección:
-                  </label>
-                  <div> <MapaAgenda/> </div>
-                </div>
+                {(transporte == true && (
+                  <div className="mb-3">
+                    <label for="message-text" class="col-form-label">
+                      Ingrese la dirección:
+                    </label>
+                    <div>
+                      {" "}
+                      <MapaAgenda />{" "}
+                    </div>
+                  </div>
+                )) ||
+                  (domicilio == true && (
+                    <div className="mb-3">
+                      <label for="message-text" class="col-form-label">
+                        Ingrese la dirección:
+                      </label>
+                      <div>
+                        {" "}
+                        <MapaAgenda />{" "}
+                      </div>
+                    </div>
+                  ))}
               </div>
               <div className="modal-footer">
                 <button
@@ -132,7 +212,12 @@ export const AgendaCliente = () => {
                 >
                   Cerrar
                 </button>
-                <button type="button" className="btn btn-primary">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  data-bs-dismiss="modal"
+                  onClick={handleSubmit}
+                >
                   Solicitar cita
                 </button>
               </div>

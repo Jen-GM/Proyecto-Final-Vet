@@ -1,9 +1,17 @@
-
-
-.modal-dialog{
-    overflow-y: initial !important
+.modal {
+  width: 70vw;
+  height: 70vh;
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
-.modal-body{
-    height: 80vh;
-    overflow-y: auto;
+
+.modal-dialog {
+  overflow-y: initial !important;
+}
+.modal-body {
+  height: 90vh;
+  overflow-y: auto;
 }

@@ -18,16 +18,18 @@ api = Blueprint('api', __name__)
 # ___________POST-TOKEN__________
 @api.route("/token", methods=["POST"])
 def login():
+    userIn = False
     email = request.json.get("email", None)
     password = request.json.get("password", None)
     user = User.query.filter().all()
     result = list(map(lambda user: user.serialize(), user))
     for x in result:
-        if (x["email"] == email) and (x["password"] == password):
+        if (email == x["email"]) and (password == x["password"]):
+            userIn = True
             access_token = create_access_token(identity=email)
             return jsonify(access_token=access_token)
-        else:
-            return jsonify({"msg": "Bad email or password"}), 401
+    if (userIn == False):
+        return jsonify({"msg": "Correo o contraseña incorrectos"}), 401
 
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -38,6 +40,19 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+# ***********************ENPOINT USUARIOS************************
+# ---------------------------------------------------------------
+
+# lista todos los médicos
+@api.route('/usuarios', methods=["GET"])
+def get_usuarios():
+    usuarios = User.query.filter().all()
+    result = list(map(lambda usuarios: usuarios.serialize(), usuarios))
+    response_body = {"usuario": result, "msg": "todos los usuarios"}
+    return jsonify(response_body), 200
+
+
 
 
 # ***********************ENPOINT CLIENTES************************

@@ -1,9 +1,13 @@
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "../../img/cat-error.png";
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       message: null,
       token: null,
       entrar: null,
+      tipoUsuario: null,
       demo: [
         {
           title: "FIRST",
@@ -32,8 +36,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       logout: () => {
         sessionStorage.removeItem("token");
+        sessionStorage.removeItem("tipoUsuario");
         console.log("Login out");
         setStore({ token: null });
+        setStore({ tipoUsuario: null });
       },
 
       login: async (email, password) => {
@@ -54,10 +60,26 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           if (resp.status !== 200) {
             if (resp.status === 401) {
-              alert("Email o contraseña incorrecta");
+              Swal.fire({
+                imageUrl: "cat-error.png",
+                imageWidth: 180,
+                imageHeight: 180,
+                imageAlt: "cat",
+                title: "Ups",
+                text: "Correo o contraseña incorrecta",
+                confirmButtonColor: "orange",
+              });
               return false;
             }
-            alert("Hay un error");
+            Swal.fire({
+              imageUrl: "cat-error.png",
+              imageWidth: 180,
+              imageHeight: 180,
+              imageAlt: "cat",
+              title: "Ups",
+              text: "Error al accesar. Intente de nuevo.",
+              confirmButtonColor: "orange",
+            });
             return false;
           }
 
@@ -70,6 +92,33 @@ const getState = ({ getStore, getActions, setStore }) => {
         } catch (error) {
           console.error("There has been an error");
         }
+      },
+
+      loginType: async (email, password) => {
+        await getActions()
+          .login(email, password)
+          .then(() =>
+            fetch(process.env.BACKEND_URL + "/api/usuarios")
+              .then((resp) => resp.json())
+              .then((resp) => {
+                resp.usuario.map((element, index) => {
+                  if (
+                    email === element.email &&
+                    element.user_type_id === 1
+                  ) {
+                    setStore({ tipoUsuario: 1 });
+                  } else if (
+                    email === element.email &&
+                    element.user_type_id === 2
+                  ) {
+                    setStore({ tipoUsuario: 2 });
+                  }
+                });
+              })
+              .catch((error) =>
+                console.log("Error identificando el tipo de usuario", error)
+              )
+          );
       },
 
       getMessage: () => {
@@ -88,6 +137,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log("Error loading message from backend", error)
           );
       },
+
       changeColor: (index, color) => {
         //get the store
         const store = getStore();
