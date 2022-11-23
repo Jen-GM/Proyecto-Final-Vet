@@ -1,11 +1,27 @@
 import React, { useContext } from "react";
+import Swal from "sweetalert2/dist/sweetalert2.js";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { MapaAgenda } from "./mapaAgenda";
+import "../../img/happydog.jpg";
 import "../../styles/modalAgenda.css";
 
-
 export const AgendaCliente = () => {
+  const Swal = require("sweetalert2");
+
+  const handleSubmit = (e) => {
+    Swal.fire({
+      position: "top-end",
+      imageUrl: "happydog.jpg",
+      imageWidth: 180,
+      imageHeight: 150,
+      imageAlt: "cat",
+      title: "¡Su cita ha sido apartada con éxito!",
+      showConfirmButton: true,
+      timer: 1500,
+    });
+  };
+
   return (
     <div>
       <button
@@ -121,7 +137,10 @@ export const AgendaCliente = () => {
                   <label for="message-text" class="col-form-label">
                     Ingrese la dirección:
                   </label>
-                  <div> <MapaAgenda/> </div>
+                  <div>
+                    {" "}
+                    <MapaAgenda />{" "}
+                  </div>
                 </div>
               </div>
               <div className="modal-footer">
@@ -132,7 +151,11 @@ export const AgendaCliente = () => {
                 >
                   Cerrar
                 </button>
-                <button type="button" className="btn btn-primary">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={handleSubmit}
+                >
                   Solicitar cita
                 </button>
               </div>
