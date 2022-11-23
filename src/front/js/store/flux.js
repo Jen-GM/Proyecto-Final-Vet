@@ -36,8 +36,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       logout: () => {
         sessionStorage.removeItem("token");
+        sessionStorage.removeItem("tipoUsuario");
         console.log("Login out");
         setStore({ token: null });
+        setStore({ tipoUsuario: null });
       },
 
       login: async (email, password) => {
