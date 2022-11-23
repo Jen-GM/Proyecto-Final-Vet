@@ -5,10 +5,10 @@ export const AtencionMedica = () => {
   return (
     
         <>
-   <div className="m-1 p-1 border w-50 d-flex justify-content-between">
-  <nav className="nav-ficha border d-inline">
+   <div className=" w-75 h-50 d-flex justify-content-center ">
+  <nav className="nav-ficha  d-inline">
     <div className="nav nav-tabs" id="nav-tab" role="tablist">
-      <button className="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">FICHA DE ATENCION</button>
+      <button className="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">F. DE ATENCION</button>
       <button className="nav-link d-block " id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">VACUNA</button>
       <button className="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">DESPARASITACION</button>
     </div>
@@ -74,7 +74,7 @@ export const AtencionMedica = () => {
     </div>
     {/* VACUNACION TAB */}
     <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-    <form className="row g-4">
+    <form className="row">
   <div className="col-md-3">
     <label htmlFor="inputEmail4" className="form-label">Peso</label>
     <input type="email" className="form-control" id="inputEmail4" />
@@ -88,8 +88,8 @@ export const AtencionMedica = () => {
     <input type="email" className="form-control" id="inputEmail4" />
   </div>
   
-  <div className="col-auto">
-    <label htmlFor="inputText" className="col-form-label">Fecha aplicación</label>
+  <div className="row-auto">
+    <label htmlFor="inputText" className="col-form-label">Fecha A.</label>
   </div>
   <div className="col-md-1 ">
   <div className="input-group date" id="datepicker">
@@ -101,8 +101,8 @@ export const AtencionMedica = () => {
       </span>
     </div>
   </div>
-  <div className="col-auto">
-    <label htmlFor="inputText" className="col-form-label my-1">Sig. aplicación</label>
+  <div className="row-auto">
+    <label htmlFor="inputText" className="col-form-label my-1">Sig. A.</label>
   </div>
   <div className="col-md-1 ">
   <div className="input-group date" id="datepicker">
@@ -133,7 +133,7 @@ export const AtencionMedica = () => {
 
     {/* /*DESPARASITACION TAB */}
     <div className="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-    <form className="row">
+    <form className="row-lg-2 border">
   <div className="col-md-3">
     <label htmlFor="inputEmail4" className="form-label">Peso</label>
     <input type="email" className="form-control" id="inputEmail4" />
@@ -143,8 +143,8 @@ export const AtencionMedica = () => {
     <input type="email" className="form-control" id="inputEmail4" />
   </div>
   
-  <div className="col-auto">
-    <label htmlFor="inputText" className="col-form-label">Fecha aplicación</label>
+  <div className="row-auto">
+    <label htmlFor="inputText" className="col-form-label">Fecha A.</label>
   </div>
   <div className="col-md-1 ">
   <div className="input-group date" id="datepicker">
@@ -156,8 +156,9 @@ export const AtencionMedica = () => {
       </span>
     </div>
   </div>
-  <div className="col-auto">
-    <label htmlFor="inputText" className="col-form-label"> Sig.aplicación</label>
+  <div className="row-auto">
+    
+    <label htmlFor="inputText" className="col-form-label mb-3"> Sig. A.</label>
   </div>
   <div className="col-md-1 ">
   <div className="input-group date" id="datepicker">
@@ -181,9 +182,9 @@ export const AtencionMedica = () => {
 </div>
       </div>
   </div>
-  <div className="col-md-1 "> <img src="https://media1.giphy.com/media/W8nu2VD6Hd3DpQLDTy/giphy.gif"></img></div>
+  <div className="col-sm-4 "> <img src="https://media1.giphy.com/media/W8nu2VD6Hd3DpQLDTy/giphy.gif"></img></div>
 </div>
-
+<img src="https://i.ibb.co/smzTvwk/coming-soon-puppy-1-removebg-preview.png fixed" ></img>
 
 </>
      
