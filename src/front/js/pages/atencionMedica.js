@@ -206,7 +206,7 @@ export const AtencionMedica = () => {
               aria-labelledby="nav-profile-tab"
             >
               <form className="row align-items-center w-90">
-                <div className="col-md-3">
+                <div className="col-md-2">
                   <label htmlFor="inputEmail4" className="form-label">
                     Peso
                   </label>
