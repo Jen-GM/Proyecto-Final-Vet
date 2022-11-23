@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, Component } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import { Tab, Tabs } from "react-bootstrap";
+import { Tab, Tabs, TabPane } from "react-bootstrap";
 
 export const Expediente = () => {
   return (
@@ -11,17 +11,88 @@ export const Expediente = () => {
           id="salud-mascota"
           defaultActiveKey="expediente"
           transition={true}
-          className="mb-3 rounded bg-light text-dark"
-          justify
+          className="rounded bg-light text-success fs-5 border border-2 border border-dark"
+          fill
         >
-          <Tab eventKey="expediente" title="Expediente">
-            Lo que sea
+          <Tab eventKey="expediente" title="Expediente" className="pt-2 bg-light rounded border border-1 border-secondary">
+            <div className="mx-3 d-flex justify-content-center">
+              <table className="table table-hover m-2 p-1">
+                <thead>
+                  <tr>
+                  <th scope="col">Fecha atención</th>
+                    <th scope="col">Motivo consulta</th>
+                    <th scope="col">Diágnostico</th>
+                    <th scope="col">Estudios médicos</th>
+                    <th scope="col">Tratamiento</th>
+                    <th scope="col">Recomendaciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>15/10/2022</td>
+                    <td>Vomito</td>
+                    <td>Gastritis</td>
+                    <td>N/A</td>
+                    <td>Protector gástrico</td>
+                    <td>Brindar alimento húmedo en conjunto con el sólido</td>
+                  </tr>
+                  <tr>
+                    <td>15/10/2022</td>
+                    <td>Chequeo general</td>
+                    <td>Bruno en buen estado</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>Realizar otro chequeo general en un año</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </Tab>
-          <Tab eventKey="vacunacion" title="Vacunación">
-            Lo que sea pero vacunado
+          <Tab eventKey="vacunacion" title="Vacunación" className="bg-light rounded border border-1 border-dark">
+            <div className="mx-3 d-flex justify-content-center">
+              <table className="table table-hover m-2 p-1">
+                <thead>
+                  <tr>
+                    <th scope="col">Peso</th>
+                    <th scope="col">Nombre Vacuna</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Fecha de aplicación</th>
+                    <th scope="col">Fecha de siguiente aplicación</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>50kg</td>
+                    <td>Parvovirosis</td>
+                    <td>GOURMET MON PETIT</td>
+                    <td>21/11/2022</td>
+                    <td>25/11/2023</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </Tab>
-          <Tab eventKey="desparasitacion" title="Desparasitación">
-            Ya sin bichos lo que sea en serio
+          <Tab eventKey="desparasitacion" title="Desparasitación" className="bg-light rounded border border-1 border-secondary">
+          <div className="mx-3 d-flex justify-content-center">
+              <table className="table table-hover m-2 p-1">
+                <thead>
+                  <tr>
+                    <th scope="col">Peso</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Fecha de aplicación</th>
+                    <th scope="col">Fecha de siguiente aplicación</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>50kg</td>
+                    <td>GOURMET MON PETIT</td>
+                    <td>21/11/2022</td>
+                    <td>25/11/2023</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </Tab>
         </Tabs>
       </div>

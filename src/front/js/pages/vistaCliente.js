@@ -22,10 +22,9 @@ export const VistaCliente = () => {
         </div>
         <div>
           <ListaMascotasCliente />
-        </div>
-        <div>
           <Expediente />
         </div>
+        
       </div>
     </>
   );
