@@ -111,7 +111,7 @@ export const AgendaCliente = () => {
                         type="radio"
                         name="flexRadioDefault"
                         id="flexRadioDefault1"
-                        onClick={() => {setYes(true), console.log(yes)}}
+                        onClick={() => {setDomicilio(true), console.log(domicilio)}}
                       />
                       <label
                         className="form-check-label"
@@ -128,7 +128,7 @@ export const AgendaCliente = () => {
                         name="flexRadioDefault"
                         id="flexRadioDefault2"
                         defaultChecked=""
-                        onClick={() => {setYes(false), console.log(yes)}}                        
+                        onClick={() => {setDomicilio(false), console.log(domicilio)}}                        
                       />
                       <label
                         className="form-check-label"
@@ -139,7 +139,7 @@ export const AgendaCliente = () => {
                       </label>
                     </div>
                 </form>
-                {yes == true && (
+                {domicilio == true && (
                 <div className="mb-3">
                   <label for="message-text" class="col-form-label">
                     Ingrese la dirección:
