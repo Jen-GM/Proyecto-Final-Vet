@@ -31,10 +31,10 @@ export const Login = () => {
 
   const handleClick = async () => {
     await actions.loginType(email, password).then(() =>{
-      if (store.tipoUsuario === 1){
-        navigate("/calendar");
-      }else{
-        navigate("/profile");
+      if (store.tipoUsuario === 1 && store.token){
+        navigate("/agenda");
+      }else if(store.tipoUsuario === 2 && store.token){
+        navigate("/cliente");
       }
     })
   };

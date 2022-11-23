@@ -36,8 +36,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       logout: () => {
         sessionStorage.removeItem("token");
+        sessionStorage.removeItem("tipoUsuario");
         console.log("Login out");
         setStore({ token: null });
+        setStore({ tipoUsuario: null });
       },
 
       login: async (email, password) => {
@@ -104,13 +106,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                     email === element.email &&
                     element.user_type_id === 1
                   ) {
-                    console.log(element.user_type_id);
                     setStore({ tipoUsuario: 1 });
                   } else if (
                     email === element.email &&
                     element.user_type_id === 2
                   ) {
-                    console.log(element.user_type_id);
                     setStore({ tipoUsuario: 2 });
                   }
                 });

@@ -36,7 +36,7 @@ export const Navbar = () => {
           </button>
           <div className="collapse navbar-collapse" id="#navbarNav">
             <ul className="navbar-nav p-5">
-              {!userLogueado && (
+              {!userLogueado && !store.tipoUsuario && (
                 <>
                   <li className="nav-item border border-white rounded mx-3 border-opacity-75 shadow-lg">
                     <a className="nav-link px-4" href="#bgBeneficios">
@@ -55,42 +55,26 @@ export const Navbar = () => {
                   </li>
                 </>
               )}
-              {userLogueado && store.tipoUsuario === 1 &&(
+              {userLogueado && store.tipoUsuario === 1 && (
                 <>
-                  <Link to="/">
+                  <Link to="/agenda">
                     <li className="nav-item border border-white rounded mx-3 border-opacity-75">
-                      <a
-                        className="nav-link px-4"
-                      >
-                        Agenda
-                      </a>
+                      <a className="nav-link px-4">Agenda</a>
                     </li>
                   </Link>
-                  <Link to="/">
+                  <Link to="/usuarios">
                     <li className="nav-item border border-white rounded mx-3 border-opacity-75">
-                      <a
-                        className="nav-link px-4"
-                      >
-                        Usuarios
-                      </a>
+                      <a className="nav-link px-4">Usuarios</a>
                     </li>
                   </Link>
-                  <Link to="/">
+                  <Link to="/mascotas">
                     <li className="nav-item border border-white rounded mx-3 border-opacity-75">
-                      <a
-                        className="nav-link px-4"
-                      >
-                        Mascotas
-                      </a>
+                      <a className="nav-link px-4">Mascotas</a>
                     </li>
                   </Link>
-                  <Link to="/">
+                  <Link to="/editarperfil">
                     <li className="nav-item border border-white rounded mx-3 border-opacity-75">
-                      <a
-                        className="nav-link px-4"
-                      >
-                        Mi perfil
-                      </a>
+                      <a className="nav-link px-4">Mi perfil</a>
                     </li>
                   </Link>
                   <Link to="/">
@@ -105,15 +89,16 @@ export const Navbar = () => {
                   </Link>
                 </>
               )}
-              {userLogueado && store.tipoUsuario === 2 &&(
+              {userLogueado && store.tipoUsuario === 2 && (
                 <>
-                  <Link to="/">
+                  <Link to="/cliente">
                     <li className="nav-item border border-white rounded mx-3 border-opacity-75">
-                      <a
-                        className="nav-link px-4"
-                      >
-                        Mi perfil
-                      </a>
+                      <a className="nav-link px-4">Mis mascotas</a>
+                    </li>
+                  </Link>
+                  <Link to="/editarperfil">
+                    <li className="nav-item border border-white rounded mx-3 border-opacity-75">
+                      <a className="nav-link px-4">Mi perfil</a>
                     </li>
                   </Link>
                   <Link to="/">
