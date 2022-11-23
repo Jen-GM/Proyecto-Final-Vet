@@ -3,19 +3,3 @@
   overflow-y: scroll;
 }
 
-.nav-item {
-  font-size: 20px;
-  font-weight: bold;
-  background: -webkit-linear-gradient(
-    left top,
-    rgb(228, 171, 180),
-    rgb(251, 252, 249)
-  );
-  background: linear-gradient(
-    to bottom right,
-    rgb(228, 171, 209),
-    rgb(164, 168, 165)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}

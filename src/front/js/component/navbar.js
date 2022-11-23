@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import "../../styles/home.css";
+import "../../styles/navbar.css";
 import "../../img/LogotipoPS.png";
 import "../../img/navbar2.png";
 import "../../img/dogs.png";
