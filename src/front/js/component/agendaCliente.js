@@ -10,14 +10,15 @@ export const AgendaCliente = () => {
   const Swal = require("sweetalert2");
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     Swal.fire({
-      position: "top-end",
+      position: "top-center",
       imageUrl: "happydog.jpg",
       imageWidth: 180,
       imageHeight: 150,
       imageAlt: "cat",
       title: "¡Su cita ha sido apartada con éxito!",
-      showConfirmButton: true,
+      showConfirmButton: false,
       timer: 1500,
     });
   };
@@ -154,6 +155,7 @@ export const AgendaCliente = () => {
                 <button
                   type="button"
                   className="btn btn-primary"
+                  data-bs-dismiss="modal"
                   onClick={handleSubmit}
                 >
                   Solicitar cita
