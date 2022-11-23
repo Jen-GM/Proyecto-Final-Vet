@@ -19,7 +19,7 @@ export const AgendaCliente = () => {
       imageWidth: 180,
       imageHeight: 150,
       imageAlt: "cat",
-      title: "¡Su cita ha sido apartada con éxito!",
+      title: "¡Su cita ha sido agendada con éxito!",
       showConfirmButton: false,
       timer: 1500,
     });
@@ -108,6 +108,7 @@ export const AgendaCliente = () => {
                       type="radio"
                       name="flexRadioDefault"
                       id="flexRadioDefault1"
+                      value={domicilio}
                       onClick={() => {
                         setDomicilio(true), console.log(domicilio);
                       }}
@@ -125,7 +126,7 @@ export const AgendaCliente = () => {
                       type="radio"
                       name="flexRadioDefault"
                       id="flexRadioDefault2"
-                      defaultChecked=""
+                      value={domicilio}
                       onClick={() => {
                         setDomicilio(false), console.log(domicilio);
                       }}
@@ -180,7 +181,7 @@ export const AgendaCliente = () => {
                     </>
                   )}
                 </form>
-                {transporte == true || domicilio == true && (
+                {(transporte == true && (
                   <div className="mb-3">
                     <label for="message-text" class="col-form-label">
                       Ingrese la dirección:
@@ -190,7 +191,18 @@ export const AgendaCliente = () => {
                       <MapaAgenda />{" "}
                     </div>
                   </div>
-                )}
+                )) ||
+                  (domicilio == true && (
+                    <div className="mb-3">
+                      <label for="message-text" class="col-form-label">
+                        Ingrese la dirección:
+                      </label>
+                      <div>
+                        {" "}
+                        <MapaAgenda />{" "}
+                      </div>
+                    </div>
+                  ))}
               </div>
               <div className="modal-footer">
                 <button

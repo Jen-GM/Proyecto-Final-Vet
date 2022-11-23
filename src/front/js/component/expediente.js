@@ -30,7 +30,7 @@ export const Expediente = () => {
                 <tbody>
                   <tr>
                     <td>15/10/2022</td>
-                    <td>Vomito</td>
+                    <td>Vómito</td>
                     <td>Gastritis</td>
                     <td>N/A</td>
                     <td>Protector gástrico</td>
