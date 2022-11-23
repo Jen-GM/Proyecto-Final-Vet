@@ -8,9 +8,8 @@ import "../../styles/modalAgenda.css";
 
 export const AgendaCliente = () => {
   const Swal = require("sweetalert2");
-  const [domicilio, setDomicilio] = useState(false);
-  const [transporte, setTransporte] = useState(false);
-
+  const [domicilio, setDomicilio] = useState();
+  const [transporte, setTransporte] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -102,53 +101,96 @@ export const AgendaCliente = () => {
                       id="appointment-time"
                     />
                   </div>
-                    <div className="form-check">
-                      <p className="text">
-                        ¿Necesita transporte para su mascota?
-                      </p>
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault1"
-                        onClick={() => {setDomicilio(true), console.log(domicilio)}}
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault1"
-                        
-                      >
-                        Sí
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault2"
-                        defaultChecked=""
-                        onClick={() => {setDomicilio(false), console.log(domicilio)}}                        
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault2"
-                        
-                      >
-                        No
-                      </label>
-                    </div>
-                </form>
-                {domicilio == true && (
-                <div className="mb-3">
-                  <label for="message-text" class="col-form-label">
-                    Ingrese la dirección:
-                  </label>
-                  <div>
-                    {" "}
-                    <MapaAgenda />{" "}
+                  <div className="form-check">
+                    <p className="text">¿Desea su cita a domicilio?</p>
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="flexRadioDefault"
+                      id="flexRadioDefault1"
+                      onClick={() => {
+                        setDomicilio(true), console.log(domicilio);
+                      }}
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="flexRadioDefault1"
+                    >
+                      Sí
+                    </label>
                   </div>
-                </div>)}
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="flexRadioDefault"
+                      id="flexRadioDefault2"
+                      defaultChecked=""
+                      onClick={() => {
+                        setDomicilio(false), console.log(domicilio);
+                      }}
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="flexRadioDefault2"
+                    >
+                      No
+                    </label>
+                  </div>
+                  {domicilio == false && (
+                    <>
+                      <div className="form-check">
+                        <p className="text">
+                          ¿Necesita transporte para su mascota?
+                        </p>
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="flexRadioDefault"
+                          id="flexRadioDefault3"
+                          onClick={() => {
+                            setTransporte(true), console.log(transporte);
+                          }}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor="flexRadioDefault3"
+                        >
+                          Sí
+                        </label>
+                      </div>
+                      <div className="form-check">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="flexRadioDefault"
+                          id="flexRadioDefault4"
+                          defaultChecked=""
+                          onClick={() => {
+                            setTransporte(false), console.log(transporte);
+                          }}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor="flexRadioDefault4"
+                        >
+                          No
+                        </label>
+                      </div>
+                    </>
+                  )}
+                </form>
+                {transporte == true || domicilio == true && (
+                  <div className="mb-3">
+                    <label for="message-text" class="col-form-label">
+                      Ingrese la dirección:
+                    </label>
+                    <div>
+                      {" "}
+                      <MapaAgenda />{" "}
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="modal-footer">
                 <button
