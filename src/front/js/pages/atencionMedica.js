@@ -48,7 +48,7 @@ export const AtencionMedica = () => {
   <label htmlFor="floatingTextarea">Exámenes</label>
 </div>
   <div className="form-floating py-2 w-90">
-  <textarea className="form-control " placeholder="Leave a comment here" id="floatingTextarea" defaultValue={""} />
+  <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea" defaultValue={""} />
   <label htmlFor="floatingTextarea">Tratamiento</label>
 </div>
 <div className="form-check">
@@ -91,7 +91,7 @@ export const AtencionMedica = () => {
   <div className="row-auto">
     <label htmlFor="inputText" className="col-form-label">Fecha A.</label>
   </div>
-  <div className="col-md-1 ">
+  <div className="col-md-1">
   <div className="input-group date" id="datepicker">
       
       <span className="input-group-append">
@@ -104,7 +104,7 @@ export const AtencionMedica = () => {
   <div className="row-auto">
     <label htmlFor="inputText" className="col-form-label my-1">Sig. A.</label>
   </div>
-  <div className="col-md-1 ">
+  <div className="col-md-1">
   <div className="input-group date" id="datepicker">
       
       <span className="input-group-append">
@@ -133,7 +133,7 @@ export const AtencionMedica = () => {
 
     {/* /*DESPARASITACION TAB */}
     <div className="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-    <form className="row-lg-2 border">
+    <form className="row">
   <div className="col-md-3">
     <label htmlFor="inputEmail4" className="form-label">Peso</label>
     <input type="email" className="form-control" id="inputEmail4" />
@@ -150,7 +150,7 @@ export const AtencionMedica = () => {
   <div className="input-group date" id="datepicker">
       
       <span className="input-group-append">
-        <span className="input-group-text bg-light ">
+        <span className="input-group-text bg-light">
           <i className="fa fa-calendar" />
         </span>
       </span>
@@ -160,11 +160,11 @@ export const AtencionMedica = () => {
     
     <label htmlFor="inputText" className="col-form-label mb-3"> Sig. A.</label>
   </div>
-  <div className="col-md-1 ">
+  <div className="col-md-1">
   <div className="input-group date" id="datepicker">
       
       <span className="input-group-append">
-        <span className="input-group-text bg-light ">
+        <span className="input-group-text bg-light">
           <i className="fa fa-calendar" />
         </span>
       </span>
