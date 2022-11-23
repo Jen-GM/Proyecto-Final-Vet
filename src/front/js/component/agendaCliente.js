@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
@@ -8,11 +8,14 @@ import "../../styles/modalAgenda.css";
 
 export const AgendaCliente = () => {
   const Swal = require("sweetalert2");
+  const [domicilio, setDomicilio] = useState(false);
+  const [transporte, setTransporte] = useState(false);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     Swal.fire({
-      position: "top-center",
+      position: "center",
       imageUrl: "happydog.jpg",
       imageWidth: 180,
       imageHeight: 150,
@@ -99,7 +102,6 @@ export const AgendaCliente = () => {
                       id="appointment-time"
                     />
                   </div>
-                  <>
                     <div className="form-check">
                       <p className="text">
                         ¿Necesita transporte para su mascota?
@@ -109,10 +111,12 @@ export const AgendaCliente = () => {
                         type="radio"
                         name="flexRadioDefault"
                         id="flexRadioDefault1"
+                        onClick={() => {setYes(true), console.log(yes)}}
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexRadioDefault1"
+                        
                       >
                         Sí
                       </label>
@@ -124,16 +128,18 @@ export const AgendaCliente = () => {
                         name="flexRadioDefault"
                         id="flexRadioDefault2"
                         defaultChecked=""
+                        onClick={() => {setYes(false), console.log(yes)}}                        
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexRadioDefault2"
+                        
                       >
                         No
                       </label>
                     </div>
-                  </>
                 </form>
+                {yes == true && (
                 <div className="mb-3">
                   <label for="message-text" class="col-form-label">
                     Ingrese la dirección:
@@ -142,7 +148,7 @@ export const AgendaCliente = () => {
                     {" "}
                     <MapaAgenda />{" "}
                   </div>
-                </div>
+                </div>)}
               </div>
               <div className="modal-footer">
                 <button
