@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 export const Expediente = () => {
   return (
     <div>
-      <h1>Ver Expediente</h1>
-
       <div className="card text-center">
         <div className="card-header">
           <ul className="nav nav-tabs card-header-tabs">

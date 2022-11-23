@@ -7,7 +7,7 @@ import "../../styles/modalAgenda.css";
 
 export const AgendaCliente = () => {
   return (
-    <div className="m-3 p-3 overflow-auto" >
+    <div className="" >
       <button
         type="button"
         className="btn btn-success top-50 end-0"
