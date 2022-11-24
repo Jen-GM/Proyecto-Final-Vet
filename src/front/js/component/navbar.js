@@ -72,7 +72,7 @@ export const Navbar = () => {
                       id="botonNav"
                     >
                       <a className="nav-link px-4">Agenda</a>
-                    </li>
+                    </li>git chec
                   </Link>
                   <Link to="/usuarios">
                     <li
