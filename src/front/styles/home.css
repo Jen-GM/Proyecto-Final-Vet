@@ -1,7 +1,34 @@
-/*
-    home.css: This website contains selectors only used in home.css
+* {
+  margin: 0;
+  padding: 0;
+}
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+body {
+  background: url("https://color-hex.org/colors/faf3e3.png") no-repeat center
+    center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+#bgBeneficios {
+  background-image: url("https://wallpaperaccess.com/full/1860753.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.carousel-inner img {
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
+  height: 100vh;
+}
+
+
+#footer-container {
+  background-image: url("https://wallpaperaccess.com/full/1860753.jpg");
+  width: 100%;
+}
+
+

@@ -1,0 +1,21 @@
+#navigation,
+.navbar .navbar-expand-sm {
+  background-image: url("https://wallpaperaccess.com/full/1860753.jpg");
+}
+
+#botonNav {
+  font-size: 20px;
+  font-weight: bold;
+  background: -webkit-linear-gradient(
+    left top,
+    rgb(228, 227, 171),
+    rgb(26, 77, 46)
+  );
+  background: linear-gradient(
+    to bottom right,
+    rgb(228, 227, 171),
+    rgb(26, 77, 46)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
