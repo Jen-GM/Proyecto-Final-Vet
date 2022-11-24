@@ -64,6 +64,9 @@ const columnas = [
   },
 ];
 
+//Tabla clientes vista medica url
+const clientesUrl =
+  "https://3001-jengm-proyectofinalvet-no8lcclvgr0.ws-us77.gitpod.io/api/clientes";
 
 //estilos para material-table
 
@@ -113,7 +116,7 @@ export const Datatable = () => {
   };
   //___________metodo GET____________
   const getClientes = async () => {
-    await axios.get(process.env.BACKEND_URL + "/api/clientes").then((res) => {
+    await axios.get(clientesUrl).then((res) => {
       setDatos(res.data.clientes);
       console.log(res.data.clientes);
     });
@@ -121,7 +124,7 @@ export const Datatable = () => {
   //__________metodo POST____________
   const postCliente = async () => {
     await axios
-      .post(process.env.BACKEND_URL + "/api/clientes", clienteInput)
+      .post(clientesUrl, clienteInput)
       .then((res) => {
         setDatos(data.concat(res.data));
         
