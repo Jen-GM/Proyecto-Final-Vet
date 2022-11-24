@@ -90,12 +90,12 @@ export const Navbar = () => {
                       <a className="nav-link px-4">Mascotas</a>
                     </li>
                   </Link>
-                  <Link to="/editarperfil">
+                  <Link to="/atencionmedica">
                     <li
                       className="nav-item border border-white rounded mx-3 border-opacity-75"
                       id="botonNav"
                     >
-                      <a className="nav-link px-4">Mi perfil</a>
+                      <a className="nav-link px-4">Atención Médica</a>
                     </li>
                   </Link>
                   <Link to="/">
