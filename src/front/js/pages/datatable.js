@@ -66,7 +66,7 @@ const columnas = [
 
 //Tabla clientes vista medica url
 const clientesUrl =
-  "https://3001-jengm-proyectofinalvet-no8lcclvgr0.ws-us77.gitpod.io/api/clientes";
+process.env.BACKEND_URL  + "/api/clientes";
 
 //estilos para material-table
 
@@ -102,7 +102,7 @@ export const Datatable = () => {
     especie: "",
     raza: "",
     internamiento: true,
-    user_id: 4,
+    user_id: 5,
   });
 
   const handleChange = (e) => {

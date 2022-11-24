@@ -67,7 +67,7 @@ const columnas = [
 
 //Tabla clientes vista medica url
 const clientesUrl =
-  "https://3001-jengm-proyectofinalvet-no8lcclvgr0.ws-us77.gitpod.io/api/mascotas";
+process.env.BACKEND_URL  + "/api/mascotas";
 
 //estilos para material-table
 
