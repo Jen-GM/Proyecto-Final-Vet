@@ -1,11 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "../../styles/profile.css";
 
 export const Profile = () => {
+  const Swal = require("sweetalert2");
+  const navigate = useNavigate();
+
 
   const handleConfirm = (e) => {
-  const Swal = require("sweetalert2");
     e.preventDefault();
     Swal.fire({
       position: "center",
@@ -16,6 +19,23 @@ export const Profile = () => {
       title: "¡Se han guardado los cambios!",
       showConfirmButton: false,
       timer: 1500,
+    });
+  };
+
+  const handleCancellation = (e) => {
+    e.preventDefault();
+    Swal.fire({
+      title: "¿Esta seguro que desea salir?",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "green",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirmar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/cliente");
+      }
     });
   };
 
@@ -88,11 +108,18 @@ export const Profile = () => {
             </div>
           </div>
           <div className="mt-3 d-grid gap-2 d-flex justify-content-center">
-            {" "}
-            <button className="px-3 btn btn-lg btn-outline-success">
+            <button
+              className="px-3 btn btn-lg btn-success"
+              onClick={handleConfirm}
+            >
+              Guardar
+            </button>
+            <button
+              className="px-3 btn btn-lg btn-outline-success"
+              onClick={handleCancellation}
+            >
               Cancelar
-            </button>{" "}
-            <button className="px-3 btn btn-lg btn-success" onClick={handleConfirm}>Guardar</button>{" "}
+            </button>
           </div>
         </div>
       </div>

@@ -34,6 +34,13 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({ token: token });
       },
 
+      syncUserFromSessionStore: () => {
+        const tipoUsuario = sessionStorage.getItem("tipoUsuario");
+        if (tipoUsuario && tipoUsuario != "" && tipoUsuario != undefined)
+          setStore({ tipoUsuario: tipoUsuario });
+        console.log("Este es mi tipo" + tipoUsuario);
+      },
+
       logout: () => {
         sessionStorage.removeItem("token");
         sessionStorage.removeItem("tipoUsuario");
@@ -95,30 +102,36 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       loginType: async (email, password) => {
-        await getActions()
-          .login(email, password)
-          .then(() =>
-            fetch(process.env.BACKEND_URL + "/api/usuarios")
-              .then((resp) => resp.json())
-              .then((resp) => {
-                resp.usuario.map((element, index) => {
-                  if (
-                    email === element.email &&
-                    element.user_type_id === 1
-                  ) {
-                    setStore({ tipoUsuario: 1 });
-                  } else if (
-                    email === element.email &&
-                    element.user_type_id === 2
-                  ) {
-                    setStore({ tipoUsuario: 2 });
-                  }
-                });
-              })
-              .catch((error) =>
-                console.log("Error identificando el tipo de usuario", error)
-              )
-          );
+        try {
+          await getActions()
+            .login(email, password)
+            .then(() =>
+              fetch(process.env.BACKEND_URL + "/api/usuarios")
+                .then((resp) => resp.json())
+                .then((resp) => {
+                  resp.usuario.map((element, index) => {
+                    if (
+                      email === element.email &&
+                      password === element.password &&
+                      element.user_type_id === 1
+                    ) {
+                      setStore({ tipoUsuario: 1 });
+                      window.sessionStorage.setItem("tipoUsuario", 1);
+                    } else if (
+                      email === element.email &&
+                      password === element.password &&
+                      element.user_type_id === 2
+                    ) {
+                      setStore({ tipoUsuario: 2 });
+                      window.sessionStorage.setItem("tipoUsuario", 2);
+                    }
+                  });
+                })
+            );
+          return true;
+        } catch (error) {
+          console.log("Error identificando el tipo de usuario", error);
+        }
       },
 
       getMessage: () => {

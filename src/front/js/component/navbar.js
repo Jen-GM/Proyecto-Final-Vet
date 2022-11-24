@@ -9,6 +9,7 @@ import "../../img/dogs.png";
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
   const userLogueado = sessionStorage.getItem("token");
+  const tipoUser = sessionStorage.getItem("tipoUsuario");
 
   return (
     <nav className="navbar navbar-expand-sm bg-light " id="navigation">
@@ -36,7 +37,7 @@ export const Navbar = () => {
           </button>
           <div className="collapse navbar-collapse" id="#navbarNav">
             <ul className="navbar-nav p-5">
-              {!userLogueado && !store.tipoUsuario && (
+              {!userLogueado && !tipoUser && (
                 <>
                   <li
                     className="nav-item border border-white rounded mx-3 border-opacity-75 shadow-lg"
@@ -64,7 +65,7 @@ export const Navbar = () => {
                   </li>
                 </>
               )}
-              {userLogueado && store.tipoUsuario === 1 && (
+              {(userLogueado && store.tipoUsuario == 1) && (
                 <>
                   <Link to="/agenda">
                     <li
@@ -113,7 +114,7 @@ export const Navbar = () => {
                   </Link>
                 </>
               )}
-              {userLogueado && store.tipoUsuario === 2 && (
+              {(userLogueado && store.tipoUsuario == 2) && (
                 <>
                   <Link to="/cliente">
                     <li

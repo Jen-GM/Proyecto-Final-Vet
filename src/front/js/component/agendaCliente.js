@@ -207,18 +207,18 @@ export const AgendaCliente = () => {
               <div className="modal-footer">
                 <button
                   type="button"
-                  className="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Cerrar
-                </button>
-                <button
-                  type="button"
                   className="btn btn-primary"
                   data-bs-dismiss="modal"
                   onClick={handleSubmit}
                 >
                   Solicitar cita
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cerrar
                 </button>
               </div>
             </div>

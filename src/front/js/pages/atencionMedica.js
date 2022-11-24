@@ -20,9 +20,7 @@ export const AtencionMedica = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("¡Cambios guardados!", "", "success");
-      } else if (result.isDenied) {
-        Swal.fire("Los cambios no se han guardado", "", "info");
-      }
+      } 
     });
   };
 

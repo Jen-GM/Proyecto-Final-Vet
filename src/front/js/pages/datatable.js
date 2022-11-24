@@ -65,8 +65,7 @@ const columnas = [
 ];
 
 //Tabla clientes vista medica url
-const clientesUrl =
-process.env.BACKEND_URL  + "/api/clientes";
+const clientesUrl = process.env.BACKEND_URL + "/api/clientes";
 
 //estilos para material-table
 
@@ -102,7 +101,7 @@ export const Datatable = () => {
     especie: "",
     raza: "",
     internamiento: true,
-    user_id: 5,
+    user_id: 3,
   });
 
   const handleChange = (e) => {
